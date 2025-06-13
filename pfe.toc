@@ -35,16 +35,17 @@
 \contentsline {chapter}{\numberline {3}Architectural Blueprint of a DQN-Powered DDoS Detection System}{20}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Introduction}{20}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Comprehensive Data Preprocessing Pipeline}{20}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Step 1: Data Cleaning}{21}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Step 2: Binary Label Transformation}{21}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Step 3: Feature Selection using Random Forest Classifier}{21}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Step 4: Data Normalization}{21}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}Step 5: Dataset Balancing with Random Undersampling}{22}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.1}Dataset}{21}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Step 1: Data Cleaning}{21}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Step 2: Binary Label Transformation}{21}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Step 3: Feature Selection using Random Forest Classifier}{21}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Step 4: Data Normalization}{22}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Step 5: Dataset Balancing with Random Undersampling}{22}{subsection.3.2.6}%
 \contentsline {section}{\numberline {3.3}Applying Reinforcement Learning to Supervised Problems}{22}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}The Methodological Dichotomy: Supervised vs. Reinforcement Learning}{22}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Reframing the Problem: Classification as a Decision Process}{23}{subsection.3.3.2}%
 \contentsline {section}{\numberline {3.4}Deep Q-Network Agent: Operational Mechanics}{23}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Component 1: Generic Sample and Data Provisioning}{23}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.1}Component 1: Generic Sample and Data Provisioning}{24}{subsection.3.4.1}%
 \contentsline {paragraph}{Pseudocode: Data Provisioning}{24}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Component 2: The $\epsilon $-Greedy Policy and Action Selection}{24}{subsection.3.4.2}%
 \contentsline {paragraph}{Pseudocode: Epsilon-Greedy Action Selection}{25}{subsection.3.4.2}%

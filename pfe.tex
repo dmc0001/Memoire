@@ -584,7 +584,10 @@ A proactive defense posture is another key benefit. By interacting continuously 
 
 \chapter{Architectural Blueprint of a DQN-Powered DDoS Detection System}
 \section{Introduction}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 44bc684 (add some changes)
 This chapter provides a detailed examination of the architectural design and implementation of a Distributed Denial of Service (DDoS) detection system leveraging a Deep Q-Network (DQN).
 
 We will systematically deconstruct the entire pipeline, beginning with the foundational steps of dataset acquisition and preprocessing. From there, we explore the critical process of feature engineering required to transform raw network data into a format suitable for a neural network.
@@ -595,11 +598,17 @@ The core of our discussion will focus on the DQN model itself: its underlying ne
 % --- Preprocessing Pipeline Section ---
 \section{Comprehensive Data Preprocessing Pipeline}
 
+<<<<<<< HEAD
 The primary dataset for this research is the CIC-DDoS2019, developed by the Canadian Institute for Cybersecurity (CIC). This dataset is exceptionally relevant as it captures a comprehensive set of contemporary DDoS attack vectors. It includes both reflection-based attacks that exploit UDP protocols (such as DNS, NTP, and SSDP amplification) and connection-based TCP floods (like SYN and ACK attacks). This diverse attack landscape is integrated with realistic, multi-protocol benign traffic profiles, including common application-layer protocols like HTTP, HTTPS, and FTP. This composition ensures the data closely simulates a real-world network environment, making it an ideal benchmark for evaluating modern intrusion detection systems.
 
 The raw data, provided in PCAP format, was processed using the CICFlowMeter-V3 tool to generate labeled network flows. Each flow is uniquely identified by its 5-tuple (source/destination IP addresses, ports, and protocol). From these raw flows, CICFlowMeter extracts a rich set of over 80 statistical and time-based features. These include metrics such as flow duration, forward and backward packet counts, packet length statistics (min, max, mean), and flow I/O rates (bytes/sec). Crucially for supervised learning, each generated flow is explicitly labeled as either 'Benign' or with its specific attack type (e.g., 'DrDoS\_NTP'), providing the ground truth for training our model.
 
 This phase is paramount for ensuring the model's robustness and performance, as it involves meticulously cleaning and preparing the raw dataset. Our focus here is on retaining only high-quality, relevant samples, thereby mitigating noise and irrelevant features that could lead to overfitting and reduced detection accuracy. 
+=======
+\subsection{Dataset}
+The primary dataset used for this research is \textbf{CICDDoS2019}. This dataset is highly relevant as it contains a variety of the most up-to-date common DDoS attacks alongside benign traffic, closely resembling real-world network scenarios. The data is provided in PCAP format and has been pre-processed using the CICFlowMeter-V3 tool to generate labeled flows in CSV files. Each flow is characterized by features based on its time stamp, source and destination IPs, source and destination ports, and the protocol used.
+
+>>>>>>> 44bc684 (add some changes)
 
 \subsection{Step 1: Data Cleaning}
 The initial phase focuses on cleaning the dataset to ensure its quality and integrity. This involves three key actions:
