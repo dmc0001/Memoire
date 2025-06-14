@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.6.14)  14 JUN 2025 09:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.6.14)  14 JUN 2025 10:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -478,19 +478,19 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 <to be read again> 
                    \relax 
 l.73 \tableofcontents
-                      [1] (./pfe.toc)
+                      [1] (./pfe.toc
+
+[2
+
+])
 \tf@toc=\write4
 \openout4 = `pfe.toc'.
 
 
 
-[2
-
-]
-
 [3]
 Chapter 1.
-<images/CIA-graph.png, id=233, 721.69624pt x 605.26125pt>
+<images/CIA-graph.png, id=238, 721.69624pt x 605.26125pt>
 File: images/CIA-graph.png Graphic file (type png)
 <use images/CIA-graph.png>
 Package pdftex.def Info: images/CIA-graph.png  used on input line 100.
@@ -500,7 +500,7 @@ Package pdftex.def Info: images/CIA-graph.png  used on input line 100.
 [4
 
 ]
-<images/dos-ddos-graph.png, id=242, 1236.62pt x 1091.07625pt>
+<images/dos-ddos-graph.png, id=247, 1236.62pt x 1091.07625pt>
 File: images/dos-ddos-graph.png Graphic file (type png)
 <use images/dos-ddos-graph.png>
 Package pdftex.def Info: images/dos-ddos-graph.png  used on input line 135.
@@ -510,7 +510,7 @@ Package pdftex.def Info: images/dos-ddos-graph.png  used on input line 135.
 [5 <./images/CIA-graph.png>]
 
 [6 <./images/dos-ddos-graph.png>]
-<images/ids-arch-diagram.png, id=271, 1770.615pt x 2143.00626pt>
+<images/ids-arch-diagram.png, id=276, 1770.615pt x 2143.00626pt>
 File: images/ids-arch-diagram.png Graphic file (type png)
 <use images/ids-arch-diagram.png>
 Package pdftex.def Info: images/ids-arch-diagram.png  used on input line 297.
@@ -520,7 +520,7 @@ Package pdftex.def Info: images/ids-arch-diagram.png  used on input line 297.
 [7]
 
 [8{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./images/ids-arch-diagram.png>]
-<images/nids-diagram.png, id=285, 1011.78pt x 1268.74pt>
+<images/nids-diagram.png, id=290, 1011.78pt x 1268.74pt>
 File: images/nids-diagram.png Graphic file (type png)
 <use images/nids-diagram.png>
 Package pdftex.def Info: images/nids-diagram.png  used on input line 333.
@@ -528,7 +528,7 @@ Package pdftex.def Info: images/nids-diagram.png  used on input line 333.
 
 
 [9]
-<images/hids-diagram.png, id=290, 1028.84375pt x 1270.7475pt>
+<images/hids-diagram.png, id=295, 1028.84375pt x 1270.7475pt>
 File: images/hids-diagram.png Graphic file (type png)
 <use images/hids-diagram.png>
 Package pdftex.def Info: images/hids-diagram.png  used on input line 339.
@@ -550,7 +550,7 @@ Chapter 2.
 [15
 
 ]
-<images/rl-diagram.png, id=328, 1294.8375pt x 1409.265pt>
+<images/rl-diagram.png, id=333, 1294.8375pt x 1409.265pt>
 File: images/rl-diagram.png Graphic file (type png)
 <use images/rl-diagram.png>
 Package pdftex.def Info: images/rl-diagram.png  used on input line 503.
@@ -586,15 +586,22 @@ Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on inp
 [26]
 
 [27]
+Overfull \hbox (15.27283pt too wide) in paragraph at lines 943--943
+|[]\OT1/cmr/bx/n/12 Architectural Im-ple-men-ta-tion II: The Con-vo-lu-tional Neu-ral Net-work (CNN)| 
+ []
+
+
 
 [28]
-Overfull \hbox (63.38005pt too wide) in paragraph at lines 991--993
+
+[29]
+Overfull \hbox (63.38005pt too wide) in paragraph at lines 1054--1056
 \OT1/cmr/m/n/10 Available at: []$\OT1/cmtt/m/n/10 https : / / www . cleanpng . com / png-[]information-[]security-[]confidentiality-[]availability-[]1373941/$[] 
  []
 
 
 
-[29
+[30
 
 ] (./pfe.aux)
  ***********
@@ -602,21 +609,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `pfe.out' has not changed.
-(rerunfilecheck)             Checksum: B6DC728E77C091536CD02A0AC232442C;10148.
+(rerunfilecheck)             Checksum: 3AFD91663C9D54D4BE651CE28CAE07D7;10592.
  ) 
 Here is how much of TeX's memory you used:
- 14976 strings out of 475171
- 230775 string characters out of 5767095
+ 14980 strings out of 475171
+ 230832 string characters out of 5767095
  645605 words of memory out of 5000000
- 37688 multiletter control sequences out of 15000+600000
+ 37690 multiletter control sequences out of 15000+600000
  570676 words of font info for 81 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,9n,79p,1552b,736s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on pfe.pdf (30 pages, 844622 bytes).
+Output written on pfe.pdf (31 pages, 849180 bytes).
 PDF statistics:
- 531 PDF objects out of 1000 (max. 8388607)
- 443 compressed objects within 5 object streams
- 103 named destinations out of 1000 (max. 500000)
- 359 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 541 PDF objects out of 1000 (max. 8388607)
+ 452 compressed objects within 5 object streams
+ 105 named destinations out of 1000 (max. 500000)
+ 367 words of extra memory for PDF output out of 10000 (max. 10000000)
 

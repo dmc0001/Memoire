@@ -940,6 +940,69 @@ This ensures all output probabilities are non-negative and sum to 1, facilitatin
 
 This MLP-based Q-network is a structured stack of linear transformations, ReLU activations, batch normalization, and dropout layers. It incrementally transforms the raw input into increasingly abstract and robust features, ultimately yielding well-calibrated Q-value predictions for each action in the environment.
 
+\subsection{Architectural Implementation II: The Convolutional Neural Network (CNN)}
+
+The second architectural implementation for our Q-network leverages a \textbf{Convolutional Neural Network (CNN)}. This represents a more sophisticated approach, predicated on the hypothesis that meaningful, localized patterns and spatial correlations exist within the network traffic feature set. Unlike the MLP, which treats features as an unstructured vector, the CNN is designed to exploit the structure of its input, making it a powerful tool for automatic and hierarchical feature extraction.
+
+This subsection provides a detailed deconstruction of the CNN-based Q-network. We begin by explaining the critical pre-processing step of transforming the one-dimensional feature vector into a two-dimensional, image-like grid. We then analyze the function and rationale of each specialized layer---convolutional, pooling, and dropout---before examining how these components are integrated with fully connected layers to produce the final Q-value estimations.
+
+\subsubsection{The Foundational Step: Transforming Tabular Data into a Feature-Image}
+
+The core premise of this approach is the transformation of the one-dimensional state vector into a two-dimensional grid, or \textit{feature-image}. This process reframes the problem from numerical analysis into a form of image recognition, enabling the application of convolutional networks.
+
+\paragraph{Mechanism of Transformation.} A state vector containing $N$ features is reshaped into a grid of height $H$ and width $W$, such that $H \times W = N$. For example, a 1x64 state vector can be reshaped into an 8x8 grid, where each row corresponds to 8 features:
+
+\begin{itemize}
+\item Features 1--8 form the first row.
+\item Features 9--16 form the second row.
+\item \ldots
+\item Features 57--64 form the eighth row.
+\end{itemize}
+
+This results in a single-channel, 8x8 feature-image where each "pixel" corresponds to a normalized feature value.
+
+\paragraph{The Critical Importance of Feature Ordering.} The order in which features are placed into the grid significantly impacts the patterns that the CNN can detect. Strategies include:
+
+\begin{itemize}
+\item \textbf{Default Ordering:} Uses the order from the feature extraction tool.
+\item \textbf{Correlation-Based Ordering:} Places highly correlated features next to each other using a correlation matrix.
+\item \textbf{Domain Knowledge-Based Ordering:} Groups features by their semantic role (e.g., timing, packet size).
+\end{itemize}
+
+This ensures that local spatial regions in the grid carry meaningful information for pattern detection.
+
+\paragraph{The Underlying Hypothesis.} This approach tests the hypothesis that localized interactions between features can be detected more effectively by CNNs, leveraging their capacity for local pattern recognition.
+
+\subsubsection{Architectural Deep Dive}
+
+\paragraph{Input Normalization.} A 2D Batch Normalization layer normalizes the feature-image, ensuring stable training.
+
+\paragraph{First Convolutional Block: Low-Level Pattern Detection.}
+
+\begin{itemize}
+\item \textbf{Convolutional Layer:} Applies 16 learnable 3x3 kernels to detect localized patterns.
+\item \textbf{ReLU Activation:} Introduces non-linearity.
+\item \textbf{Max Pooling:} Reduces spatial resolution, introduces translation invariance.
+\item \textbf{Spatial Dropout:} Applies 2D dropout with a rate of 0.25 to prevent co-adaptation.
+\end{itemize}
+
+\paragraph{Second Convolutional Block: Hierarchical Feature Abstraction.}
+
+\begin{itemize}
+\item \textbf{Convolutional Layer:} Uses 32 3x3 kernels to detect higher-level features.
+\item \textbf{ReLU Activation and Dropout:} Follow the same structure to enhance abstraction and prevent overfitting.
+\end{itemize}
+
+\paragraph{The Fully Connected Head: Q-Value Estimation.}
+
+\begin{itemize}
+\item \textbf{Flattening:} Converts the multi-dimensional tensor into a one-dimensional vector.
+\item \textbf{Dense Layer:} A fully connected layer with 64 neurons, followed by BatchNorm and ReLU.
+\item \textbf{Dropout:} A high-rate (0.5) dropout layer adds regularization.
+\item \textbf{Output Layer:} A linear layer maps to the number of possible actions, producing raw Q-value logits.
+\end{itemize}
+
+The final Q-values are suitable for training with a loss function such as Cross-Entropy Loss, and a softmax activation may be applied implicitly during optimization.
 
 
 

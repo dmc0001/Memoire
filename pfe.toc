@@ -59,3 +59,13 @@
 \contentsline {paragraph}{ReLU Activation.}{27}{subsection.3.4.4}%
 \contentsline {paragraph}{Intermediate Block: BatchNorm, Dropout, Linear.}{28}{subsection.3.4.4}%
 \contentsline {paragraph}{Output Layer and Softmax.}{28}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.4.5}Architectural Implementation II: The Convolutional Neural Network (CNN)}{28}{subsection.3.4.5}%
+\contentsline {subsubsection}{The Foundational Step: Transforming Tabular Data into a Feature-Image}{28}{subsection.3.4.5}%
+\contentsline {paragraph}{Mechanism of Transformation.}{28}{subsection.3.4.5}%
+\contentsline {paragraph}{The Critical Importance of Feature Ordering.}{29}{subsection.3.4.5}%
+\contentsline {paragraph}{The Underlying Hypothesis.}{29}{subsection.3.4.5}%
+\contentsline {subsubsection}{Architectural Deep Dive}{29}{subsection.3.4.5}%
+\contentsline {paragraph}{Input Normalization.}{29}{subsection.3.4.5}%
+\contentsline {paragraph}{First Convolutional Block: Low-Level Pattern Detection.}{29}{subsection.3.4.5}%
+\contentsline {paragraph}{Second Convolutional Block: Hierarchical Feature Abstraction.}{29}{subsection.3.4.5}%
+\contentsline {paragraph}{The Fully Connected Head: Q-Value Estimation.}{29}{subsection.3.4.5}%
