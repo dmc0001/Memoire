@@ -34,12 +34,9 @@
 \contentsline {subsection}{\numberline {2.3.6}Advantages of RL for DoS Detection}{18}{subsection.2.3.6}%
 \contentsline {chapter}{\numberline {3}Architectural Blueprint of a DQN-Powered DDoS Detection System}{19}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Introduction}{19}{section.3.1}%
-\contentsline {paragraph}{ This }{19}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}preprocessing}{19}{subsection.3.1.1}%
-\contentsline {section}{\numberline {3.2}Dataset}{19}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Comprehensive Data Preprocessing Pipeline}{20}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Step 1: Data Cleaning}{20}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Step 2: Binary Label Transformation}{20}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Step 3: Feature Selection using Random Forest Classifier}{20}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Step 4: Data Normalization}{20}{subsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.3.5}Step 5: Dataset Balancing with Random Undersampling}{21}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.2}Comprehensive Data Preprocessing Pipeline}{19}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Step 1: Data Cleaning}{20}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Step 2: Binary Label Transformation}{20}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Step 3: Feature Selection using Random Forest Classifier}{20}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Step 4: Data Normalization}{20}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Step 5: Dataset Balancing with Random Undersampling}{21}{subsection.3.2.5}%
