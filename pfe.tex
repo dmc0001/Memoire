@@ -584,19 +584,22 @@ A proactive defense posture is another key benefit. By interacting continuously 
 
 \chapter{Architectural Blueprint of a DQN-Powered DDoS Detection System}
 \section{Introduction}
-\paragraph{
-  This
-}
-This chapter provides a detailed examination of the architectural design and implementation of a Distributed Denial of Service (DDoS) detection system leveraging a Deep Q-Network (DQN). We will systematically deconstruct the entire pipeline, beginning with the foundational steps of dataset acquisition and preprocessing. From there, we explore the critical process of feature engineering required to transform raw network data into a format suitable for a neural network. The core of our discussion will focus on the DQN model itself: its underlying neural network architecture, the Q-learning algorithm that drives its decision-making, and the mechanisms that enable it to learn and adapt to evolving threat landscapes.\subsection{preprocessing}
-We begin by detailing the critical data preprocessing steps. This phase is paramount for ensuring the model's robustness and performance, as it involves meticulously cleaning and preparing the raw dataset. Our focus here is on retaining only high-quality, relevant samples, thereby mitigating noise and irrelevant features that could lead to overfitting and reduced detection accuracy. 
-\newline \newline The following six sequential steps were designed and implemented to transform the raw network traffic data into a normalized, balanced dataset suitable for training our intrusion detection model.
-The pipeline consists of six sequential steps designed to transform raw network traffic data into a normalized, balanced dataset suitable for intrusion detection models. Each step is described mathematically and visually below.
-\section{Dataset}
-The primary dataset used for this research is \textbf{CICDDoS2019}. This dataset is highly relevant as it contains a variety of the most up-to-date common DDoS attacks alongside benign traffic, closely resembling real-world network scenarios. The data is provided in PCAP format and has been pre-processed using the CICFlowMeter-V3 tool to generate labeled flows in CSV files. Each flow is characterized by features based on its time stamp, source and destination IPs, source and destination ports, and the protocol used.
+
+This chapter provides a detailed examination of the architectural design and implementation of a Distributed Denial of Service (DDoS) detection system leveraging a Deep Q-Network (DQN).
+
+We will systematically deconstruct the entire pipeline, beginning with the foundational steps of dataset acquisition and preprocessing. From there, we explore the critical process of feature engineering required to transform raw network data into a format suitable for a neural network.
+
+The core of our discussion will focus on the DQN model itself: its underlying neural network architecture, the Q-learning algorithm that drives its decision-making, and the mechanisms that enable it to learn and adapt to evolving threat landscapes.
+
 
 % --- Preprocessing Pipeline Section ---
 \section{Comprehensive Data Preprocessing Pipeline}
 
+The primary dataset for this research is the CIC-DDoS2019, developed by the Canadian Institute for Cybersecurity (CIC). This dataset is exceptionally relevant as it captures a comprehensive set of contemporary DDoS attack vectors. It includes both reflection-based attacks that exploit UDP protocols (such as DNS, NTP, and SSDP amplification) and connection-based TCP floods (like SYN and ACK attacks). This diverse attack landscape is integrated with realistic, multi-protocol benign traffic profiles, including common application-layer protocols like HTTP, HTTPS, and FTP. This composition ensures the data closely simulates a real-world network environment, making it an ideal benchmark for evaluating modern intrusion detection systems.
+
+The raw data, provided in PCAP format, was processed using the CICFlowMeter-V3 tool to generate labeled network flows. Each flow is uniquely identified by its 5-tuple (source/destination IP addresses, ports, and protocol). From these raw flows, CICFlowMeter extracts a rich set of over 80 statistical and time-based features. These include metrics such as flow duration, forward and backward packet counts, packet length statistics (min, max, mean), and flow I/O rates (bytes/sec). Crucially for supervised learning, each generated flow is explicitly labeled as either 'Benign' or with its specific attack type (e.g., 'DrDoS\_NTP'), providing the ground truth for training our model.
+
+This phase is paramount for ensuring the model's robustness and performance, as it involves meticulously cleaning and preparing the raw dataset. Our focus here is on retaining only high-quality, relevant samples, thereby mitigating noise and irrelevant features that could lead to overfitting and reduced detection accuracy. 
 
 \subsection{Step 1: Data Cleaning}
 The initial phase focuses on cleaning the dataset to ensure its quality and integrity. This involves three key actions:
@@ -645,9 +648,364 @@ where:
 \end{itemize}
 
 \subsection{Step 5: Dataset Balancing with Random Undersampling}
+
 The CICDDoS2019 dataset exhibits a significant class imbalance, with a much larger proportion of attack traffic compared to benign traffic. Training a model on such an imbalanced dataset would bias it towards the majority class (attacks), leading to poor detection performance for the minority class (benign traffic) and a high false positive rate.
 
 To address this, we apply \textbf{random undersampling}. This technique balances the class distribution by reducing the number of samples from the majority class. Specifically, we randomly select and remove samples from the `attack' class until its size matches the number of samples in the `benign' class. While this method risks discarding potentially useful information from the majority class, it is effective in creating a balanced dataset that enables the model to learn the distinguishing characteristics of both classes with equal importance. The result is a model that is more robust and accurate in classifying both attack and benign traffic.
+
+\section{Applying Reinforcement Learning to Supervised Problems}
+
+This section addresses a core methodological challenge: adapting a paradigm designed for sequential decision-making—Reinforcement Learning (RL)—to a static, non-sequential classification task. The standard RL framework involves an agent learning through continuous interaction with a dynamic environment to maximize a cumulative reward. In contrast, our context for DDoS detection is defined by a finite, pre-labeled dataset where concepts like "sequence" and "environmental response" are not inherently present.
+
+To fully appreciate the nature of this challenge and the elegance of the proposed solution, it is first necessary to contrast the foundational philosophies of the two machine learning paradigms at play: supervised learning and reinforcement learning.
+
+\subsection{The Methodological Dichotomy: Supervised vs. Reinforcement Learning}
+
+Most classification problems—like intrusion detection—are traditionally handled using supervised learning. In this setup, we train a model on a labeled dataset
+(X,Y)(X,Y),
+where XX is a collection of input features (such as network flow statistics), and YY contains the corresponding labels (e.g., "Benign" or "Attack"). The goal is to learn a function f:X→Yf:X→Y that can generalize well enough to predict labels for new, unseen inputs.
+
+Training is guided by a loss function (like cross-entropy), which quantifies the error between the model’s prediction f(x)f(x) and the true label yy. Optimization algorithms such as gradient descent are then used to minimize this error. In essence, supervised learning provides direct, explicit feedback — the model learns by being corrected.
+
+Reinforcement Learning (RL), on the other hand, approaches learning very differently. Instead of learning from labeled examples, an RL agent learns through trial and error. At each time step, the agent observes the state of its environment, selects an action, and receives a scalar reward (or penalty). The goal isn’t to reduce an immediate prediction error, but to learn a policy — a strategy for choosing actions that maximize long-term cumulative reward.
+
+Unlike supervised learning, feedback in RL is often sparse and delayed. The signal comes not from correctness per se, but from the eventual outcome of the agent's decisions. This makes RL better suited to problems where success is defined by sequences of actions rather than single-point predictions.
+
+So, here’s the tension: Supervised learning is about learning from a teacher, whereas reinforcement learning is about learning from experience. Our dataset fits the supervised mold, but we’re interested in applying RL techniques — especially those based on Deep Q-Networks (DQN) — which are typically designed for dynamic decision-making tasks.
+
+\subsection{Reframing the Problem: Classification as a Decision Process}
+
+To bridge this gap, we re-imagine the classification problem as a simplified decision-making process. Essentially, we simulate a one-step reinforcement learning (RL) environment from static data, enabling us to leverage Deep Q-Network (DQN) optimization.
+
+Here's how we map the core RL elements to our classification setup:
+
+\begin{itemize}
+    \item \textbf{State ($s_t$)}: Each state is a single, preprocessed feature vector from the dataset — essentially a snapshot of network traffic. Unlike in traditional RL, the state doesn’t evolve from a prior action. To maintain the Q-learning flow, we define the ``next state'' ($s_{t+1}$) as the next sample in a randomly shuffled batch. While this doesn’t reflect true temporal progression, it allows us to estimate future value.
+
+    \item \textbf{Action ($a_t$)}: The action corresponds to choosing a class label. In our binary classification task, the agent can label a sample as either \texttt{Benign} or \texttt{Attack}. The learned policy $\pi(a \mid s)$ reflects the model’s classification strategy.
+
+    \item \textbf{Reward ($r_t$)}: Once an action is taken (i.e., a label is predicted), we compare it to the true label and assign a reward: for example, $+1$ for a correct classification and $0$ or $-1$ for an incorrect one. This ties the RL feedback directly to supervised ground truth, giving the agent a clear sense of whether its decision was ``good.''
+\end{itemize}
+
+By aligning these components, we shift the learning goal. Instead of directly minimizing classification error, we ask the model to learn the \textit{value} of choosing a particular label in a given context. This opens up the use of DQN, transforming the static task of classification into a process of value-based decision-making.
+
+\section{Deep Q-Network Agent: Operational Mechanics}
+
+Having established the conceptual mapping between reinforcement learning and supervised classification, this section details the operational mechanics of the Deep Q-Network (DQN) agent. We begin by providing a high-level, component-wise breakdown of the unified training loop that forms the core of our methodology. This framework is \textit{architecturally agnostic}, meaning it governs the learning process regardless of whether the internal Q-network is a multilayer perceptron (MLP) or a convolutional neural network (CNN).
+
+The primary goal of this training process is to iteratively refine the agent's Q-network, which is responsible for approximating the optimal action-value function:
+
+\[
+Q^*(s, a)
+\]
+
+This function estimates the long-term value of taking a specific action (i.e., making a classification) when presented with a particular state (i.e., a network traffic sample).
+
+\subsection{Component 1: Generic Sample and Data Provisioning}
+
+The learning process begins with the provisioning of data to the agent. At each training step, a \textit{generic sample} is drawn from the preprocessed and shuffled dataset. This sample is not merely a single data point but a tuple containing three critical elements required for the Q-learning update:
+
+\[
+(s_t, a^*_t, s_{t+1})
+\]
+
+\begin{itemize}
+    \item \textbf{Current State ($s_t$)}: This is the feature vector of the network traffic sample currently under evaluation. It represents the agent's complete observation of the ``environment'' at the present moment.
+
+    \item \textbf{Optimal Action ($a^*_t$)}: This is the ground-truth label corresponding to state $s_t$. In this framework, the true label is re-conceptualized as the ``optimal action''—the decision a perfect, omniscient agent would make. This component injects the essential supervised signal into our RL framework.
+
+    \item \textbf{Next State ($s_{t+1}$)}: This is the feature vector of the subsequent sample in the shuffled dataset. As our data is non-sequential, $s_{t+1}$ does not represent a temporal consequence of an action taken in $s_t$. Its role is purely functional: it serves as a lookahead mechanism, allowing the agent to estimate the value of the next state, which is a crucial element for calculating the target Q-value.
+\end{itemize}
+
+\paragraph{Pseudocode: Data Provisioning}
+
+\begin{algorithm}[H]
+\caption{Data Sampling Step}
+\begin{algorithmic}[1]
+\State \texttt{// Retrieve a minibatch of $N$ generic samples from the pre-structured dataset.}
+\State \texttt{// Each sample is a tuple $(s_t, a^*_t, s_{t+1})$.}
+\State \texttt{minibatch} $\gets$ \texttt{SampleFromDataset(dataset, batch\_size = N)}
+\State \texttt{// Unpack the minibatch into separate tensors for processing.}
+\State $S_t,\ A^*_t,\ S_{t+1} \gets \texttt{unpack(minibatch)}$
+\State \texttt{// $S_t$: Current state vectors.}
+\State \texttt{// $A^*_t$: Ground-truth label indices (optimal actions).}
+\State \texttt{// $S_{t+1}$: Next state vectors.}
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{\texorpdfstring{Component 2: The $\epsilon$-Greedy Policy and Action Selection}{Component 2: The epsilon-Greedy Policy and Action Selection}}
+
+Once presented with the current state $s_t$, the agent must select an action $a_t$. This decision is governed by an $\epsilon$-greedy policy—a fundamental strategy in reinforcement learning designed to manage the critical exploration-exploitation trade-off.
+
+\begin{itemize}
+    \item \textbf{Exploitation}: With probability $(1 - \epsilon)$, the agent chooses to exploit its current knowledge. It feeds the state $s_t$ into its Q-network, which predicts the Q-value for each possible action. The agent then greedily selects the action with the highest predicted Q-value:
+    \[
+    a_t = \arg\max_a Q(s_t, a)
+    \]
+    This represents the agent acting on what it currently believes to be the best strategy.
+
+    \item \textbf{Exploration}: With probability $\epsilon$, the agent explores. It disregards its learned policy and selects an action at random from the available action space. Exploration is essential for discovering potentially better strategies and avoiding premature convergence to suboptimal policies.
+\end{itemize}
+
+The parameter $\epsilon$ is a tunable hyperparameter that is typically annealed over the course of training. Initially set to a high value (e.g., $1.0$) to encourage exploration when the agent is inexperienced, it gradually decays to a smaller value (e.g., $0.01$) as the Q-network becomes more accurate.
+
+\paragraph{Pseudocode: Epsilon-Greedy Action Selection}
+
+\begin{algorithm}[H]
+\caption{Epsilon-Greedy Action Selection}
+\begin{algorithmic}[1]
+\Function{SelectAction}{$\text{state},\ \text{q\_network},\ \epsilon$}
+    \State $p \gets$ \Call{random\_float}{$0,\ 1$}
+    \If{$p < \epsilon$}
+        \State \texttt{// Exploration: choose random action}
+        \State \Return \Call{random\_choice}{\texttt{ACTION\_SPACE}}
+    \Else
+        \State \texttt{// Exploitation: choose best action}
+        \State $q\_values \gets$ \Call{q\_network.predict}{state}
+        \State \Return \Call{argmax}{$q\_values$}
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Component 3: The Reward Function}
+
+After the agent selects and executes an action $a_t$, the simulated environment provides an immediate scalar reward $r_t$. This reward function serves as the primary feedback mechanism, quantitatively evaluating the quality of the agent's most recent decision. It forms the crucial bridge between the supervised ground-truth label and the reinforcement learning (RL) feedback loop.
+
+The reward is calculated by directly comparing the agent's chosen action $a_t$ with the known optimal action $a^*_t$. A typical implementation is:
+
+\[
+r_t =
+\begin{cases}
++1 & \text{if } a_t = a^*_t \quad \text{(Correct Classification)} \\
+0 & \text{if } a_t \ne a^*_t \quad \text{(Incorrect Classification)}
+\end{cases}
+\]
+
+Using a neutral reward of 0 for incorrect actions, rather than a negative penalty (e.g., -1), can lead to more stable training in some contexts, as it does not excessively punish the agent during its initial exploration phase.
+
+\paragraph{Pseudocode: Reward Calculation}
+\begin{algorithm}[H]
+\caption{Reward Calculation}
+\begin{algorithmic}[1]
+\Function{GetReward}{predicted\_action, optimal\_action}
+    \If{predicted\_action == optimal\_action}
+        \State \Return $+1$ \Comment{Positive reinforcement for correct decision}
+    \Else
+        \State \Return $0$ \Comment{Neutral feedback for incorrect decision}
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Component 4: The Target Q-Value ($q_{\text{ref}}$) Calculation}
+
+This step is the most sophisticated and innovative aspect of the entire training framework. In standard supervised learning, a model's output is compared against a static, ground-truth label. In our DQN framework, the Q-network is trained against a dynamically constructed hybrid target vector, $q_{\text{ref}}$. This target ingeniously blends the explicit signal from the supervised label with the value-estimation principles of reinforcement learning.
+
+The construction of this target vector for the current state $s_t$ proceeds as follows:
+
+\begin{itemize}
+    \item \textbf{Estimate Optimal Future Value:} The Q-network is used to predict the Q-values for the next state $s_{t+1}$. The maximum of these values is taken as the best estimate of the optimal value achievable from the next state:
+    \[
+    \max_a Q(s_{t+1}, a).
+    \]
+    
+    \item \textbf{Initialize Target Vector:} A target vector $q_{\text{ref}}$, of the same dimension as the action space, is initialized with zeros:
+    \[
+    q_{\text{ref}} = \vec{0}.
+    \]
+    
+    \item \textbf{Inject the Supervised Signal:} A value of 1.0 is placed in the target vector at the index corresponding to the true label $a_t^*$. This is the most powerful signal, directly anchoring the learning process to the ground truth:
+    \[
+    q_{\text{ref}}[a_t^*] = 1.0.
+    \]
+    
+    \item \textbf{Inject the Reinforcement Learning Signal:} The estimated optimal future value is discounted by a factor $\lambda$ and added to the index of the agent’s chosen action $a_t$:
+    \[
+    q_{\text{ref}}[a_t] += \lambda \cdot \max_a Q(s_{t+1}, a).
+    \]
+\end{itemize}
+
+This dual-signal approach ensures the agent learns not only to identify the correct answer but also to accurately value its own decisions in the context of future possibilities.
+
+\paragraph{Pseudocode: Target Q-Value Calculation}
+\begin{algorithm}[H]
+\caption{Target Q-Value Calculation}
+\begin{algorithmic}[1]
+\Function{CalculateTarget}{$q\_network$, $S_t$, $S_{t+1}$, $A^*_t$, $A_t$, $\lambda$}
+    \State $q\_next \gets q\_network.predict(S_{t+1})$
+    \State $\text{max\_q\_next} \gets \max(q\_next, \text{axis}=1)$
+    \State $q\_ref \gets \text{zeros\_like}(q\_network.predict(S_t))$
+    \ForAll{$i$ in batch}
+        \State $true\_label \gets A^*_t[i]$
+        \State $agent\_action \gets A_t[i]$
+        \State $discounted\_future \gets \lambda \cdot \text{max\_q\_next}[i]$
+        \State $q\_ref[i][true\_label] \gets 1.0$
+        \State $q\_ref[i][agent\_action] += discounted\_future$
+    \EndFor
+    \State \Return $q\_ref$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Component 5: Loss Calculation and Network Update}
+
+The final step in the training loop is to update the Q-network's parameters (weights and biases) to improve its predictions. This is achieved by quantifying the error between the network's output and the hybrid target, and then adjusting the weights to minimize this error.
+
+\begin{itemize}
+    \item \textbf{Final Target Preparation:} The hybrid target vector, $q_{\text{ref}}$, may contain multiple non-zero values with continuous components. To make it compatible with a classification-style loss function, it is first converted into a definitive one-hot vector. This is done by finding the index of the maximum value in $q_{\text{ref}}$:
+    \[
+    i^* = \arg\max_i q_{\text{ref}}[i],
+    \]
+    and setting the one-hot vector $\hat{y}$ such that:
+    \[
+    \hat{y}[i] = \begin{cases}
+        1 & \text{if } i = i^*, \\
+        0 & \text{otherwise}.
+    \end{cases}
+    \]
+
+    \item \textbf{Loss Function:} The discrepancy between the Q-network's predicted Q-values (after applying a Softmax function to obtain a probability distribution) and the one-hot target vector $\hat{y}$ is computed using the Cross-Entropy Loss:
+    \[
+    \mathcal{L} = - \sum_i \hat{y}[i] \cdot \log(\text{Softmax}(Q(s_t))[i]).
+    \]
+
+    \item \textbf{Optimization:} The computed loss $\mathcal{L}$ is used to guide the optimization process. An optimizer such as Adam is employed to compute the gradients of the loss with respect to the network's parameters.
+
+    \item \textbf{Backpropagation:} These gradients are propagated backward through the layers of the Q-network using the backpropagation algorithm, from the output layer toward the input.
+
+    \item \textbf{Weight Update:} The optimizer then updates the parameters of the Q-network in the direction that minimizes the loss. This parameter update is denoted by:
+    \[
+    Q^{(t)} \rightarrow Q^{(t+1)}.
+    \]
+\end{itemize}
+
+This complete update cycle forms a single iteration of the learning process. Repeating this process over many training samples and epochs enables the Q-network to gradually converge to an optimal policy, effectively learning to estimate the value of each classification choice for any given network traffic profile.
+
+The architectural details of the Q-network will be discussed in the following section.
+
+\subsection{Architectural Implementation I: The Multi-Layer Perceptron (MLP)}
+
+The first architectural implementation for our Q-network is a \textbf{Multi-Layer Perceptron (MLP)}, a standard type of feedforward neural network. This model acts as a powerful function approximator, processing the input state vector in its raw, one-dimensional form. MLPs are particularly well-suited for data without explicit spatial or temporal structure—ideal for tabular or vectorized representations.
+
+This subsection deconstructs the MLP architecture layer by layer. Each component—from input to output—is examined both structurally and conceptually to explain not just how it works, but why it is designed this way.
+
+\paragraph{Input Layer and Normalization.}
+The network begins with an input layer that receives a mini-batch of state vectors \( S_t \), where each vector has a dimensionality equal to the number of input features in the dataset.
+
+To stabilize learning, the input passes through a \textbf{1D Batch Normalization} layer, which addresses the issue of \textit{internal covariate shift}. For each activation \( x_k \) in the mini-batch, the normalized output \( \hat{x}_k \) is computed as:
+
+\[
+\hat{x}_k = \frac{x_k - \mu_B}{\sqrt{\sigma_B^2 + \varepsilon}}
+\]
+
+where \( \mu_B \) and \( \sigma_B^2 \) are the mini-batch mean and variance, and \( \varepsilon \) is a small constant for numerical stability.
+
+This normalization is followed by a learned affine transformation that restores representational capacity. By ensuring consistent feature distributions, it prevents features with large scales from dominating and accelerates convergence.
+
+\paragraph{First Hidden Layer.}
+Next, the normalized input is passed into a fully connected (linear) layer with 256 output units. Each neuron in this layer computes a weighted sum of its inputs, adds a bias term, and prepares the output for non-linear activation.
+
+The use of 256 units offers a high-capacity representation that can extract a broad range of low-level features from the raw input.
+
+\paragraph{ReLU Activation.}
+The layer’s outputs are processed through the ReLU activation function:
+
+\[
+\text{ReLU}(x) = \max(0, x)
+\]
+
+This introduces non-linearity, enabling the network to model complex patterns. ReLU also mitigates the vanishing gradient problem, is computationally efficient, and promotes sparsity in the activations.
+
+\paragraph{Intermediate Block: BatchNorm, Dropout, Linear.}
+The output from the first hidden layer enters a second block consisting of:
+\begin{itemize}
+    \item A \textbf{Batch Normalization} layer to re-stabilize the distribution of features.
+    \item A \textbf{Dropout} layer with a rate of 0.3, which randomly sets 30\% of the units to zero during training, forcing the network to learn more robust representations.
+    \item A \textbf{Linear layer} that reduces the dimensionality from 256 to 128, forming a representational bottleneck that encourages information compression and abstraction.
+\end{itemize}
+
+This ``funnel’’ structure encourages the network to retain only the most salient features, enhancing generalization.
+
+\paragraph{Output Layer and Softmax.}
+The final output of the hidden layers is passed through a linear layer that maps the 128-dimensional feature vector to the number of discrete actions (e.g., 2 in a binary setting), producing raw logits \( z = (z_1, z_2, \ldots, z_K) \).
+
+A \textbf{Softmax function} is applied to convert these logits into a probability distribution:
+
+\[
+p_i = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}
+\]
+
+This ensures all output probabilities are non-negative and sum to 1, facilitating training with the cross-entropy loss.
+
+This MLP-based Q-network is a structured stack of linear transformations, ReLU activations, batch normalization, and dropout layers. It incrementally transforms the raw input into increasingly abstract and robust features, ultimately yielding well-calibrated Q-value predictions for each action in the environment.
+
+\subsection{Architectural Implementation II: The Convolutional Neural Network (CNN)}
+
+The second architectural implementation for our Q-network leverages a \textbf{Convolutional Neural Network (CNN)}. This represents a more sophisticated approach, predicated on the hypothesis that meaningful, localized patterns and spatial correlations exist within the network traffic feature set. Unlike the MLP, which treats features as an unstructured vector, the CNN is designed to exploit the structure of its input, making it a powerful tool for automatic and hierarchical feature extraction.
+
+This subsection provides a detailed deconstruction of the CNN-based Q-network. We begin by explaining the critical pre-processing step of transforming the one-dimensional feature vector into a two-dimensional, image-like grid. We then analyze the function and rationale of each specialized layer---convolutional, pooling, and dropout---before examining how these components are integrated with fully connected layers to produce the final Q-value estimations.
+
+\subsubsection{The Foundational Step: Transforming Tabular Data into a Feature-Image}
+
+The core premise of this approach is the transformation of the one-dimensional state vector into a two-dimensional grid, or \textit{feature-image}. This process reframes the problem from numerical analysis into a form of image recognition, enabling the application of convolutional networks.
+
+\paragraph{Mechanism of Transformation.} A state vector containing $N$ features is reshaped into a grid of height $H$ and width $W$, such that $H \times W = N$. For example, a 1x64 state vector can be reshaped into an 8x8 grid, where each row corresponds to 8 features:
+
+\begin{itemize}
+\item Features 1--8 form the first row.
+\item Features 9--16 form the second row.
+\item \ldots
+\item Features 57--64 form the eighth row.
+\end{itemize}
+
+This results in a single-channel, 8x8 feature-image where each "pixel" corresponds to a normalized feature value.
+
+\paragraph{The Critical Importance of Feature Ordering.} The order in which features are placed into the grid significantly impacts the patterns that the CNN can detect. Strategies include:
+
+\begin{itemize}
+\item \textbf{Default Ordering:} Uses the order from the feature extraction tool.
+\item \textbf{Correlation-Based Ordering:} Places highly correlated features next to each other using a correlation matrix.
+\item \textbf{Domain Knowledge-Based Ordering:} Groups features by their semantic role (e.g., timing, packet size).
+\end{itemize}
+
+This ensures that local spatial regions in the grid carry meaningful information for pattern detection.
+
+\paragraph{The Underlying Hypothesis.} This approach tests the hypothesis that localized interactions between features can be detected more effectively by CNNs, leveraging their capacity for local pattern recognition.
+
+\subsubsection{Architectural Deep Dive}
+
+\paragraph{Input Normalization.} A 2D Batch Normalization layer normalizes the feature-image, ensuring stable training.
+
+\paragraph{First Convolutional Block: Low-Level Pattern Detection.}
+
+\begin{itemize}
+\item \textbf{Convolutional Layer:} Applies 16 learnable 3x3 kernels to detect localized patterns.
+\item \textbf{ReLU Activation:} Introduces non-linearity.
+\item \textbf{Max Pooling:} Reduces spatial resolution, introduces translation invariance.
+\item \textbf{Spatial Dropout:} Applies 2D dropout with a rate of 0.25 to prevent co-adaptation.
+\end{itemize}
+
+\paragraph{Second Convolutional Block: Hierarchical Feature Abstraction.}
+
+\begin{itemize}
+\item \textbf{Convolutional Layer:} Uses 32 3x3 kernels to detect higher-level features.
+\item \textbf{ReLU Activation and Dropout:} Follow the same structure to enhance abstraction and prevent overfitting.
+\end{itemize}
+
+\paragraph{The Fully Connected Head: Q-Value Estimation.}
+
+\begin{itemize}
+\item \textbf{Flattening:} Converts the multi-dimensional tensor into a one-dimensional vector.
+\item \textbf{Dense Layer:} A fully connected layer with 64 neurons, followed by BatchNorm and ReLU.
+\item \textbf{Dropout:} A high-rate (0.5) dropout layer adds regularization.
+\item \textbf{Output Layer:} A linear layer maps to the number of possible actions, producing raw Q-value logits.
+\end{itemize}
+
+The final Q-values are suitable for training with a loss function such as Cross-Entropy Loss, and a softmax activation may be applied implicitly during optimization.
+
+
+
 % \subsection{Step 1: Null Value Handling}
 % Columns with >50\% missing values are removed, followed by row-wise deletion of any remaining nulls:
 % \begin{align*}
