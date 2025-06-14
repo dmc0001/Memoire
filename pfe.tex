@@ -648,8 +648,9 @@ where:
 \end{itemize}
 
 \subsection{Step 5: Dataset Balancing with Random Undersampling}
+
 The CICDDoS2019 dataset exhibits a significant class imbalance, with a much larger proportion of attack traffic compared to benign traffic. Training a model on such an imbalanced dataset would bias it towards the majority class (attacks), leading to poor detection performance for the minority class (benign traffic) and a high false positive rate.
-amine
+
 To address this, we apply \textbf{random undersampling}. This technique balances the class distribution by reducing the number of samples from the majority class. Specifically, we randomly select and remove samples from the `attack' class until its size matches the number of samples in the `benign' class. While this method risks discarding potentially useful information from the majority class, it is effective in creating a balanced dataset that enables the model to learn the distinguishing characteristics of both classes with equal importance. The result is a model that is more robust and accurate in classifying both attack and benign traffic.
 % \subsection{Step 1: Null Value Handling}
 % Columns with >50\% missing values are removed, followed by row-wise deletion of any remaining nulls:
