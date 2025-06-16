@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.3.15)  14 JUN 2025 10:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.3.15)  16 JUN 2025 16:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -24,10 +24,6 @@ File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen141
-) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2024/02/08 v1.3d Input encoding file
-\inpenc@prehook=\toks17
-\inpenc@posthook=\toks18
 ) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2024/11/05 v2.17t AMS math features
 \@mathmargin=\skip51
@@ -37,7 +33,7 @@ For additional information on amsmath, use the `?' option.
 Package: amstext 2021/08/26 v2.01 AMS text
  (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks19
+\@emptytoks=\toks17
 \ex@=\dimen142
 )) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
@@ -75,21 +71,21 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \dotsspace@=\muskip17
 \c@parentequation=\count278
 \dspbrk@lvl=\count279
-\tag@help=\toks20
+\tag@help=\toks18
 \row@=\count280
 \column@=\count281
 \maxfields@=\count282
-\andhelp@=\toks21
+\andhelp@=\toks19
 \eqnshift@=\dimen145
 \alignsep@=\dimen146
 \tagshift@=\dimen147
 \tagwidth@=\dimen148
 \totwidth@=\dimen149
 \lineht@=\dimen150
-\@envbody=\toks22
+\@envbody=\toks20
 \multlinegap=\skip52
 \multlinetaggap=\skip53
-\mathdisplay@stack=\toks23
+\mathdisplay@stack=\toks21
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 ) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
@@ -105,7 +101,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks24
+\KV@toks@=\toks22
 ) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
  (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/graphics/trig.sty
@@ -230,7 +226,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 ) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count295
 \lst@gtempboxa=\box54
-\lst@token=\toks25
+\lst@token=\toks23
 \lst@length=\count296
 \lst@currlwidth=\dimen157
 \lst@column=\count297
@@ -272,14 +268,14 @@ Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environ
  (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count303
-\float@exts=\toks26
+\float@exts=\toks24
 \float@box=\box56
-\@float@everytoks=\toks27
+\@float@everytoks=\toks25
 \@floatcapt=\box57
 ) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
-\@float@every@algorithm=\toks28
+\@float@every@algorithm=\toks26
 \c@algorithm=\count304
 ) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
@@ -303,7 +299,7 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip58
 \enit@outerparindent=\dimen161
-\enit@toks=\toks29
+\enit@toks=\toks27
 \enit@inbox=\box58
 \enit@count@id=\count312
 \enitdp@description=\count313
@@ -333,7 +329,7 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \aftertitleunit=\skip60
 \ttl@plus=\dimen175
 \ttl@minus=\dimen176
-\ttl@toksa=\toks30
+\ttl@toksa=\toks28
 \titlewidth=\dimen177
 \titlewidthlast=\dimen178
 \titlewidthfirst=\dimen179
@@ -372,258 +368,66 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen193
 \Gm@layouthoffset=\dimen194
 \Gm@layoutvoffset=\dimen195
-\Gm@dimlist=\toks31
-) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+\Gm@dimlist=\toks29
+) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/acronym/acronym.sty
+Package: acronym 2025/01/17 v1.50 Support for acronyms (Tobias Oetiker)
+ (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/bigfoot/suffix.sty
+Package: suffix 2006/07/15 1.5a Variant command support
+) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/generic/xstring/xstring.sty (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/generic/xstring/xstring.tex
+\xs_counta=\count323
+\xs_countb=\count324
+)
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+)
+\AC@clearlist=\toks30
+) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/fontspec/fontspec.sty (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2025-01-18 L3 programming layer (loader) 
+ (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count323
+\l__color_backend_stack_int=\count325
 \l__pdf_internal_box=\box60
-) (./pfe.aux)
-\openout1 = `pfe.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
- (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count324
-\scratchdimen=\dimen196
-\scratchbox=\box61
-\nofMPsegments=\count325
-\nofMParguments=\count326
-\everyMPshowfont=\toks32
-\MPscratchCnt=\count327
-\MPscratchDim=\dimen197
-\MPnumerator=\count328
-\makeMPintoPDFobject=\count329
-\everyMPtoPDFconversion=\toks33
-) (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 55.
- (./pfe.out) (./pfe.out)
-\@outlinefile=\write3
-\openout3 = `pfe.out'.
-
-\c@lstlisting=\count330
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
-
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-*geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
-* paper: <default>
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=10.0pt
-* \footskip=30.0pt
-* \marginparwidth=65.0pt
-* \marginparsep=11.0pt
-* \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 60.
-(/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+Package: xparse 2024-08-16 L3 Experimental document command parser
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 60.
- (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-[1
-
-{/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}]
+Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.73 \tableofcontents
-                      [1] (./pfe.toc
+/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/fontspec/fontspec.sty:101: Fatal Package fontspec Error: The fontspec package requires either XeTeX or
+(fontspec)                      LuaTeX.
+(fontspec)                      
+(fontspec)                      You must change your typesetting engine to,
+(fontspec)                      e.g., "xelatex" or "lualatex" instead of
+(fontspec)                      "latex" or "pdflatex".
 
-[2
+Type <return> to continue.
+ ...                                              
+                                                  
+l.101 \msg_fatal:nn {fontspec} {cannot-use-pdftex}
+                                                  
 
-])
-\tf@toc=\write4
-\openout4 = `pfe.toc'.
+LaTeX does not know anything more about this error, sorry.
 
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
 
-
-[3]
-Chapter 1.
-<images/CIA-graph.png, id=243, 721.69624pt x 605.26125pt>
-File: images/CIA-graph.png Graphic file (type png)
-<use images/CIA-graph.png>
-Package pdftex.def Info: images/CIA-graph.png  used on input line 100.
-(pdftex.def)             Requested size: 234.8775pt x 196.98463pt.
-
-
-[4
-
-]
-<images/dos-ddos-graph.png, id=252, 1236.62pt x 1091.07625pt>
-File: images/dos-ddos-graph.png Graphic file (type png)
-<use images/dos-ddos-graph.png>
-Package pdftex.def Info: images/dos-ddos-graph.png  used on input line 135.
-(pdftex.def)             Requested size: 375.80544pt x 331.57076pt.
-
-
-[5 <./images/CIA-graph.png>]
-
-[6 <./images/dos-ddos-graph.png>]
-<images/ids-arch-diagram.png, id=281, 1770.615pt x 2143.00626pt>
-File: images/ids-arch-diagram.png Graphic file (type png)
-<use images/ids-arch-diagram.png>
-Package pdftex.def Info: images/ids-arch-diagram.png  used on input line 297.
-(pdftex.def)             Requested size: 375.80544pt x 454.81874pt.
-
-
-[7]
-
-[8{/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./images/ids-arch-diagram.png>]
-<images/nids-diagram.png, id=295, 1011.78pt x 1268.74pt>
-File: images/nids-diagram.png Graphic file (type png)
-<use images/nids-diagram.png>
-Package pdftex.def Info: images/nids-diagram.png  used on input line 333.
-(pdftex.def)             Requested size: 375.80544pt x 471.24623pt.
-
-
-[9]
-<images/hids-diagram.png, id=300, 1028.84375pt x 1270.7475pt>
-File: images/hids-diagram.png Graphic file (type png)
-<use images/hids-diagram.png>
-Package pdftex.def Info: images/hids-diagram.png  used on input line 339.
-(pdftex.def)             Requested size: 375.80544pt x 464.1777pt.
-
-
-[10 <./images/nids-diagram.png>]
-
-[11 <./images/hids-diagram.png>]
-
-[12]
-
-[13]
-
-[14]
-Chapter 2.
-
-
-[15
-
-]
-<images/rl-diagram.png, id=338, 1294.8375pt x 1409.265pt>
-File: images/rl-diagram.png Graphic file (type png)
-<use images/rl-diagram.png>
-Package pdftex.def Info: images/rl-diagram.png  used on input line 503.
-(pdftex.def)             Requested size: 375.80544pt x 409.02045pt.
-
-
-[16 <./images/rl-diagram.png>]
-
-[17]
-
-[18]
-
-[19]
-Chapter 3.
-
-
-[20
-
-]
-
-[21]
-
-[22]
-
-[23]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 732.
-
-
-[24]
-
-[25]
-
-[26]
-
-[27]
-Overfull \hbox (15.27283pt too wide) in paragraph at lines 952--952
-|[]\OT1/cmr/bx/n/12 Architectural Im-ple-men-ta-tion II: The Con-vo-lu-tional Neu-ral Net-work (CNN)| 
- []
+This is a fatal error: LaTeX will abort.
 
 
 
-[28]
+/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/fontspec/fontspec.sty:101: Emergency stop.
+<read *> 
+         
+l.101 \msg_fatal:nn {fontspec} {cannot-use-pdftex}
+                                                  
+*** (cannot \read from terminal in nonstop modes)
 
-[29]
-Overfull \hbox (63.38005pt too wide) in paragraph at lines 1063--1065
-\OT1/cmr/m/n/10 Available at: []$\OT1/cmtt/m/n/10 https : / / www . cleanpng . com / png-[]information-[]security-[]confidentiality-[]availability-[]1373941/$[] 
- []
-
-
-
-[30
-
-] (./pfe.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
- ***********
-Package rerunfilecheck Info: File `pfe.out' has not changed.
-(rerunfilecheck)             Checksum: C6D1A9F94195303A56334F88B0BD9823;10689.
- ) 
+ 
 Here is how much of TeX's memory you used:
- 14982 strings out of 473190
- 236935 string characters out of 5704335
- 650741 words of memory out of 5000000
- 37947 multiletter control sequences out of 15000+600000
- 570676 words of font info for 81 fonts, out of 8000000 for 9000
+ 14643 strings out of 473190
+ 232466 string characters out of 5704335
+ 635430 words of memory out of 5000000
+ 37754 multiletter control sequences out of 15000+600000
+ 558837 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,79p,1560b,736s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on pfe.pdf (31 pages, 850309 bytes).
-PDF statistics:
- 546 PDF objects out of 1000 (max. 8388607)
- 457 compressed objects within 5 object streams
- 106 named destinations out of 1000 (max. 500000)
- 375 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 79i,0n,93p,308b,266s stack positions out of 10000i,1000n,20000p,200000b,200000s
+/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/fontspec/fontspec.sty:101:  ==> Fatal error occurred, no output PDF file produced!

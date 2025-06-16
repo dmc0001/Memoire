@@ -1,6 +1,7 @@
 \documentclass{report}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb,amsfonts}
+
+% --- Core Packages ---
+\usepackage{amsmath,amssymb} % amsfonts is loaded by amssymb
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{listings}
@@ -10,91 +11,279 @@
 \usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{titlesec}
-\usepackage{caption} 
-\usepackage[margin=1in]{geometry}
-\usepackage[margin=1in]{geometry} % Sets 1-inch margins
-\usepackage{amsmath}              % For advanced math environments
-\usepackage{amsfonts}             % For math fonts
+\usepackage{caption}
+\usepackage[margin=1in]{geometry} % Load once
+\usepackage{float}                % For [H] figure placement
+\usepackage{acronym}              % For the list of acronyms
 
-% --- Preamble: Document Settings ---
-% This document uses the 'report' class, suitable for theses and reports.
-% The 'geometry' package is used for setting page margins.
-% The 'amsmath' package provides enhanced environments for equations.
+% --- Font and Language Setup (Requires XeLaTeX or LuaLaTeX) ---
+\usepackage{fontspec}
+\usepackage{polyglossia}
 
-% Code formatting
+\setmainlanguage{english}
+\setotherlanguages{french,arabic}
+
+% Set fonts for each language (example: using common system fonts)
+% \setmainfont{Times New Roman} % Uncomment and change to a font on your system if needed
+\newfontfamily\arabicfont[Script=Arabic]{Amiri}
+
+
+% --- Code Listing Style ---
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.95}
 
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
+    backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
     basicstyle=\ttfamily\small,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
     showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
+    showtabs=false,
+tabsize=2
 }
-
 \lstset{style=mystyle}
 
+% --- Document Metadata ---
 \title{\Huge{\textbf{Detection Attack DOS Using Reinforcement Learning}}}
-\author{}
-\date{}
+\author{Your Name Here}
+\date{\today}
 
 \begin{document}
 
+% ======================================================================
+% COVER PAGE
+% ======================================================================
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.25\textwidth]{./images/univ_logo.png}\par\vspace{1.5cm}
+    
+    \textsc{\LARGE Yahia Fares University of Medea }\\[0.5cm]
+    \textsc{\Large Faculty of Sciences}\\[0.5cm]
+    \textsc{\Large Department of Mathematics and Computer Science}\\[2.5cm]
 
+    \rule{\linewidth}{0.5mm} \\[0.4cm]
+    { \Huge \bfseries Detection of DoS Attacks Using Reinforcement Learning \\[0.4cm] }
+    \rule{\linewidth}{0.5mm} \\[1.5cm]
 
-\maketitle
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft} \large
+            \emph{Author:}\\
+            Haitham Attab \\
+            Amine Takdenti
+        \end{flushleft}
+    \end{minipage}~
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright} \large
+            \emph{Supervisor:}\\
+            Prof. Brahim Sahmadi
+        \end{flushright}
+    \end{minipage}\\[2cm]
+
+    {\large A report submitted in partial fulfillment of the requirements for the degree of Master of Computer Science}\\[1cm]
+    {\large \today}
+    \vfill
+\end{titlepage}
+\newpage
+
+% ======================================================================
+% DEDICATION PAGE
+% ======================================================================
+\newpage
+\thispagestyle{empty} % No header or footer on this page
+\vspace*{\fill} % Push content to the vertical center
 \begin{center}
-    {\LARGE \textbf{Abstract}}  % Bigger abstract title
+    \textit{To my family, for their endless love and support.}
 \end{center}
+\vfill
 
-\vspace{0.5em}
+% ======================================================================
+% ACKNOWLEDGEMENTS PAGE
+% ======================================================================
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements} % Optional: if you want it in the ToC
+
+I would like to express my sincere gratitude to my supervisor, Professor Brahim Sahmadi, for their invaluable guidance and unwavering support throughout this research.
+
+I also wish to thank [mention other people, e.g., colleagues, friends, family] for their encouragement and insightful discussions.
+
+This work was made possible by [mention any funding or support].
+
+% ======================================================================
+% ABSTRACT (English)
+% ======================================================================
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract} % Optional: if you want it in the ToC
 
 \begin{quote}
-\Large
+\large
 In light of the increasing prevalence of Denial-of-Service (DoS) attacks, robust detection mechanisms have become essential to ensure the availability and reliability of computer networks. This thesis proposes a novel intrusion detection approach that leverages Reinforcement Learning (RL) to identify and mitigate DoS attacks. The RL agent learns optimal detection policies by interacting with a simulated network environment, continuously improving its performance through reward-based feedback. Key network traffic features are extracted and used as state inputs for the agent, enabling it to distinguish between benign and malicious activity. The model is evaluated in benchmark datasets such as CSE-CIC-IDS2018, demonstrating high detection accuracy, low false positive rates, and adaptability to evolving attack patterns. Compared to traditional machine learning classifiers, the RL-based system shows improved response and decision-making capabilities under dynamic network conditions. Future research will explore the integration of this system into real-time network infrastructures and the enhancement of its scalability for broader threat detection.
 \end{quote}
 
+\vspace{1em}
+\noindent\textbf{Keywords:} Intrusion Detection Systems (IDS), Denial-of-Service (DoS), Reinforcement learning (RL), CSE-CIC-IDS2018, Cybersecurity, Network Traffic Analysis.
 
-\textbf{Keywords:} Intrusion Detection Systems (IDS), Denial-of-Service (DoS), Reinforcement learning (RL), CSE-CIC-IDS2018, Cybersecurity, Network Traffic Analysis.
+
+% ======================================================================
+% ABSTRACT (Arabic)
+% ======================================================================
+\newpage
+\begin{otherlanguage}{arabic}
+    \chapter*{ملخص}
+    \addcontentsline{toc}{chapter}{ملخص}
+
+    \begin{quote}
+        \large
+        % --- PASTE ARABIC ABSTRACT TEXT HERE ---
+        في ضوء تزايد انتشار هجمات الحرمان من الخدمة، أصبحت آليات الكشف القوية ضرورية لضمان توفر وموثوقية شبكات الحاسوب. تقترح هذه الأطروحة نهجًا جديدًا للكشف عن التسلل يستفيد من التعلم المعزز لتحديد وتخفيف هجمات الحرمان من الخدمة. يتعلم وكيل التعلم المعزز سياسات الكشف المثلى من خلال التفاعل مع بيئة شبكة محاكاة، مما يحسن أداءه باستمرار من خلال التغذية الراجعة القائمة على المكافآت. يتم استخراج ميزات حركة مرور الشبكة الرئيسية واستخدامها كمدخلات حالة للوكيل، مما يمكنه من التمييز بين النشاط الحميد والخبيث. يتم تقييم النموذج في مجموعات البيانات المرجعية مثل CSE-CIC-IDS2018، مما يدل على دقة كشف عالية، ومعدلات إيجابية كاذبة منخفضة، والقدرة على التكيف مع أنماط الهجوم المتطورة.
+        % --- END OF ARABIC ABSTRACT TEXT ---
+    \end{quote}
+
+    \vspace{1em}
+    \noindent\textbf{الكلمات المفتاحية:} أنظمة كشف التسلل (IDS)، الحرمان من الخدمة (DoS)، التعلم المعزز (RL)، CSE-CIC-IDS2018، الأمن السيبراني، تحليل حركة مرور الشبكة.
+\end{otherlanguage}
+
+
+% ======================================================================
+% ABSTRACT (French)
+% ======================================================================
+\newpage
+\begin{otherlanguage}{french}
+    \chapter*{Résumé}
+    \addcontentsline{toc}{chapter}{Résumé}
+
+    \begin{quote}
+        \large
+        Face à la prévalence croissante des attaques par déni de service (DoS), des mécanismes de détection robustes sont devenus essentiels pour garantir la disponibilité et la fiabilité des réseaux informatiques. Cette thèse propose une nouvelle approche de détection d'intrusion qui s'appuie sur l'apprentissage par renforcement (RL) pour identifier et atténuer les attaques DoS. L'agent RL apprend des politiques de détection optimales en interagissant avec un environnement réseau simulé, améliorant continuellement ses performances grâce à des retours basés sur des récompenses. Les principales caractéristiques du trafic réseau sont extraites et utilisées comme entrées d'état pour l'agent, lui permettant de distinguer l'activité bénigne de l'activité malveillante. Le modèle est évalué sur des ensembles de données de référence tels que CSE-CIC-IDS2018, démontrant une grande précision de détection, de faibles taux de faux positifs et une adaptabilité aux modèles d'attaque en évolution. Comparé aux classificateurs d'apprentissage automatique traditionnels, le système basé sur le RL montre des capacités de réponse et de prise de décision améliorées dans des conditions de réseau dynamiques. Les recherches futures exploreront l'intégration de ce système dans des infrastructures réseau en temps réel et l'amélioration de son extensibilité pour une détection plus large des menaces.
+    \end{quote}
+
+    \vspace{1em}
+    \noindent\textbf{Mots-clés :} Systèmes de Détection d'Intrusion (IDS), Déni de Service (DoS), Apprentissage par Renforcement (RL), CSE-CIC-IDS2018, Cybersécurité, Analyse du Trafic Réseau.
+\end{otherlanguage}
+
+
 \tableofcontents
 \newpage
 
+% ======================================================================
+% LIST OF FIGURES, TABLES, AND ACRONYMS
+% ======================================================================
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\newpage
+
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\newpage
+
+\chapter*{List of Acronyms}
+\addcontentsline{toc}{chapter}{List of Acronyms}
+\begin{acronym}[DDoS] % A reasonably wide label for alignment
+    \acro{AI}{Artificial Intelligence}
+    \acro{CIA}{Confidentiality, Integrity, and Availability}
+    \acro{CIC}{Canadian Institute for Cybersecurity}
+    \acro{CNN}{Convolutional Neural Network}
+    \acro{CPU}{Central Processing Unit}
+    \acro{CSV}{Comma-Separated Values}
+    \acro{DDoS}{Distributed Denial-of-Service}
+    \acro{DNS}{Domain Name System}
+    \acro{DoS}{Denial-of-Service}
+    \acro{DQN}{Deep Q-Network}
+    \acro{FTP}{File Transfer Protocol}
+    \acro{HIDS}{Host-based Intrusion Detection System}
+    \acro{HTTP}{Hypertext Transfer Protocol}
+    \acro{HTTPS}{Hypertext Transfer Protocol Secure}
+    \acro{ICMP}{Internet Control Message Protocol}
+    \acro{IDS}{Intrusion Detection System}
+    \acro{IP}{Internet Protocol}
+    \acro{IoT}{Internet of Things}
+    \acro{ML}{Machine Learning}
+    \acro{MLP}{Multi-Layer Perceptron}
+    \acro{NIDS}{Network-based Intrusion Detection System}
+    \acro{NTP}{Network Time Protocol}
+    \acro{PCAP}{Packet Capture}
+    \acro{RL}{Reinforcement Learning}
+    \acro{SIEM}{Security Information and Event Management}
+    \acro{SSDP}{Simple Service Discovery Protocol}
+    \acro{SVM}{Support Vector Machine}
+    \acro{TCP}{Transmission Control Protocol}
+    \acro{UDP}{User Datagram Protocol}
+\end{acronym}
+\newpage
+% ======================================================================
+% ===== NEW CHAPTER: GENERAL INTRODUCTION ==============================
+% ======================================================================
+\section{General Introduction}
+
+\section{Context and Motivation}
+In the contemporary digital era, the reliability and continuous availability of network services form the backbone of global commerce, communication, and critical infrastructure. A primary threat to this stability is the Denial-of-Service (DoS) attack, and its more potent variant, the Distributed Denial-of-Service (DDoS) attack. These malicious activities aim to render online services and network resources unavailable to legitimate users by overwhelming them with an insurmountable volume of traffic or by exploiting protocol vulnerabilities. As attackers devise increasingly sophisticated and large-scale attacks, the need for intelligent, adaptive, and robust defense mechanisms has become more critical than ever.
+
+Traditional Intrusion Detection Systems (IDS) have served as the first line of defense. However, they often rely on static, signature-based methods that, while effective against known threats, are inherently incapable of identifying novel or zero-day attacks. Anomaly-based systems, which attempt to solve this by creating a baseline of "normal" behavior, frequently suffer from high false positive rates, leading to operational friction and alert fatigue. Furthermore, conventional machine learning classifiers, though an improvement, often operate as static models that require periodic retraining and struggle to adapt in real-time to the dynamic and adversarial nature of cybersecurity threats.
+
+This clear gap in defensive capabilities motivates the exploration of more advanced paradigms. Reinforcement Learning (RL), a subfield of machine learning, offers a compelling alternative. Unlike supervised learning, RL focuses on training an autonomous agent to make optimal decisions through interaction with an environment, guided by a system of rewards and penalties. This approach is inherently adaptive, allowing the agent to learn and refine its strategies over time. The potential to create a self-improving, context-aware detection system that can respond dynamically to evolving threats provides the core motivation for this research.
+
+\section{Problem Statement}
+The central problem addressed by this thesis is the inadequacy of traditional and static machine learning-based Intrusion Detection Systems in providing adaptive, real-time defense against modern, sophisticated DDoS attacks. These existing systems exhibit several key limitations:
+\begin{itemize}
+    \item \textbf{Lack of Adaptability:} Signature-based systems cannot detect new attack vectors, while static ML models fail to adapt to evolving attack patterns without manual retraining.
+    \item \textbf{High False Positive Rates:} Anomaly detection systems often misclassify legitimate traffic spikes (flash crowds) as attacks, disrupting normal operations.
+    \item \textbf{Reactive Nature:} Most systems are reactive, identifying attacks only after they have begun to impact the network, rather than learning to predict and preempt them.
+\end{itemize}
+This research seeks to answer the following question: \textbf{Can Reinforcement Learning, specifically a Deep Q-Network (DQN) approach, be effectively adapted to the supervised classification task of DDoS detection to create a more dynamic, accurate, and autonomous system?}
+
+\section{Objectives}
+To address the problem statement, this thesis sets out the following primary objectives:
+\begin{enumerate}
+    \item To conduct a thorough review of Denial-of-Service attacks, traditional Intrusion Detection Systems, and the foundational principles of Reinforcement Learning to establish a strong theoretical basis.
+    \item To design and develop a novel detection framework that reframes the DDoS classification task as a sequential decision-making problem, solvable with a Deep Q-Network (DQN) agent.
+    \item To implement two distinct neural network architectures for the DQN's Q-function approximator—a Multi-Layer Perceptron (MLP) and a Convolutional Neural Network (CNN)—to explore different feature representation capabilities.
+    \item To train and rigorously evaluate the proposed models using a modern, comprehensive benchmark dataset (CIC-DDoS2019), measuring performance based on key metrics such as accuracy, precision, recall, and F1-score.
+    \item To compare the performance of the MLP-based and CNN-based DQN agents to determine the most effective architecture for this task.
+\end{enumerate}
+
+\section{Overall Methodology}
+The research will be conducted through a structured, multi-stage process:
+\begin{enumerate}
+    \item \textbf{Data Preprocessing:} The CIC-DDoS2019 dataset will be acquired and subjected to a comprehensive preprocessing pipeline. This includes data cleaning, binary label transformation, feature selection using a Random Forest classifier to identify the most salient features, Min-Max normalization to scale the data, and random undersampling to create a balanced dataset for training.
+    \item \textbf{Model Design:} A custom Reinforcement Learning environment will be simulated from the static dataset. A Deep Q-Network (DQN) agent will be designed, defining the state space (from network features), action space (classify as 'Benign' or 'Attack'), and a reward function that provides feedback based on classification correctness.
+    \item \textbf{Architectural Implementation:} Two Q-network architectures will be implemented in Python using deep learning libraries. The first will be a standard Multi-Layer Perceptron. The second will be a Convolutional Neural Network, which requires reshaping the one-dimensional feature vector into a two-dimensional "feature-image" to exploit spatial correlations between features.
+    \item \textbf{Training and Evaluation:} Both models will be trained using a novel loop that blends supervised signals (the true labels) with RL principles (value estimation of future states). The trained models will be evaluated on a held-out test set to assess their detection performance and generalization capabilities.
+\end{enumerate}
+
+\section{Thesis Structure}
+This thesis is organized into six chapters, each building upon the last to present a complete account of the research:
+\begin{itemize}
+    \item \textbf{Chapter 1: Intrusion Detection Systems (IDS)} lays the theoretical groundwork by discussing fundamental security concepts, detailing the various types of DoS/DDoS attacks, and explaining the architecture and limitations of traditional IDS.
+    \item \textbf{Chapter 2: Reinforcement Learning for Cybersecurity} introduces the core concepts of Reinforcement Learning, with a specific focus on Deep Q-Learning. It explores how the RL paradigm can be modeled for security tasks, covering state, action, and reward design.
+    \item \textbf{Chapter 3: Architectural Blueprint and Implementation} presents the technical core of this work. It details the data preprocessing pipeline and the architectural design of the two proposed DQN agents (MLP and CNN-based).
+    \item \textbf{Chapter 4: Experiments and Results} will describe the experimental setup, present the performance results of the trained models, and provide a comparative analysis and discussion of the findings.
+\end{itemize}
+% ======================================================================
+% ===== END OF NEW CHAPTER =============================================
+% ======================================================================
+
 \chapter{Intrusion Detection System (IDS)}
 
-
 \section{Security Fundamentals}
-
 \subsection*{Introduction}
-
 Security fundamentals refer to the essential principles, concepts, and practices that form the foundation of information security. These fundamentals encompass a wide range of technical and organizational measures aimed at protecting sensitive information and systems from unauthorized access, theft, damage, or other forms of compromise.
 
 Key security fundamentals include Confidentiality, Integrity, Availability, Authentication, Authorization, Encryption, Risk Management, Incident Response, and Disaster Recovery. Together, these principles establish the basis of a comprehensive information security program, enabling organizations to effectively safeguard their critical information assets and maintain the trust of stakeholders.\cite{ibm_security_fundamental}
 
-% \vspace{0.5em}
-% \noindent
-% \textit{Source:} \href{https://www.linkedin.com/pulse/fundamentals-security-slammghana/}{https://www.linkedin.com/pulse/fundamentals-security-slammghana/}
-
 \subsection{Core Security Concepts}
-
 Network security encompasses strategies and technologies to protect systems from cyber threats, particularly Denial of Service (DoS) attacks that aim to disrupt service availability. Several core principles serve as the foundation for secure systems.
 
 \subsubsection{CIA Triad}
-
-
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\textwidth]{images/CIA-graph.png}
@@ -102,8 +291,6 @@ Network security encompasses strategies and technologies to protect systems from
     \caption*{\footnotesize\textit{Source: \cite{ibm_principles_of_information_security}}}
     \label{fig:cia-graph}
 \end{figure}
-
-
 
 \paragraph{Confidentiality} 
 Confidentiality ensures that sensitive information is only accessible to authorized users. Techniques such as encryption, user authentication, and access control policies prevent unauthorized data access. While DoS attacks do not typically aim to breach confidentiality directly, successful exploitation may lead to indirect confidentiality violations if attackers cause service misconfigurations or force failovers to insecure states.
@@ -115,7 +302,6 @@ Integrity guarantees that data is accurate and unaltered. It is maintained throu
 Availability ensures that services and systems remain accessible to legitimate users at all times. This principle is the primary target of DoS attacks, which flood networks or services with excessive requests, causing slowdowns or complete denial of access. Maintaining availability involves redundancy, load balancing, and proactive mitigation strategies like rate limiting and firewalls.
 
 \subsubsection{Extended Security Principles}
-
 \paragraph{Non-repudiation} 
 Non-repudiation guarantees that an entity cannot deny having performed a particular action, such as sending a message or initiating a transaction. This is enforced through digital signatures and secure logging mechanisms. In the context of DoS attacks, non-repudiation helps trace attack origins and supports legal accountability.
 
@@ -126,7 +312,6 @@ Authenticity confirms that data, communications, or users are genuine and not fo
 Accountability ensures that all actions within a system can be traced to responsible users or processes. It involves logging, auditing, and monitoring to track behavior. Accountability is vital for forensic analysis after a DoS attack and for strengthening defenses against future intrusions.
 
 \section{Denial-of-Service (DoS) Attacks}
-
 \paragraph{Introduction} 
 Denial-of-Service (DoS) attacks aim to make a system or network resource unavailable to its intended users by overwhelming it with excessive traffic or exploiting protocol-level vulnerabilities. These attacks can disrupt services, degrade performance, or completely shut down access. The most common types include:
 
@@ -134,6 +319,7 @@ Denial-of-Service (DoS) attacks aim to make a system or network resource unavail
     \centering
     \includegraphics[width=0.8\textwidth]{images/dos-ddos-graph.png}
     \caption{DoS and DDoS Attack Traffic Comparison}
+    \label{fig:dos-ddos-graph}
     \vspace{-0.5em}
 \end{figure}
 
@@ -168,307 +354,186 @@ Anomaly-based intrusion detection systems (IDS) can flag unusual spikes, connect
 
 Advanced methods include machine learning to classify deviations. Once detected, defenses such as rate limiting, traffic shaping, or redirection to mitigation services are employed to maintain availability.
 
-
-% \paragraph{Introduction} 
-% Denial-of-Service (DoS) attacks aim to make a system or network resource unavailable to its intended users by overwhelming it with excessive traffic or exploiting protocol-level vulnerabilities. These attacks can disrupt services, degrade performance, or completely shut down access. The most common types include:
-
-% \begin{figure}[ht]
-%     \centering
-%     \includegraphics[width=0.5\textwidth]{images/dos-ddos-graph.png} 
-%     \caption{DoS and DDoS Attack Traffic Comparison}
-%     \vspace{-0.5em} % Optional: reduces space between caption and following text
-% \end{figure}
-
-
-% \section{Denial-of-Service (DoS) Attacks} \subsection{Volumetric Attacks}
-% Volumetric attacks aim to saturate a target’s bandwidth by generating an overwhelming amount of traffic. This often involves exploiting amplification techniques or high-rate packet floods. Common examples include UDP floods and DNS amplification attacks, which leverage misconfigured servers to multiply the traffic volume directed at the victim
-% fidelissecurity.com
-% . In a UDP flood, for instance, an attacker sends vast numbers of UDP packets (often with spoofed source addresses) to random or specific ports on the target, forcing the target to process or drop them and thereby consuming bandwidth. In DNS amplification, the attacker sends small DNS queries to open resolvers with the victim’s IP as the source address; each resolver then returns a much larger response to the victim, effectively amplifying the traffic volume. The Mirai botnet is a notable example of a volumetric attack in action: it infected hundreds of thousands of insecure IoT devices and coordinated them to generate massive traffic streams toward its targets
-% fidelissecurity.com
-% . The ultimate goal of volumetric attacks is to clog the network links (measured in Gbps or Tbps) so that legitimate traffic cannot reach the target. \subsection{Protocol Attacks}
-% Protocol attacks exploit weaknesses in network or transport layer protocols (OSI Layer 3/4) to exhaust server or network equipment resources. Unlike volumetric attacks that focus on bandwidth, protocol attacks aim to consume connection state tables or CPU cycles by misusing fundamental protocol mechanisms
-% fidelissecurity.com
-% . A classic example is the TCP SYN flood: the attacker sends a rapid stream of TCP SYN packets to initiate connections but never completes the three-way handshake. Each half-open connection consumes memory and processing power on the server, so with enough such requests the server’s backlog queue fills up and it can no longer accept new legitimate connections
-% imperva.com
-% . Similarly, ICMP-based attacks exploit the Internet Control Message Protocol: a Ping flood (ICMP flood) can overwhelm a target by sending large volumes of ICMP echo requests, while the Ping of Death sends malformed or oversized ICMP packets (larger than the 65,535-byte IPv4 limit) that can crash or freeze vulnerable systems
-% imperva.com
-% . Other protocol-layer examples include packet fragmentation attacks (e.g.\ the Teardrop attack, which sends overlapping IP fragments to disrupt reassembly) and ACK/FIN floods, all of which aim to tie up connection tables or processing resources on routers and servers. These attacks often do not require as much raw bandwidth as volumetric floods, but they exploit the target’s protocol handling to disrupt service. \subsection{Application Layer Attacks}
-% Application-layer (Layer 7) attacks are characterized by generating traffic that appears to be legitimate or normal at the application level, thereby exhausting server-side resources such as CPU, memory, or thread pools. Because these attacks mimic regular user behavior (for example, HTTP requests or API calls), they can be harder to distinguish from genuine traffic. For instance, an HTTP GET/POST flood might involve hundreds of thousands of seemingly valid requests to a web server or API endpoint, causing the server to spawn processes or threads until it is overwhelmed. A well-known application-layer attack is Slowloris: it sends partial HTTP requests to a web server and never completes them, keeping the connections open indefinitely and consuming the server’s connection pool
-% netscout.com
-% . Slowloris effectively slows down the server by forcing it to maintain a large number of half-open HTTP connections, with minimal bandwidth required by the attacker. Other examples include “RUDY” (R-U-Dead-Yet) attacks, which continually send small pieces of an HTTP POST request to tie up server resources, and HTTP GET floods targeting expensive dynamic pages or database-backed resources. In general, application-layer attacks target the web server or application functions (e.g.\ API endpoints or login pages) directly
-% fidelissecurity.com
-% . Because the traffic can look valid (for example, proper HTTP syntax or valid query parameters), application-layer attacks often require careful behavioral analysis or specialized filters to detect. \subsection{Distributed Denial-of-Service (DDoS)}
-% A Distributed Denial-of-Service (DDoS) attack uses multiple compromised machines (often thousands of bots forming a botnet) to launch a coordinated assault on a target. By originating traffic from many different IP addresses and locations, a DDoS attack can generate a vastly higher volume of traffic than a single-host DoS, and it is much harder to block simply by filtering individual IPs
-% fidelissecurity.com
-% . DDoS campaigns often combine vectors: for example, a multi-vector attack might include simultaneous UDP or TCP floods along with HTTP floods. Commonly, attackers use botnets of compromised devices (such as IoT devices infected by Mirai or hijacked PCs) to send traffic in unison. Reflective amplification attacks are also typical DDoS techniques: the attacker sends requests (with the victim’s spoofed IP) to large groups of open DNS or NTP servers, which in turn send amplified responses to the victim, effectively multiplying the traffic from many sources. The distributed and high-scale nature of DDoS makes mitigation challenging, since simply blocking one source or one protocol is usually insufficient. In practice, DDoS defenses often rely on upstream filtering, specialized scrubbing services, and the ability to absorb or redistribute very high traffic volumes
-% fidelissecurity.com
-% . \subsection{Network Traffic Analysis}
-% Detecting and mitigating DoS/DDoS attacks requires continuous monitoring of network traffic to identify deviations from normal patterns. A key approach is to establish a baseline of typical traffic (volume, packet rates, protocols, source distributions) and then use anomaly detection to flag unusual deviations. For example, a sudden, sustained spike in traffic volume or connection attempts (far above normal business hours levels) is a classic indicator of a volumetric or protocol-layer attack
-% fidelissecurity.com
-% . An anomaly-based intrusion detection system (IDS) can alert when traffic exceeds expected thresholds or when the profile of traffic (such as packet sizes, TCP flag patterns, or new IP addresses) changes markedly
-% mdpi.com
-% . Signature-based detection can also be used: known patterns (e.g.\ large numbers of SYN packets without ACK, or unusual payload characteristics) are matched against traffic to detect certain types of DoS. Network flow analysis (using NetFlow, sFlow or similar records) is another important tool: by aggregating traffic statistics, analysts can detect irregular surges in bytes or packets per second, or anomalous flows such as many sources contacting a single destination. More advanced systems apply statistical and machine learning methods to continuously learn normal behavior and classify deviations as malicious. In practice, effective DDoS detection often combines multiple techniques – for example, automated tools may raise an alarm when both the volume of traffic and the rate of new TCP connections simultaneously spike
-% mdpi.com
-% fidelissecurity.com
-% . Once an attack is detected, defenses such as traffic shaping, rate limiting, or rerouting through mitigation services can be applied to preserve service availability.
-
-% \paragraph{Volumetric Attacks} 
-% These attacks consume all available bandwidth by sending massive amounts of traffic, such as in UDP floods or ICMP amplification attacks. Their goal is to exhaust network capacity, making it impossible for legitimate traffic to pass through.
-
-% \paragraph{Protocol Attacks} 
-% Protocol-based DoS attacks exploit weaknesses in layer 3 and 4 of the OSI model. For example, a SYN flood abuses the TCP handshake by initiating numerous incomplete connections, which fill up server resources and prevent new connections from being established.
-
-% \paragraph{Application Layer Attacks} 
-% These target the application layer (Layer 7) by mimicking legitimate user behavior to exhaust server-side resources. Attacks like Slowloris maintain open HTTP connections for extended periods, gradually consuming server threads without sending complete requests.
-
-% \paragraph{Distributed Denial of Service (DDoS)} 
-% DDoS attacks are coordinated from multiple compromised systems, often forming a botnet. These attacks can be volumetric, protocol-based, or application-layer focused, but their distributed nature makes them harder to mitigate due to the scale and diversity of sources.
-
-% \subsection{Network Traffic Analysis}
-% To effectively detect DoS attacks, it is necessary to monitor and analyze network traffic for deviations from normal behavior.
-
-
-% \subsubsection{Baseline Metrics}
-% \begin{itemize}
-%     \item \textbf{Packets per Second (PPS):} Measures the rate of incoming or outgoing packets.
-%     \item \textbf{Bandwidth Consumption:} Refers to the typical volume of data transferred.
-%     \item \textbf{Connection Rates:} Tracks the number of new connections established over time.
-%     \item \textbf{Protocol Distribution:} Observes the usual mix of network protocols like TCP, UDP, and ICMP.
-%     \item \textbf{Time-of-Day Patterns:} Identifies regular traffic cycles, such as business hour spikes.
-% \end{itemize}
-
-% \subsubsection{Types of Anomalies}
-% \begin{itemize}
-%     \item \textbf{Volume Anomalies:} Sudden increases in traffic volume, which may indicate floods or amplification attacks.
-%     \item \textbf{Pattern Anomalies:} Changes in traffic behavior, such as irregular packet intervals or source IP variation.
-%     \item \textbf{Content Anomalies:} Malformed packets or protocol violations that suggest tampered or malicious payloads.
-% \end{itemize}
-
-% \subsubsection{Traffic Analysis Techniques}
-% \begin{itemize}
-%     \item \textbf{Statistical Profiling:} Identifies deviations from normal traffic metrics.
-%     \item \textbf{Time-Series Analysis:} Detects patterns and trends over time.
-%     \item \textbf{Correlation Analysis:} Links multiple traffic attributes to identify coordinated attacks.
-%     \item \textbf{Entropy Measurement:} Evaluates randomness in traffic data to detect anomalies.
-% \end{itemize}
-
-
 \section{Intrusion Detection Systems (IDS)}
-
 An \textbf{Intrusion Detection System (IDS)} is a cybersecurity solution designed to monitor network or system activities for malicious actions or policy violations. Upon detecting such activities, the IDS typically alerts system administrators or integrates with centralized security tools like Security Information and Event Management (SIEM) systems to facilitate a coordinated response \cite{ibm_ids}.
 
-% \subsection{Types of IDS}
-
-% IDS solutions can be categorized based on their monitoring focus:
-
-% \begin{itemize}
-%     \item \textbf{Network-based IDS (NIDS)}: Monitors network traffic for suspicious activity.
-%     \item \textbf{Host-based IDS (HIDS)}: Monitors individual devices or hosts for signs of malicious behavior \cite{wikipedia_ids}.
-% \end{itemize}
-
-% \subsection{Detection Methods}
-
-% Detection methods employed by IDS include:
-
-% \begin{itemize}
-%     \item \textbf{Signature-based Detection}: Identifies known threats by comparing patterns against a database of attack signatures.
-%     \item \textbf{Anomaly-based Detection}: Detects deviations from established normal behavior, potentially identifying unknown threats \cite{fortinet_ids}.
-% \end{itemize}
-
-% \subsection{Functionality}
-
-% While traditional IDS solutions are passive—monitoring and alerting without taking direct action—some modern systems incorporate proactive measures. These advanced IDS can respond to detected threats by, for example, blocking malicious traffic or isolating affected systems, thereby functioning similarly to Intrusion Prevention Systems (IPS) \cite{techtarget_ids}.
-
-% Incorporating an IDS into an organization's cybersecurity infrastructure enhances its ability to detect and respond to potential threats, thereby safeguarding sensitive data and maintaining system integrity.
-
-
-
-
-
-% \section{Intrusion Detection Systems (IDS)}
-
-% An Intrusion Detection System (IDS) is a security solution—either software, hardware, or a combination—that continuously monitors the activity of a computer network or individual hosts in order to spot signs of malicious behavior, policy violations, or other unauthorized actions. By collecting "raw" data from packet captures, system logs, file-access events or operating-system calls, an IDS uses a set of predefined rules (signatures of known attacks) and/or statistical models of normal behavior (anomaly detection) to flag suspicious patterns. When such patterns are detected, the IDS generates alerts for security analysts or—if so configured—triggers automated responses, such as blocking malicious IP addresses or quarantining affected machines. In this way, an IDS serves as an early‐warning system that helps organizations identify and respond to intrusions before they escalate into full-blown breaches.
-
 \subsection{IDS Architecture}
-
 \begin{figure}[H]
-    \begin{minipage}{\textwidth}
-        \hspace*{-0.05\linewidth}
-        \includegraphics[width=0.8\textwidth]{images/ids-arch-diagram.png}
-        \caption{Network-based Intrusion Detection System (NIDS) Architecture}
-        \label{fig:nids-architecture}
-    \end{minipage}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/ids-arch-diagram.png}
+    \caption{Network-based Intrusion Detection System (NIDS) Architecture}
+    \label{fig:nids-architecture}
 \end{figure}
 
-
-
-
 Modern IDS platforms implement modular architectures with several key components:
-
 \begin{itemize}
-\item \textbf{Sensors:}
-are the front line of an IDS, deployed at strategic network chokepoints—such as mirror (SPAN) ports, network taps, or virtual interfaces in cloud environments—to collect raw traffic data. They capture full packet streams, flow records, or application logs and often include built-in filters or sampling mechanisms to reduce noise in high-volume settings. By pre-processing and forwarding only relevant events, sensors ensure the IDS receives a representative yet manageable dataset, enabling visibility into lateral movement, data exfiltration, and denial-of-service attempts without overwhelming the analysis layer.
-
-\item \textbf{Analysis Engines:}
-Analysis Engines form the IDS's "brain," taking the sensor-collected data and applying a mixture of rule-based and intelligent techniques to detect threats. Traditional pattern-matching engines compare payloads against known attack signatures, while statistical or machine-learning analyzers establish behavioral baselines and flag deviations. Protocol analyzers dive deep into application-level conversations—HTTP, DNS, SMB, etc.—to spot malformed requests or anomalous sequences. By correlating events across multiple sensors and data sources, the engine can piece together multi-stage attacks (e.g., a scan followed by an exploit) and prioritize alerts based on risk.
-
-\item \textbf{Knowledge Base:}
-The Knowledge Base underpins all detection logic by maintaining up-to-date signatures, behavioral profiles, and historical datasets. Signature databases are refreshed with the latest threat intelligence feeds, while anomaly detectors continuously refine their statistical models using both live traffic and feedback on past alerts. In more advanced platforms, machine-learning feedback loops incorporate security analyst verdicts—true positive, false positive—to retrain the system, improving accuracy over time. This shared repository ensures that the IDS can recognize both known exploits and subtle shifts in normal network behavior.
-
-\item \textbf{Response Systems:}
-Response Systems close the loop between detection and defense. Once the analysis engine assigns a confidence score to an event, the response component generates alerts—pushing them into dashboards, SIEMs, or ticketing systems—and, where policies allow, triggers automated countermeasures. High-confidence detections might invoke firewall rule updates, IP blacklists, or host quarantines, while lower-confidence events are routed to alert managers for human review. Integrated visualization tools help security teams triage incidents rapidly, and orchestration connectors enable the IDS to participate in broader security workflows, ensuring a coordinated, efficient reaction—especially critical when facing large-scale DoS or DDoS onslaughts.
+    \item \textbf{Sensors:} are the front line of an IDS, deployed at strategic network chokepoints—such as mirror (SPAN) ports, network taps, or virtual interfaces in cloud environments—to collect raw traffic data.
+    \item \textbf{Analysis Engines:} form the IDS's "brain," taking the sensor-collected data and applying a mixture of rule-based and intelligent techniques to detect threats.
+    \item \textbf{Knowledge Base:} underpins all detection logic by maintaining up-to-date signatures, behavioral profiles, and historical datasets.
+    \item \textbf{Response Systems:} close the loop between detection and defense. Once the analysis engine assigns a confidence score to an event, the response component generates alerts.
 \end{itemize}
-
 For DOS attack detection, these components must operate with high efficiency and scale to process enormous traffic volumes during attack scenarios.
 
 \subsection{IDS Types and Functionality}
-
 Intrusion Detection Systems serve as the primary monitoring and detection layer for network security threats, including DOS attacks:
-
 \begin{itemize}
-\item \textbf{Network-based IDS (NIDS):}
-A Network-based Intrusion Detection System (NIDS) is a monitoring solution placed at key junctions within a network—often on a mirrored switch port or network tap—where it passively captures and inspects all passing traffic. Unlike host‐based agents, a NIDS doesn't rely on software installed on individual machines; instead, it reconstructs network sessions and analyzes packet headers and payloads in real time. It uses signature‐based detection (comparing packets against a database of known attack patterns) and anomaly‐based detection (profiling normal traffic volumes, protocols, and behavioral baselines) to spot suspicious or malicious activity—such as port scans, denial-of-service floods, SQL injection attempts, or data exfiltration. When the NIDS flags a potential intrusion, it generates an alert that can be logged centrally, forwarded to a Security Information and Event Management (SIEM) system, or used to trigger automated defenses (e.g., instructing a firewall to block the offending IP). Because it sees all traffic crossing its monitored segment, a properly tuned NIDS provides broad visibility into attacker reconnaissance and network‐level exploits—though it can be blind to encrypted payloads unless integrated with SSL/TLS decryption, and it may generate false positives if thresholds or signatures aren't carefully calibrated. By complementing host‐based sensors and other controls, a NIDS forms a crucial layer in a network's defense-in-depth strategy.
-
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{images/nids-diagram.png} \\
-    \textit{Figure: Network-based Intrusion Detection System (NIDS) Architecture}
-  \end{center}
-\item \textbf{Host-based IDS (HIDS):}
-A Host-based Intrusion Detection System (HIDS) operates at the level of individual endpoints or servers, offering deep visibility into system-specific activities. Instead of analyzing network traffic, HIDS monitors internal events such as system calls, file integrity changes, registry modifications, user logins, and local log files. This allows it to detect unauthorized alterations, privilege escalations, malware activity, and localized impacts of denial-of-service (DoS) attacks that may not be evident from a network perspective. By focusing on what happens inside the host, HIDS provides rich contextual information—such as which process triggered a suspicious action or which user account was involved—which is crucial for forensic analysis and containment. However, its scope is inherently limited to the device it protects, offering little visibility into lateral movement or network-wide attack patterns. Common examples of HIDS tools include OSSEC, Tripwire, and Wazuh.
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{images/hids-diagram.png} \\
-    \textit{Figure: Network-based Intrusion Detection System (NIDS) Architecture}
-  \end{center}
-\item \textbf{Detection Methodologies:}
-  \begin{itemize}
-  \item \textbf{Signature-based:} Matches observed traffic against known attack patterns (signatures)
+    \item \textbf{Network-based IDS (NIDS):} A NIDS is a monitoring solution placed at key junctions within a network to passively capture and inspect all passing traffic.
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=0.8\textwidth]{images/nids-diagram.png}
+            \caption{Network-based Intrusion Detection System (NIDS) Diagram}
+            \label{fig:nids-diagram}
+        \end{figure}
+    \item \textbf{Host-based IDS (HIDS):} A HIDS operates at the level of individual endpoints or servers, offering deep visibility into system-specific activities.
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=0.8\textwidth]{images/hids-diagram.png}
+            \caption{Host-based Intrusion Detection System (HIDS) Diagram}
+            \label{fig:hids-diagram}
+        \end{figure}
+    \item \textbf{Detection Methodologies:}
     \begin{itemize}
-    \item Highly effective for known attacks with clear signatures
-    \item Requires regular signature updates
-    \item Ineffective against zero-day or modified attacks
-    \item Examples: SYN flood patterns, known botnet command signatures
+        \item \textbf{Signature-based:} Matches observed traffic against known attack patterns (signatures). Highly effective for known attacks but ineffective against zero-day attacks.
+        \item \textbf{Anomaly-based:} Establishes baselines of normal behavior and flags significant deviations. Can detect unknown attacks but may generate more false positives.
+        \item \textbf{Hybrid Systems:} Combine both methodologies to leverage their respective strengths and reduce false positives.
     \end{itemize}
-    
-  \item \textbf{Anomaly-based:} Establishes baselines of normal behavior and flags significant deviations
-    \begin{itemize}
-    \item Can detect previously unknown attack vectors
-    \item Requires training period to establish accurate baselines
-    \item Typically generates more false positives than signature-based systems
-    \item Examples: Traffic volume spikes, unusual protocol distributions
-    \end{itemize}
-    
-  \item \textbf{Hybrid Systems:} Combine signature and anomaly detection approaches
-    \begin{itemize}
-    \item Leverage strengths of both methodologies
-    \item Use signatures for known threats and anomaly detection for novel attacks
-    \item Implement weighted alert systems for confidence scoring
-    \item Reduce false positives through correlation of multiple detection methods
-    \end{itemize}
-  \end{itemize}
 \end{itemize}
 
-Limitations of Traditional IDS for DOS attack detection include:
-\begin{itemize}
-\item Difficulty processing high-volume traffic during attacks
-\item Challenges distinguishing flash crowds from attacks
-\item Limited adaptation to evolving attack techniques
-\item High false-positive rates with anomaly detection
-\item Resource consumption during high-traffic periods
-\end{itemize}
-
-These limitations necessitate AI-driven approaches like reinforcement learning that can adapt to evolving threat landscapes.
+Limitations of Traditional IDS for DOS attack detection include difficulty processing high-volume traffic, distinguishing flash crowds from attacks, limited adaptation, high false-positive rates, and high resource consumption. These limitations necessitate AI-driven approaches like reinforcement learning.
 
 \section{Classification in Security Contexts}
-
 \subsection{Classification Paradigms}
-
-Classification forms the foundation of automated threat detection, organizing network traffic into categories for analysis and response:
-
-\textbf{Binary Classification:} The simplest approach for distinguishing between normal and attack traffic. This method provides clear decision boundaries for basic filtering with low granularity but high processing efficiency. It is essential for initial traffic triage during high-volume attacks, offering straightforward pass/block decisions and benign/malicious categorization.
-
-\textbf{Multi-class Classification:} A more sophisticated approach that distinguishes between multiple attack types, enabling targeted responses for specific threats. While requiring more complex models and training data, this method supports detailed attack attribution and can differentiate between various attack vectors such as SYN floods, HTTP floods, and DNS amplification attacks.
-
-\textbf{Hierarchical Classification:} An organized approach that structures threats in a tree-like format, enabling progressive refinement of classifications. This method balances processing efficiency with detection detail and supports multi-stage detection pipelines. For example, traffic can be progressively classified as: Traffic → Attack → DOS → Protocol-based → SYN Flood.
-
-\textbf{Multi-label Classification:} An advanced approach that assigns multiple categories to a single traffic flow, recognizing attacks with multiple characteristics. This method identifies complex attack campaigns and supports sophisticated response orchestration. For instance, traffic can be simultaneously classified as "volumetric," "distributed," and "amplification."
-% \begin{itemize}
-% \item \textbf{Binary Classification:}
-%   \begin{itemize}
-%   \item Simplest approach: Normal vs. attack traffic
-%   \item Clear decision boundaries for basic filtering
-%   \item Low granularity but high processing efficiency
-%   \item Essential for initial traffic triage during high-volume attacks
-%   \item Examples: Pass/block decisions, benign/malicious categorization
-%   \end{itemize}
-  
-% \item \textbf{Multi-class Classification:}
-%   \begin{itemize}
-%   \item Distinguishes between multiple attack types
-%   \item Enables targeted responses for specific threats
-%   \item Requires more complex models and training data
-%   \item Supports detailed attack attribution
-%   \item Examples: Differentiating SYN floods, HTTP floods, DNS amplification attacks
-%   \end{itemize}
-  
-% \item \textbf{Hierarchical Classification:}
-%   \begin{itemize}
-%   \item Organizes threats in a tree-like structure
-%   \item Enables progressive refinement of classifications
-%   \item Balances processing efficiency with detection detail
-%   \item Supports multi-stage detection pipelines
-%   \item Example: Traffic → Attack → DOS → Protocol-based → SYN Flood
-%   \end{itemize}
-  
-% \item \textbf{Multi-label Classification:}
-%   \begin{itemize}
-%   \item Assigns multiple categories to a single traffic flow
-%   \item Recognizes attacks with multiple characteristics
-%   \item Identifies complex attack campaigns
-%   \item Supports sophisticated response orchestration
-%   \item Example: Traffic simultaneously classified as "volumetric," "distributed," and "amplification"
-%   \end{itemize}
-% \end{itemize}
-
-
-Classification outcomes drive security responses, determining whether traffic should be allowed, throttled, redirected, or blocked entirely.
+Classification forms the foundation of automated threat detection:
+\textbf{Binary Classification:} Distinguishes between normal and attack traffic.
+\textbf{Multi-class Classification:} Distinguishes between multiple attack types.
+\textbf{Hierarchical Classification:} Structures threats in a tree-like format.
+\textbf{Multi-label Classification:} Assigns multiple categories to a single traffic flow.
 
 \section*{What is Machine Learning?}
-
-Machine learning (ML) is a branch of artificial intelligence (AI) focused on enabling computers and machines to imitate the way that humans learn, to perform tasks autonomously, and to improve their performance and accuracy through experience and exposure to more data.
-
-According to UC Berkeley, the learning system of a machine learning algorithm can be broken down into three main parts:
-
-\begin{enumerate}
-    \item \textbf{A Decision Process:} In general, machine learning algorithms are used to make a prediction or classification. Based on some input data, which can be labeled or unlabeled, the algorithm produces an estimate about a pattern in the data.
-    
-    \item \textbf{An Error Function:} An error function evaluates the prediction of the model. If there are known examples, an error function can make a comparison to assess the accuracy of the model.
-    
-    \item \textbf{A Model Optimization Process:} If the model can fit better to the data points in the training set, then weights are adjusted to reduce the discrepancy between the known example and the model estimate. The algorithm repeats this iterative ``evaluate and optimize'' process, updating weights autonomously until a threshold of accuracy has been met.
-\end{enumerate}
-
-\noindent\textbf{Source:} \href{https://www.ibm.com/think/topics/machine-learning}{https://www.ibm.com/think/topics/machine-learning}
+Machine learning (ML) is a branch of artificial intelligence (AI) focused on enabling computers and machines to imitate the way that humans learn. The learning system consists of a decision process, an error function, and a model optimization process.
 
 \subsection{Machine Learning Techniques}
-
-Modern security systems leverage diverse machine learning approaches for traffic classification:
-
-
 \section*{Supervised Learning}
-
-Supervised learning involves training on labeled datasets where the "ground truth" classifications of attacks are already known. This approach allows models to learn from past data and make accurate predictions on new, unseen inputs. Common algorithms used in supervised learning include Random Forests, which are ensembles of decision trees that offer robust classification; Support Vector Machines (SVM), which are effective at identifying decision boundaries between different types of network traffic; Neural Networks, including multi-layer perceptrons and deep learning architectures capable of recognizing complex patterns; and Gradient Boosting methods like XGBoost, which are known for their high-performance classification capabilities. Supervised learning is especially useful in scenarios such as detecting known attacks using labeled training data, identifying specific types of attacks, analyzing the importance of different features, and deploying models in production environments where minimizing false positives is crucial.
+Supervised learning involves training on labeled datasets. Common algorithms include Random Forests, Support Vector Machines (SVM), and Neural Networks.
 
 \section*{Unsupervised Learning}
-
-Unsupervised learning focuses on uncovering patterns and structures within data that has not been labeled. This approach is especially useful when dealing with vast amounts of network traffic where manual labeling is impractical or impossible. Techniques commonly used in unsupervised learning include clustering methods such as \textit{k}-means and DBSCAN, which group similar traffic patterns together based on statistical similarity. Anomaly detection methods like Isolation Forest and One-Class SVM are effective for identifying outliers that may indicate potential security threats. Dimensionality reduction techniques such as Principal Component Analysis (PCA) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are used to simplify complex traffic data, making it easier to analyze. Autoencoders, a type of neural network, learn representations of normal traffic behavior and can highlight anomalies when deviations occur. Unsupervised learning is particularly valuable for identifying novel attack patterns, establishing baselines for normal behavior, detecting zero-day attacks, and categorizing traffic without the need for prior labeling.
+Unsupervised learning focuses on uncovering patterns in unlabeled data. Techniques include clustering (k-means) and anomaly detection (Isolation Forest).
 
 \section*{Semi-Supervised Learning}
-
-Semi-supervised learning bridges the gap between supervised and unsupervised approaches by combining a small amount of labeled data with a much larger pool of unlabeled data. This method reduces the need for extensive manual labeling while still achieving reasonable accuracy in classification. It is especially beneficial in cybersecurity contexts where labeled attack data may be scarce, but large amounts of raw traffic data are available. Techniques in this category include self-training classifiers, where the model iteratively labels new data based on its predictions, and label propagation methods, which spread label information across a data graph based on similarity. Semi-supervised learning is particularly valuable in dynamic and evolving threat landscapes, where continuous adaptation to new types of attacks is required without exhaustive annotation efforts.
-
-\vspace{1em}
-These approaches also form the foundation for reinforcement learning systems, which build upon the outcomes of classification tasks to develop and refine optimal security policies.
-
+Semi-supervised learning combines a small amount of labeled data with a larger pool of unlabeled data, reducing the need for extensive manual labeling.
 \chapter{Reinforcement Learning Applications: A Comprehensive Guide}
+
+\section{Introduction to the Reinforcement Learning Approach}
+
+Reinforcement Learning (RL) is a branch of machine learning that focuses on how agents can learn to make decisions through trial and error to maximize cumulative rewards. Unlike supervised learning, where models learn from labeled data, RL involves learning optimal behaviors through interactions with an environment, receiving feedback in the form of rewards or penalties based on actions taken. This approach enables agents to discover strategies that yield the highest long-term benefits, making RL particularly effective for tasks involving sequential decision-making, such as robotics, game playing, and autonomous systems.
+Reinforcement Learning provides several key advantages over traditional DoS detection approaches:
+
+\noindent\textbf{Source:} Adapted from GeeksforGeeks: What is Reinforcement Learning
+\section{Introduction to Deep Q-Learning}
+
+Deep Q-Learning is a powerful extension of the traditional Q-Learning algorithm that leverages deep neural networks to approximate the Q-value function. In standard Q-Learning, an agent maintains a Q-table that maps state-action pairs to expected future rewards. However, this becomes impractical for environments with large or continuous state spaces. Deep Q-Learning addresses this limitation by using a deep neural network, known as a Q-network, to estimate Q-values directly from raw input states.
+
+In reinforcement learning, the agent interacts with the environment in discrete time steps. At each step $t$, the agent observes a state $s_t$, selects an action $a_t$, receives a reward $r_t$, and transitions to a new state $s_{t+1}$. The goal is to learn a policy $\pi$ that maximizes the expected cumulative reward over time.
+
+The Q-value function $Q(s, a)$ represents the expected return of taking action $a$ in state $s$ and following the policy thereafter. In Deep Q-Learning, the Q-network is trained to minimize the difference between the predicted Q-value and the target Q-value, which is computed using the Bellman equation:
+
+\begin{equation}
+Q(s\_t, a\_t) = r\_t + \gamma \max\_{a'} Q(s\_{t+1}, a'; \theta^-)
+\end{equation}
+
+Here, $\gamma$ is the discount factor, $\theta$ are the parameters of the current Q-network, and $\theta^-$ are the parameters of a target network that is periodically updated to stabilize training.
+
+To improve learning stability and efficiency, Deep Q-Learning introduces two key techniques:
+\begin{itemize}
+\item \textbf{Experience Replay:} Stores past experiences in a replay buffer and samples mini-batches randomly during training to break correlations between consecutive samples.
+\item \textbf{Target Network:} Uses a separate, periodically updated target network to compute the target Q-values, reducing oscillations and divergence.
+\end{itemize}
+
+Deep Q-Learning has been successfully applied to various complex decision-making tasks, such as playing Atari games directly from raw pixels, demonstrating its potential in handling high-dimensional input spaces.
+
+
+ \begin{center}
+    \includegraphics[width=0.8\textwidth]{images/rl-diagram.png} \\
+    \textit{Figure: Basic Components of Reinforcement Learning}
+  \end{center}
+
+\section{Environment Modeling for DoS Detection}
+
+The foundation of any RL application is a well-designed environment that accurately represents the problem domain. For DoS detection, this environment must model network traffic patterns and attack scenarios in a way that enables effective learning.
+
+\subsection{State Space Design}
+
+The state space in a reinforcement learning (RL) framework for Denial-of-Service (DoS) detection encodes the essential characteristics of network traffic that the agent uses to make decisions. A well-designed state space should reflect a comprehensive yet efficient representation of the network environment, enabling the RL agent to distinguish between normal and malicious activity. This design typically integrates four categories of features: traffic volume metrics, statistical distribution properties, temporal behavior indicators, and content-based descriptors. Each category offers a unique perspective on the nature of the traffic, contributing to a robust and informative state representation.
+
+Traffic volume features quantify the scale and frequency of network activity. These include metrics such as packets per second, bytes per second, flow initiation rates, and the number of concurrent connections. These indicators are particularly useful for detecting volumetric DoS attacks, which are characterized by sudden spikes in traffic volume designed to overwhelm network resources. By monitoring these patterns, the RL agent can quickly recognize and react to abnormal surges in activity.
+
+Statistical distribution features capture how traffic attributes are spread across various dimensions. Entropy values of source and destination IP addresses, protocol usage percentages, port distributions, and packet size variation are key indicators in this category. These features help identify anomalies that are not necessarily reflected in overall traffic volume but manifest as irregularities in distribution patterns, such as a high concentration of traffic targeting a specific port or originating from a narrow set of addresses.
+
+Temporal pattern features provide insight into the evolution of traffic over time. By analyzing short-term trends, comparing current behavior to historical baselines, or evaluating periodicity, the agent can detect subtle or persistent attack patterns. Features such as time-of-day normalization or trend analysis allow the RL agent to differentiate between expected daily fluctuations and genuinely suspicious behavior, such as traffic bursts that align with known attack schedules.
+
+Content-based features delve into the specifics of packet content and header information. This includes identifying protocol anomalies, unusual header field values, payload characteristics (when available), and application-layer request patterns. Such features are crucial for detecting more sophisticated attacks that may not exhibit volume or distribution anomalies but instead exploit specific protocol vulnerabilities or payload structures.
+
+A critical aspect of state space design is balancing informativeness with efficiency. High-dimensional state representations can slow down learning and lead to overfitting. To mitigate this, techniques like feature selection, dimensionality reduction, and hierarchical representations can be employed. These methods help retain the most relevant features while reducing computational overhead, ultimately enhancing the agent’s learning performance and scalability.
+
+\subsection{Action Space Definition}
+
+The action space defines the set of all possible decisions or interventions that the reinforcement learning (RL) agent can make in response to observed network conditions. In the context of DoS detection systems, these actions are typically organized into three main categories: detection-related, response-related, and adaptive actions. Each category serves a distinct role in enabling the agent to not only identify malicious activity but also to react appropriately and adjust its behavior over time.
+
+Detection-related actions allow the agent to classify the nature of incoming traffic. These may include flagging traffic as normal, marking it as a potential DoS attack with low confidence, confirming it as a high-confidence DoS event, or requesting additional inspection to reduce uncertainty. These actions contribute to the agent’s ability to differentiate between benign and malicious behavior with varying degrees of certainty.
+
+Response-related actions are used to enforce protective measures against suspicious or confirmed attack traffic. These actions include allowing traffic to proceed unimpeded, rate-limiting suspected malicious flows, blocking specific traffic patterns known to be harmful, or redirecting traffic for more detailed analysis by external systems. Such actions form the core of the system's active defense mechanism, enabling real-time mitigation of ongoing threats.
+
+Adaptive actions provide the agent with the ability to adjust its operational parameters in response to evolving threat landscapes. This includes actions such as modifying monitoring sensitivity, tuning feature extraction processes, escalating suspicious cases to human analysts, or gathering additional contextual data to refine future decision-making. These adaptive strategies are essential for maintaining long-term performance in dynamic environments.
+
+The granularity of the action space plays a critical role in determining both the learning efficiency and the practical utility of the RL system. An overly coarse action space may restrict the agent's responsiveness and lead to underfitting, whereas an excessively fine-grained space can increase the complexity of the learning problem and slow convergence. Therefore, careful design of the action space is essential to strike an optimal balance between expressiveness and tractability.
+
+
+\subsection{Reward Function Design}
+
+The reward function plays a pivotal role in shaping the learning behavior of the reinforcement learning (RL) agent, guiding it toward effective and efficient DoS detection strategies. A well-crafted reward function must strike a balance between multiple, often competing objectives such as detection accuracy, operational efficiency, and timely response.
+
+In terms of detection accuracy, the agent is incentivized through positive rewards for correctly identifying attacks, while being penalized for false positives and false negatives. These penalties and rewards may be further weighted based on the severity of the detected attack and the agent’s confidence in its classification. This ensures that the agent not only learns to detect attacks but also to assess their impact and act accordingly.
+
+Operational efficiency is also integral to the reward function. Small penalties may be applied to account for resource consumption, including computational overhead and bandwidth usage. Additionally, time-based rewards can encourage early detection, while excessive inspection of normal traffic or inefficient use of mitigation mechanisms can incur penalties. These components help align the agent’s behavior with real-world constraints and performance expectations.
+
+A typical structure for the reward function may take the following form:
+
+\begin{equation}
+R(s, a, s') = w_{1} \times \text{DetectionAccuracy} + w_{2} \times \text{TimeToDetect} + w_{3} \times \text{ResourceEfficiency}
+\end{equation}
+
+In this formulation, \textit{DetectionAccuracy} reflects the correctness of the classification, considering true positives, false positives, and false negatives. \textit{TimeToDetect} quantifies the latency in identifying an attack, and \textit{ResourceEfficiency} evaluates how judiciously the system utilizes its resources during detection and response. The weights \(w_{1}, w_{2}, w_{3}\) are tunable parameters that allow the system to prioritize objectives based on organizational or operational goals.
+
+Careful calibration of the reward function is essential to ensure that the agent develops policies that are not only accurate and robust but also practical within the resource constraints and real-time requirements of modern network environments.
+
+
+\subsection{Environment Dynamics}
+
+The environment dynamics define the mechanisms through which state transitions occur in response to the agent’s actions. In the context of DoS detection, these dynamics are influenced by both the underlying traffic patterns and the mitigation strategies employed by the agent. State transitions are often governed by probabilistic rules that reflect how network traffic evolves over time. For instance, specific traffic behaviors may be more or less likely to follow certain patterns, such as bursty traffic or sustained high-volume flows indicative of an ongoing attack.
+
+The agent’s actions directly impact the state evolution. For example, blocking suspicious traffic may lead to a reduction in attack volume, altering the observable state characteristics. Similarly, redirecting traffic for analysis or applying rate limits can change flow distributions and entropy metrics within the network. It is also important to consider temporal aspects of the environment; the effects of certain actions may not be immediately visible. For instance, a rate-limiting policy might only manifest noticeable changes after a delay, as the network adapts or the attacker responds.
+
+Modeling these dynamics accurately is essential for realistic simulation and effective training of reinforcement learning agents. It allows the agent to learn how its actions influence the environment and adjust its policy accordingly to achieve robust and adaptive DoS detection performance.
+
+
+
+\subsection{Challenges in Applying RL to Security Domains}
+
+While reinforcement learning (RL) holds significant potential for enhancing cybersecurity systems, its application to security contexts—particularly DoS detection—presents several unique challenges. One major hurdle is the high dimensionality of the state space. Network traffic generates vast and complex feature sets, requiring sophisticated representation and dimensionality reduction techniques to ensure tractable learning. 
+
+Another difficulty lies in the delayed nature of rewards. In many cases, the outcome of a security-related decision—whether it successfully prevented an attack or caused unintended side effects—may only become clear after a considerable time delay. This complicates credit assignment and policy evaluation. Moreover, rewards in the security domain tend to be sparse; attack events are relatively rare in comparison to the continuous stream of benign network activity, making it difficult for the agent to gain useful feedback consistently.
+
+Safety during the learning process is also a critical concern. Exploration, a core part of RL, must be managed carefully to avoid compromising system integrity. Unlike in traditional domains, erroneous actions in security systems can have severe consequences. Compounding this is the adversarial nature of the environment—attackers actively adapt their strategies to bypass detection mechanisms, forcing RL agents to learn in a moving target setting.
+
+To address these challenges, structured educational frameworks and simulation environments can be employed. These offer controlled scenarios where RL techniques can be gradually introduced and refined before deployment in production systems.
+
+\subsection{Advantages of RL for DoS Detection}
+
+Despite the complexities involved, RL brings numerous advantages to the domain of DoS detection. One of the most notable is adaptability. Unlike rule-based systems that require manual updates, RL agents can dynamically adjust to novel attack strategies and traffic behaviors. This makes them particularly well-suited for rapidly evolving threat landscapes.
+
+RL also enables contextual decision-making, where responses are informed by the broader network state rather than isolated events. This holistic approach helps reduce false positives and improve detection accuracy. Moreover, RL frameworks can be designed to balance multiple, sometimes conflicting objectives—such as maximizing detection rates while minimizing the impact on normal traffic—through multi-objective optimization.
+
+A proactive defense posture is another key benefit. By interacting continuously with the environment, RL agents can learn to anticipate and preempt attack progression rather than merely reacting to already-occurred incidents. This ongoing interaction fosters continuous improvement, allowing the system to refine its policies over time and maintain effectiveness even as network conditions and attack techniques evolve.
 
 \section{Introduction to the Reinforcement Learning Approach}
 
@@ -584,10 +649,7 @@ A proactive defense posture is another key benefit. By interacting continuously 
 
 \chapter{Architectural Blueprint of a DQN-Powered DDoS Detection System}
 \section{Introduction}
-<<<<<<< HEAD
 
-=======
->>>>>>> 44bc684 (add some changes)
 This chapter provides a detailed examination of the architectural design and implementation of a Distributed Denial of Service (DDoS) detection system leveraging a Deep Q-Network (DQN).
 
 We will systematically deconstruct the entire pipeline, beginning with the foundational steps of dataset acquisition and preprocessing. From there, we explore the critical process of feature engineering required to transform raw network data into a format suitable for a neural network.
@@ -598,17 +660,15 @@ The core of our discussion will focus on the DQN model itself: its underlying ne
 % --- Preprocessing Pipeline Section ---
 \section{Comprehensive Data Preprocessing Pipeline}
 
-<<<<<<< HEAD
+
 The primary dataset for this research is the CIC-DDoS2019, developed by the Canadian Institute for Cybersecurity (CIC). This dataset is exceptionally relevant as it captures a comprehensive set of contemporary DDoS attack vectors. It includes both reflection-based attacks that exploit UDP protocols (such as DNS, NTP, and SSDP amplification) and connection-based TCP floods (like SYN and ACK attacks). This diverse attack landscape is integrated with realistic, multi-protocol benign traffic profiles, including common application-layer protocols like HTTP, HTTPS, and FTP. This composition ensures the data closely simulates a real-world network environment, making it an ideal benchmark for evaluating modern intrusion detection systems.
 
 The raw data, provided in PCAP format, was processed using the CICFlowMeter-V3 tool to generate labeled network flows. Each flow is uniquely identified by its 5-tuple (source/destination IP addresses, ports, and protocol). From these raw flows, CICFlowMeter extracts a rich set of over 80 statistical and time-based features. These include metrics such as flow duration, forward and backward packet counts, packet length statistics (min, max, mean), and flow I/O rates (bytes/sec). Crucially for supervised learning, each generated flow is explicitly labeled as either 'Benign' or with its specific attack type (e.g., 'DrDoS\_NTP'), providing the ground truth for training our model.
 
 This phase is paramount for ensuring the model's robustness and performance, as it involves meticulously cleaning and preparing the raw dataset. Our focus here is on retaining only high-quality, relevant samples, thereby mitigating noise and irrelevant features that could lead to overfitting and reduced detection accuracy. 
-=======
 \subsection{Dataset}
 The primary dataset used for this research is \textbf{CICDDoS2019}. This dataset is highly relevant as it contains a variety of the most up-to-date common DDoS attacks alongside benign traffic, closely resembling real-world network scenarios. The data is provided in PCAP format and has been pre-processed using the CICFlowMeter-V3 tool to generate labeled flows in CSV files. Each flow is characterized by features based on its time stamp, source and destination IPs, source and destination ports, and the protocol used.
 
->>>>>>> 44bc684 (add some changes)
 
 \subsection{Step 1: Data Cleaning}
 The initial phase focuses on cleaning the dataset to ensure its quality and integrity. This involves three key actions:
@@ -1015,41 +1075,6 @@ The final Q-values are suitable for training with a loss function such as Cross-
 
 
 
-% \subsection{Step 1: Null Value Handling}
-% Columns with >50\% missing values are removed, followed by row-wise deletion of any remaining nulls:
-% \begin{align*}
-% X_{\text{clean}} &= X_{\text{raw}} \setminus \{ \text{col}_i \mid \frac{\text{nulls}(\text{col}_i)}{N} > 0.5 \} \\
-% X_{\text{final}} &= \{ x \in X_{\text{clean}} \mid \text{complete}(x) \}
-% \end{align*}
-% where \(N\) = total samples, \(\text{nulls}(\cdot)\) counts missing values.
-
-
-
-
-% \subsection{Step 3: Binary Conversion (Optional)}
-% Multi-class targets are binarized (Normal vs Attack):
-% \[
-% y_{\text{binary}} = \begin{cases} 
-% 0 & \text{if } y = \text{Normal} \\
-% 1 & \text{otherwise}
-% \end{cases}
-% \]
-% Features are thresholded using median \(\tilde{x}\):
-% \[
-% x_{\text{bin}}^{(i)} = \mathbb{I}(x^{(i)} > \tilde{x}^{(i)})
-% \]
-
-% \subsection{Step 4: Feature Selection}
-% Random Forest identifies important features using Gini importance:
-% \[
-% \text{Importance}_j = \frac{1}{N_{\text{trees}}} \sum_{T} \sum_{t \in T} \frac{n_t}{n} \Delta_\text{Gini}(t,j)
-% \]
-% Top \(k\) features are selected where:
-% \[
-% \{ f_j \mid \text{Importance}_j \geq \tau \}, \quad \tau = 0.01
-% \]
-
-
 
 \begin{thebibliography}{9}
 
@@ -1104,4 +1129,4 @@ TechTarget, \emph{Dataset Difinition},\\
 \end{thebibliography}
 
 
-\end{document} 
+\end{document}
