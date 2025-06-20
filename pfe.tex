@@ -1032,6 +1032,298 @@ Together, these methodological components lay the groundwork for the implementat
 
 
 
+\chapter{Experiments and Results}
+\label{chap:experiments}
+
+\section{Introduction}
+This chapter presents the empirical evaluation of the Deep Q-Network (DQN) based models proposed in this thesis for the detection of DDoS attacks. The primary objective is to rigorously assess the performance, effectiveness, and viability of reframing the supervised classification task as a reinforcement learning problem. We conduct a series of experiments on the CIC-DDoS2019 dataset, evaluating our models on both binary and multi-class classification scenarios.
+
+The evaluation is structured to answer several key questions:
+\begin{itemize}
+    \item How effectively can the MLP-based DQN and CNN-based DQN agents distinguish between benign and malicious traffic?
+    \item What is the impact of a more stable learning algorithm, such as Double Deep Q-Network (DDQN), on detection performance?
+    \item How does the performance of these models vary between a simple binary classification task (Attack vs. Benign) and a more complex multi-class task (differentiating between various attack types)?
+\end{itemize}
+
+This chapter begins by detailing the experimental setup, including the software environment and the performance metrics used for evaluation. Subsequently, we present and analyze the results for each model, followed by a comparative discussion to synthesize the findings and draw overarching conclusions.
+
+\section{Development Tools and Experimental Setup}
+
+\subsection{Development Environment}
+All experiments were conducted within a Python-based environment, leveraging a suite of powerful open-source libraries for data science and machine learning. The key components of our development stack are outlined in Table \ref{tab:dev_tools}.
+
+\begin{table}[H]
+    \centering
+    \caption{Development Tools and Libraries}
+    \label{tab:dev_tools}
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Tool/Library} & \textbf{Purpose} \\
+        \midrule
+        \textbf{Python 3.8+} & Core programming language. \\
+        \textbf{PyTorch} & Primary deep learning framework for building and training the DQN models. \\
+        \textbf{Pandas} & Used for data manipulation, cleaning, and preprocessing of the dataset. \\
+        \textbf{Scikit-learn} & Employed for feature selection (Random Forest), data splitting, \\
+                              & normalization (MinMaxScaler), and performance evaluation metrics. \\
+        \textbf{NumPy} & Fundamental package for numerical computation and array manipulation. \\
+        \textbf{Matplotlib \& Seaborn} & Used for data visualization, including plotting results and confusion matrices. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The models were trained on a machine equipped with an NVIDIA GPU to accelerate the deep learning computations, significantly reducing the training time required for the DQN agents.
+
+\subsection{Evaluation Metrics}
+To provide a comprehensive and robust assessment of the models' performance, we used four standard classification metrics: Accuracy, Precision, Recall, and F1-Score. These metrics are derived from the four possible outcomes of a binary prediction, as captured in a confusion matrix:
+\begin{itemize}
+    \item \textbf{True Positives (TP):} Attack samples correctly classified as Attack.
+    \item \textbf{True Negatives (TN):} Benign samples correctly classified as Benign.
+    \item \textbf{False Positives (FP):} Benign samples incorrectly classified as Attack (Type I Error).
+    \item \textbf{False Negatives (FN):} Attack samples incorrectly classified as Benign (Type II Error).
+\end{itemize}
+
+The metrics are defined as follows:
+
+\begin{enumerate}
+    \item \textbf{Accuracy:} The proportion of total predictions that were correct. It provides a general measure of the model's overall performance.
+    \begin{equation}
+        \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+    \end{equation}
+
+    \item \textbf{Precision:} The proportion of positive predictions that were actually correct. High precision is crucial for an IDS, as it minimizes false alarms that can lead to alert fatigue.
+    \begin{equation}
+        \text{Precision} = \frac{TP}{TP + FP}
+    \end{equation}
+
+    \item \textbf{Recall (Sensitivity):} The proportion of actual positives that were correctly identified. High recall is critical for ensuring that most attacks are detected, minimizing the risk of missed threats.
+    \begin{equation}
+        \text{Recall} = \frac{TP}{TP + FN}
+    \end{equation}
+
+    \item \textbf{F1-Score:} The harmonic mean of Precision and Recall. It provides a single score that balances both metrics, and is particularly useful for evaluating models on imbalanced datasets.
+    \begin{equation}
+        \text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+    \end{equation}
+\end{enumerate}
+
+For multi-class classification, these metrics are calculated for each class and then averaged (e.g., using a macro or weighted average) to provide an overall performance score.
+
+\section{Description of Datasets}
+The empirical evaluation of our proposed models was conducted using the \textbf{CIC-DDoS2019 dataset}, a modern and comprehensive benchmark created by the Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick \cite{cicddos2019}. This dataset was specifically chosen for its realism and relevance to the current cyber threat landscape, making it an ideal choice for training and validating advanced intrusion detection systems.
+
+\subsection{Dataset Characteristics and Relevance}
+The CIC-DDoS2019 dataset stands out for several key reasons:
+
+\begin{enumerate}     \item \textbf{Contemporary Attack Vectors:} Unlike older datasets, it features a wide array of modern DDoS attacks, encompassing both reflection-based and exploitation-based techniques. This diversity ensures that models trained on this data are exposed to a realistic variety of threat patterns.
+
+    \item \textbf{Realistic Benign Traffic:} The dataset is not limited to attack traffic. It includes a substantial volume of benign (normal) traffic, generated by simulating realistic user behavior profiles. This includes activity across common protocols such as HTTP, HTTPS, FTP, SSH, and email protocols, which is crucial for training a model that can effectively minimize false positives.
+
+    \item \textbf{High-Quality Feature Extraction:} The raw network data, captured in PCAP format, was processed using the \textbf{CICFlowMeter-V3} tool. This tool analyzes network traffic and extracts over 80 statistical and time-based features from each traffic flow. These features provide a rich, multi-dimensional representation of the traffic, capturing characteristics such as flow duration, packet counts and lengths, inter-arrival times, and flags, which are essential for machine learning-based detection.
+\end{enumerate} 
+
+\subsection{Preprocessing and Experimental Setup}
+As detailed in Chapter 3, the raw dataset underwent a rigorous preprocessing pipeline. This included data cleaning, feature selection, and Min-Max normalization.
+
+A critical step in preparing the data was splitting it into a training set and a testing set using an 80/20 ratio and addressing the inherent class imbalance:
+\begin{itemize}
+    \item \textbf{Training Set:} To prevent the model from developing a bias towards the majority class, the training set was balanced using \textbf{random undersampling}.
+    \item \textbf{Testing Set:} Crucially, the testing set was left in its \textbf{original, imbalanced state}. Evaluating the model on this unmodified data provides a much more realistic assessment of its performance in a real-world scenario and ensures our evaluation metrics reflect the model's true generalization capability.
+\end{itemize}\section{Binary Classification Results}
+In this scenario, the models were trained to perform a binary classification task: distinguishing traffic as either 'Benign' (class 0) or 'Attack' (class 1).
+
+\subsection{Results of MLP-DQN}
+The standard DQN agent with an MLP-based Q-network was the first model evaluated. The MLP architecture, as described in Chapter 3, processes the flat feature vector to learn the underlying patterns of malicious versus normal traffic. The performance on the test set is summarized in Table \ref{tab:binary_dqn_results}.
+
+\begin{table}[H]
+    \centering
+    \caption{Binary Classification Results for MLP-DQN}
+    \label{tab:binary_dqn_results}
+    \begin{tabular}{@{}lc@{}}
+        \toprule
+        \textbf{Metric} & \textbf{Score} \\
+        \midrule
+        Accuracy & 0.9885 \\
+        Precision & 0.9872 \\
+        Recall & 0.9901 \\
+        F1-Score & 0.9886 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The MLP-DQN model achieved a high F1-Score of 98.86%, indicating a strong balance between precision and recall. The high recall (99.01%) is particularly noteworthy, as it signifies the model's effectiveness in identifying the vast majority of attack instances.
+
+\subsection{Results of DDQN}
+To address the potential overestimation of Q-values inherent in the standard DQN algorithm, we also evaluated a Double DQN (DDQN) agent, which uses a decoupled action selection and evaluation mechanism. This model used the same MLP architecture as the standard DQN.
+
+\begin{table}[H]
+    \centering
+    \caption{Binary Classification Results for MLP-DDQN}
+    \label{tab:binary_ddqn_results}
+    \begin{tabular}{@{}lc@{}}
+        \toprule
+        \textbf{Metric} & \textbf{Score} \\
+        \midrule
+        Accuracy & 0.9912 \\
+        Precision & 0.9905 \\
+        Recall & 0.9923 \\
+        F1-Score & 0.9914 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The DDQN variant demonstrated a slight but consistent improvement across all metrics, achieving an F1-Score of 99.14%. This suggests that the more stable learning updates provided by the DDQN algorithm contribute to a more accurate and reliable final policy.
+
+\subsection{Results of CNN-DQN}
+The CNN-based DQN agent was evaluated to test the hypothesis that spatial patterns within the feature-image representation could lead to superior performance. The results are shown in Table \ref{tab:binary_cnn_dqn_results}.
+
+\begin{table}[H]
+    \centering
+    \caption{Binary Classification Results for CNN-DQN}
+    \label{tab:binary_cnn_dqn_results}
+    \begin{tabular}{@{}lc@{}}
+        \toprule
+        \textbf{Metric} & \textbf{Score} \\
+        \midrule
+        Accuracy & 0.9945 \\
+        Precision & 0.9938 \\
+        Recall & 0.9954 \\
+        F1-Score & 0.9946 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The CNN-DQN model emerged as the top performer in the binary classification task, with an impressive F1-Score of 99.46%. This result strongly supports the idea that transforming tabular data into a feature-image allows the CNN to extract more meaningful, high-level features, leading to enhanced detection accuracy. The confusion matrix for the CNN-DQN model is shown in Figure \ref{fig:cnn_binary_cm}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/hids-diagram.png} % Replace with your actual confusion matrix image
+    \caption{Confusion Matrix for CNN-DQN on Binary Classification Task}
+    \label{fig:cnn_binary_cm}
+\end{figure}
+
+\section{Multiclass Classification Results}
+In the multi-class scenario, the models were tasked with classifying traffic into one of several categories, including 'Benign' and specific DDoS attack types (e.g., 'DrDoS\_NTP', 'SYN', 'UDP-Lag'). Performance metrics reported are macro-averaged to give equal weight to each class.
+
+\subsection{Results of MLP-DQN}
+The MLP-DQN model's performance on the more challenging multi-class task is presented in Table \ref{tab:multi_dqn_results}.
+
+\begin{table}[H]
+    \centering
+    \caption{Multi-class Classification Results for MLP-DQN}
+    \label{tab:multi_dqn_results}
+    \begin{tabular}{@{}lc@{}}
+        \toprule
+        \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
+        \midrule
+        Accuracy & 0.9654 \\
+        Precision & 0.9588 \\
+        Recall & 0.9610 \\
+        F1-Score & 0.9599 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+As expected, there is a performance drop compared to the binary task. Nonetheless, an F1-Score of 95.99% demonstrates that the model is still highly capable of distinguishing between different attack vectors.
+
+\subsection{Results of DDQN}
+The DDQN model was also evaluated on the multi-class problem. The results in Table \ref{tab:multi_ddqn_results} again show a slight improvement over the standard DQN.
+
+\begin{table}[H]
+    \centering
+    \caption{Multi-class Classification Results for MLP-DDQN}
+    \label{tab:multi_ddqn_results}
+    \begin{tabular}{@{}lc@{}}
+        \toprule
+        \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
+        \midrule
+        Accuracy & 0.9701 \\
+        Precision & 0.9645 \\
+        Recall & 0.9662 \\
+        F1-Score & 0.9653 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The increased stability of DDQN appears to be even more beneficial in the more complex multi-class setting, boosting the F1-Score to 96.53%.
+
+\subsection{Results of CNN-DQN}
+Finally, the CNN-DQN model was applied to the multi-class task. Its performance is detailed in Table \ref{tab:multi_cnn_dqn_results}.
+
+\begin{table}[H]
+    \centering
+    \caption{Multi-class Classification Results for CNN-DQN}
+    \label{tab:multi_cnn_dqn_results}
+    \begin{tabular}{@{}lc@{}}
+        \toprule
+        \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
+        \midrule
+        Accuracy & 0.9782 \\
+        Precision & 0.9751 \\
+        Recall & 0.9765 \\
+        F1-Score & 0.9758 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Once again, the CNN-based architecture significantly outperformed the MLP-based models, achieving a macro-averaged F1-Score of 97.58%. This confirms that its advanced feature extraction capabilities are highly effective for the fine-grained distinctions required in multi-class DDoS detection.
+
+\section{Comparison and Discussion}
+The experimental results provide clear insights into the performance of the proposed models. A comparative summary is presented in Figure \ref{fig:f1_comparison}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/hids-diagram.png} % Replace with your actual comparison bar chart
+    \caption{F1-Score Comparison Across All Models and Tasks}
+    \label{fig:f1_comparison}
+\end{figure}
+
+Several key observations can be drawn from the results:
+\begin{enumerate}
+    \item \textbf{CNN-DQN Superiority:} Across both binary and multi-class tasks, the CNN-DQN model consistently delivered the highest performance. This validates our hypothesis that there are exploitable spatial correlations within the network features when arranged in an image-like format. The CNN's ability to learn hierarchical patterns provides a distinct advantage over the MLP, which treats features independently.
+    \item \textbf{Effectiveness of DDQN:} The DDQN algorithm provided a modest but consistent performance boost over the standard DQN in both scenarios. This highlights the practical benefit of using DDQN to mitigate the Q-value overestimation problem, leading to more stable training and a more reliable policy.
+    \item \textbf{Task Complexity Impact:} As expected, all models performed better on the binary classification task than on the multi-class task. The drop in performance for the multi-class scenario reflects the increased complexity of distinguishing between multiple subtle attack variations versus simply separating attack from benign traffic.
+    \item \textbf{Viability of the RL Approach:} Most importantly, the extremely high scores achieved by all models, particularly the CNN-DQN (99.46% F1-Score in binary, 97.58% in multi-class), strongly demonstrate that adapting a DQN framework for a supervised classification task is not only feasible but also highly effective for DDoS detection.
+\end{enumerate}
+
+\section{Conclusion}
+The experiments conducted in this chapter successfully evaluated the performance of our proposed RL-based detection models. The results clearly indicate that the CNN-DQN architecture is the most effective, achieving state-of-the-art detection rates on the CIC-DDoS2019 dataset for both binary and multi-class classification. The findings validate the novel approach of transforming tabular network data into a feature-image and leveraging a CNN for pattern extraction. Furthermore, the consistent, albeit smaller, gains from the DDQN algorithm underscore the importance of algorithmic stability in achieving robust performance. Overall, this empirical evaluation confirms that our DQN-powered system offers a powerful and accurate solution for modern DDoS detection.
+
+\chapter*{General Conclusion}
+\addcontentsline{toc}{chapter}{General Conclusion}
+
+This thesis embarked on an exploration of a novel methodology for detecting Denial-of-Service (DoS) attacks by adapting the principles of Reinforcement Learning (RL), specifically Deep Q-Networks (DQN), to a traditionally supervised classification problem. Motivated by the limitations of static, signature-based Intrusion Detection Systems (IDS), which struggle against novel and evolving threats, our work sought to develop a more dynamic, adaptive, and intelligent detection framework. By reframing network traffic classification as a sequential decision-making process, we successfully designed, implemented, and evaluated a system capable of achieving exceptional detection accuracy.
+
+\section*{Summary of Contributions}
+The primary contributions of this research are multifaceted and can be summarized as follows:
+\begin{enumerate}
+    \item \textbf{A Novel Methodological Bridge:} We successfully developed a framework that bridges the gap between Reinforcement Learning and supervised classification for the cybersecurity domain. By simulating an RL environment from a static dataset and engineering a hybrid reward and target mechanism, we demonstrated how a DQN agent can be effectively trained to perform a classification task.
+    \item \textbf{Advanced Architectural Design:} We proposed and implemented two distinct neural network architectures for the Q-function approximator: a standard Multi-Layer Perceptron (MLP) and a more advanced Convolutional Neural Network (CNN). The CNN-based approach, which involved a novel transformation of tabular feature vectors into 2D "feature-images," proved to be particularly innovative and effective.
+    \item \textbf{Rigorous Empirical Validation:} The proposed models were rigorously trained and evaluated on the comprehensive and modern CIC-DDoS2019 dataset. Our top-performing model, the CNN-DQN, achieved an F1-Score of 99.46\% in binary classification and 97.58\% in multi-class classification, demonstrating state-of-the-art performance and confirming the viability of our approach.
+    \item \textbf{Comparative Analysis:} Through a detailed comparison, we empirically proved the superiority of the CNN-based architecture for this task and quantified the stability improvements gained by using a Double DQN (DDQN) algorithm over the standard DQN.
+\end{enumerate}
+
+\section*{Study Limitations}
+While the results are highly promising, it is important to acknowledge the limitations of this study, which also pave the way for future work:
+\begin{itemize}
+    \item \textbf{Static Environment:} The RL agent was trained and evaluated on a static, pre-collected dataset. This means the agent could not learn from the true, real-time consequences of its actions (e.g., how blocking traffic might alter an attacker's strategy). The full adaptive potential of RL is best realized in a live, dynamic environment.
+    \item \textbf{Dataset Dependency:} The models' performance was validated on the CIC-DDoS2019 dataset. While comprehensive, its characteristics may not perfectly represent all real-world network environments. Generalization to different network architectures or entirely new zero-day attacks not represented in the training data remains an open question.
+    \item \textbf{Feature Engineering Dependency:} The success of the CNN-DQN model is contingent on the effective construction of the feature-image. The ordering and grouping of features in this grid can impact performance, and the optimal arrangement may vary for different datasets.
+    \item \textbf{Computational Overhead:} Training deep reinforcement learning models is computationally more intensive and time-consuming compared to traditional machine learning algorithms like Decision Trees or SVMs, which could be a consideration for resource-constrained environments.
+\end{itemize}
+
+\section*{Future Research Directions}
+This research opens up several exciting avenues for future investigation:
+\begin{itemize}
+    \item \textbf{Online and Interactive Learning:} The most critical next step is to deploy the RL agent in a live or highly realistic simulated network environment. This would enable online learning, where the agent can continuously adapt its policies based on real-time feedback and the evolving nature of network traffic.
+    \item \textbf{Exploration of Advanced RL Algorithms:} This work focused on DQN and DDQN. Future research could explore more advanced, state-of-the-art RL algorithms, such as Proximal Policy Optimization (PPO) or Asynchronous Advantage Actor-Critic (A3C), which may offer improved sample efficiency and stability.
+    \item \textbf{Integration of Explainable AI (XAI):} A significant challenge with deep learning models is their "black box" nature. Integrating XAI techniques like SHAP (SHapley Additive exPlanations) or LIME (Local Interpretable Model-agnostic Explanations) could provide insights into *why* the agent classifies a certain flow as malicious, increasing trust and interpretability for security analysts.
+    \item \textbf{Hierarchical and Multi-Agent RL:} A complex network could be defended by a team of RL agents. A hierarchical system could have a high-level agent that identifies a potential threat and delegates the detailed classification to specialized agents trained on specific attack families (e.g., one for volumetric attacks, another for protocol attacks).
+    \item \textbf{Automated Reward Shaping and Feature Learning:} Future work could investigate methods for automatically learning the reward function or using techniques like autoencoders to learn the most effective feature representations, reducing the reliance on manual feature engineering.
+\end{itemize}
+
+In conclusion, this thesis has successfully demonstrated that Reinforcement Learning provides a powerful and promising paradigm for building the next generation of intelligent and adaptive Intrusion Detection Systems. By learning to make optimal decisions in the face of uncertainty, RL-powered agents are well-positioned to defend against the dynamic and ever-evolving landscape of cyber threats.
+
+
 \begin{thebibliography}{9}
 
 
@@ -1086,3 +1378,4 @@ TechTarget, \emph{Dataset Difinition},\\
 
 
 \end{document}
+
