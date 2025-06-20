@@ -78,7 +78,7 @@ tabsize=2
 
     \begin{minipage}{0.4\textwidth}
         \begin{flushleft} \large
-            \emph{Author:}\\
+            \emph{Prepared and presented by:}\\
             Haitham Attab \\
             Amine Takdenti
         \end{flushleft}
@@ -127,11 +127,14 @@ This work was made possible by [mention any funding or support].
 
 \begin{quote}
 \large
-In light of the increasing prevalence of Denial-of-Service (DoS) attacks, robust detection mechanisms have become essential to ensure the availability and reliability of computer networks. This thesis proposes a novel intrusion detection approach that leverages Reinforcement Learning (RL) to identify and mitigate DoS attacks. The RL agent learns optimal detection policies by interacting with a simulated network environment, continuously improving its performance through reward-based feedback. Key network traffic features are extracted and used as state inputs for the agent, enabling it to distinguish between benign and malicious activity. The model is evaluated in benchmark datasets such as CSE-CIC-IDS2018, demonstrating high detection accuracy, low false positive rates, and adaptability to evolving attack patterns. Compared to traditional machine learning classifiers, the RL-based system shows improved response and decision-making capabilities under dynamic network conditions. Future research will explore the integration of this system into real-time network infrastructures and the enhancement of its scalability for broader threat detection.
+With the growing frequency and sophistication of Denial-of-Service (DoS) attacks, robust and adaptive detection mechanisms have become critical to maintaining the availability and reliability of computer networks. These attacks can severely disrupt essential services and lead to substantial financial losses, highlighting the need for intelligent and resilient defense strategies.
+
+This thesis introduces a novel intrusion detection system based on Reinforcement Learning (RL) to detect and mitigate DoS attacks. By framing network security as a sequential decision-making problem, the proposed approach enables an RL agent to learn optimal detection policies through continuous interaction with a simulated network environment. The agent incrementally refines its ability to differentiate between benign and malicious traffic by leveraging a reward-based feedback mechanism that reinforces accurate classifications and penalizes misclassifications.
+
+Key traffic features are systematically extracted and provided as state inputs to the RL agent, facilitating effective and dynamic behavioral analysis. This adaptive learning paradigm enhances the system’s capability to recognize evolving attack patterns, ultimately contributing to a more proactive and resilient network defense against DoS threats.
 \end{quote}
 
 \vspace{1em}
-\noindent\textbf{Keywords:} Intrusion Detection Systems (IDS), Denial-of-Service (DoS), Reinforcement learning (RL), CSE-CIC-IDS2018, Cybersecurity, Network Traffic Analysis.
 
 
 % ======================================================================
@@ -139,18 +142,21 @@ In light of the increasing prevalence of Denial-of-Service (DoS) attacks, robust
 % ======================================================================
 \newpage
 \begin{otherlanguage}{arabic}
-    \chapter*{ملخص}
-    \addcontentsline{toc}{chapter}{ملخص}
+\chapter*{ملخص}
+\addcontentsline{toc}{chapter}{ملخص}
 
-    \begin{quote}
-        \large
-        % --- PASTE ARABIC ABSTRACT TEXT HERE ---
-        في ضوء تزايد انتشار هجمات الحرمان من الخدمة، أصبحت آليات الكشف القوية ضرورية لضمان توفر وموثوقية شبكات الحاسوب. تقترح هذه الأطروحة نهجًا جديدًا للكشف عن التسلل يستفيد من التعلم المعزز لتحديد وتخفيف هجمات الحرمان من الخدمة. يتعلم وكيل التعلم المعزز سياسات الكشف المثلى من خلال التفاعل مع بيئة شبكة محاكاة، مما يحسن أداءه باستمرار من خلال التغذية الراجعة القائمة على المكافآت. يتم استخراج ميزات حركة مرور الشبكة الرئيسية واستخدامها كمدخلات حالة للوكيل، مما يمكنه من التمييز بين النشاط الحميد والخبيث. يتم تقييم النموذج في مجموعات البيانات المرجعية مثل CSE-CIC-IDS2018، مما يدل على دقة كشف عالية، ومعدلات إيجابية كاذبة منخفضة، والقدرة على التكيف مع أنماط الهجوم المتطورة.
-        % --- END OF ARABIC ABSTRACT TEXT ---
-    \end{quote}
+\begin{quote}
+\large
+% --- PASTE ARABIC ABSTRACT TEXT HERE ---
+مع تزايد وتيرة وتعقيد هجمات حجب الخدمة (DoS)، أصبحت آليات الكشف المتقدمة والمتكيفة ضرورية لضمان توافر الشبكات وموثوقيتها. يمكن لهذه الهجمات أن تعطل الخدمات الحيوية وتتسبب في خسائر مالية كبيرة، مما يُبرز الحاجة إلى استراتيجيات دفاع ذكية ومرنة.
 
-    \vspace{1em}
-    \noindent\textbf{الكلمات المفتاحية:} أنظمة كشف التسلل (IDS)، الحرمان من الخدمة (DoS)، التعلم المعزز (RL)، CSE-CIC-IDS2018، الأمن السيبراني، تحليل حركة مرور الشبكة.
+تقدم هذه الأطروحة نظام كشف تسلل جديد يعتمد على التعلم المعزز (Reinforcement Learning) لاكتشاف هجمات DoS والتصدي لها. من خلال تصوير أمن الشبكات كمشكلة اتخاذ قرارات متسلسلة، يتمكن العميل (Agent) في التعلم المعزز من تعلم سياسات الكشف المثلى من خلال التفاعل المستمر مع بيئة شبكة محاكاة. ويقوم بتحسين قدرته تدريجيًا على التمييز بين حركة المرور السليمة والخبيثة باستخدام نظام تغذية راجعة قائم على المكافآت، يعزز التصنيفات الصحيحة ويعاقب التصنيفات الخاطئة.
+
+يتم استخراج ميزات حركة المرور الأساسية بشكل منهجي وتقديمها كمدخلات حالة للعميل، مما يمكنه من تحليل السلوك بفعالية وديناميكية. تسهم هذه المنهجية التعلمية التكيفية في تعزيز قدرة النظام على التعرف على أنماط الهجمات المتغيرة، مما يؤدي في النهاية إلى دفاع شبكي أكثر مرونة واستباقية ضد تهديدات DoS.
+% --- END OF ARABIC ABSTRACT TEXT ---
+\end{quote}
+
+\vspace{1em}
 \end{otherlanguage}
 
 
@@ -159,16 +165,19 @@ In light of the increasing prevalence of Denial-of-Service (DoS) attacks, robust
 % ======================================================================
 \newpage
 \begin{otherlanguage}{french}
-    \chapter*{Résumé}
-    \addcontentsline{toc}{chapter}{Résumé}
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
 
-    \begin{quote}
-        \large
-        Face à la prévalence croissante des attaques par déni de service (DoS), des mécanismes de détection robustes sont devenus essentiels pour garantir la disponibilité et la fiabilité des réseaux informatiques. Cette thèse propose une nouvelle approche de détection d'intrusion qui s'appuie sur l'apprentissage par renforcement (RL) pour identifier et atténuer les attaques DoS. L'agent RL apprend des politiques de détection optimales en interagissant avec un environnement réseau simulé, améliorant continuellement ses performances grâce à des retours basés sur des récompenses. Les principales caractéristiques du trafic réseau sont extraites et utilisées comme entrées d'état pour l'agent, lui permettant de distinguer l'activité bénigne de l'activité malveillante. Le modèle est évalué sur des ensembles de données de référence tels que CSE-CIC-IDS2018, démontrant une grande précision de détection, de faibles taux de faux positifs et une adaptabilité aux modèles d'attaque en évolution. Comparé aux classificateurs d'apprentissage automatique traditionnels, le système basé sur le RL montre des capacités de réponse et de prise de décision améliorées dans des conditions de réseau dynamiques. Les recherches futures exploreront l'intégration de ce système dans des infrastructures réseau en temps réel et l'amélioration de son extensibilité pour une détection plus large des menaces.
-    \end{quote}
+\begin{quote}
+\large
+Face à la fréquence et à la complexité croissantes des attaques par déni de service (DoS), la mise en place de mécanismes de détection robustes et adaptatifs est devenue essentielle pour garantir la disponibilité et la fiabilité des réseaux informatiques. Ces attaques peuvent perturber gravement les services critiques et engendrer des pertes financières importantes, soulignant ainsi la nécessité de stratégies de défense intelligentes et résilientes.
 
-    \vspace{1em}
-    \noindent\textbf{Mots-clés :} Systèmes de Détection d'Intrusion (IDS), Déni de Service (DoS), Apprentissage par Renforcement (RL), CSE-CIC-IDS2018, Cybersécurité, Analyse du Trafic Réseau.
+Cette thèse propose un système de détection d’intrusion innovant basé sur l’apprentissage par renforcement (Reinforcement Learning) pour détecter et atténuer les attaques DoS. En formulant la sécurité réseau comme un problème de prise de décision séquentielle, notre approche permet à un agent d’apprentissage de découvrir des politiques de détection optimales via une interaction continue avec un environnement réseau simulé. L’agent améliore progressivement sa capacité à distinguer le trafic bénin du trafic malveillant grâce à un système de rétroaction basé sur des récompenses, qui renforce les classifications correctes et pénalise les erreurs.
+
+Les principales caractéristiques du trafic sont extraites de manière systématique et utilisées comme entrées d’état pour l’agent, facilitant une analyse comportementale efficace et dynamique. Ce paradigme d’apprentissage adaptatif améliore la capacité du système à reconnaître les schémas d’attaque en évolution, contribuant ainsi à une défense réseau plus proactive et résiliente contre les menaces DoS.
+\end{quote}
+
+\vspace{1em}
 \end{otherlanguage}
 
 
@@ -223,16 +232,16 @@ In light of the increasing prevalence of Denial-of-Service (DoS) attacks, robust
 % ======================================================================
 % ===== NEW CHAPTER: GENERAL INTRODUCTION ==============================
 % ======================================================================
-\section{General Introduction}
+\chapter*{General Introduction}
 
-\section{Context and Motivation}
+\section*{Context and Motivation}
 In the contemporary digital era, the reliability and continuous availability of network services form the backbone of global commerce, communication, and critical infrastructure. A primary threat to this stability is the Denial-of-Service (DoS) attack, and its more potent variant, the Distributed Denial-of-Service (DDoS) attack. These malicious activities aim to render online services and network resources unavailable to legitimate users by overwhelming them with an insurmountable volume of traffic or by exploiting protocol vulnerabilities. As attackers devise increasingly sophisticated and large-scale attacks, the need for intelligent, adaptive, and robust defense mechanisms has become more critical than ever.
 
 Traditional Intrusion Detection Systems (IDS) have served as the first line of defense. However, they often rely on static, signature-based methods that, while effective against known threats, are inherently incapable of identifying novel or zero-day attacks. Anomaly-based systems, which attempt to solve this by creating a baseline of "normal" behavior, frequently suffer from high false positive rates, leading to operational friction and alert fatigue. Furthermore, conventional machine learning classifiers, though an improvement, often operate as static models that require periodic retraining and struggle to adapt in real-time to the dynamic and adversarial nature of cybersecurity threats.
 
 This clear gap in defensive capabilities motivates the exploration of more advanced paradigms. Reinforcement Learning (RL), a subfield of machine learning, offers a compelling alternative. Unlike supervised learning, RL focuses on training an autonomous agent to make optimal decisions through interaction with an environment, guided by a system of rewards and penalties. This approach is inherently adaptive, allowing the agent to learn and refine its strategies over time. The potential to create a self-improving, context-aware detection system that can respond dynamically to evolving threats provides the core motivation for this research.
 
-\section{Problem Statement}
+\section*{Problem Statement}
 The central problem addressed by this thesis is the inadequacy of traditional and static machine learning-based Intrusion Detection Systems in providing adaptive, real-time defense against modern, sophisticated DDoS attacks. These existing systems exhibit several key limitations:
 \begin{itemize}
     \item \textbf{Lack of Adaptability:} Signature-based systems cannot detect new attack vectors, while static ML models fail to adapt to evolving attack patterns without manual retraining.
@@ -241,7 +250,7 @@ The central problem addressed by this thesis is the inadequacy of traditional an
 \end{itemize}
 This research seeks to answer the following question: \textbf{Can Reinforcement Learning, specifically a Deep Q-Network (DQN) approach, be effectively adapted to the supervised classification task of DDoS detection to create a more dynamic, accurate, and autonomous system?}
 
-\section{Objectives}
+\section*{Objectives}
 To address the problem statement, this thesis sets out the following primary objectives:
 \begin{enumerate}
     \item To conduct a thorough review of Denial-of-Service attacks, traditional Intrusion Detection Systems, and the foundational principles of Reinforcement Learning to establish a strong theoretical basis.
@@ -251,7 +260,7 @@ To address the problem statement, this thesis sets out the following primary obj
     \item To compare the performance of the MLP-based and CNN-based DQN agents to determine the most effective architecture for this task.
 \end{enumerate}
 
-\section{Overall Methodology}
+\section*{Overall Methodology}
 The research will be conducted through a structured, multi-stage process:
 \begin{enumerate}
     \item \textbf{Data Preprocessing:} The CIC-DDoS2019 dataset will be acquired and subjected to a comprehensive preprocessing pipeline. This includes data cleaning, binary label transformation, feature selection using a Random Forest classifier to identify the most salient features, Min-Max normalization to scale the data, and random undersampling to create a balanced dataset for training.
@@ -260,7 +269,7 @@ The research will be conducted through a structured, multi-stage process:
     \item \textbf{Training and Evaluation:} Both models will be trained using a novel loop that blends supervised signals (the true labels) with RL principles (value estimation of future states). The trained models will be evaluated on a held-out test set to assess their detection performance and generalization capabilities.
 \end{enumerate}
 
-\section{Thesis Structure}
+\section*{Thesis Structure}
 This thesis is organized into six chapters, each building upon the last to present a complete account of the research:
 \begin{itemize}
     \item \textbf{Chapter 1: Intrusion Detection Systems (IDS)} lays the theoretical groundwork by discussing fundamental security concepts, detailing the various types of DoS/DDoS attacks, and explaining the architecture and limitations of traditional IDS.
@@ -801,6 +810,8 @@ The learning process begins with the provisioning of data to the agent. At each 
 \State \texttt{// $S_{t+1}$: Next state vectors.}
 \end{algorithmic}
 \end{algorithm}
+
+
 
 \subsection{\texorpdfstring{Component 2: The $\epsilon$-Greedy Policy and Action Selection}{Component 2: The epsilon-Greedy Policy and Action Selection}}
 
