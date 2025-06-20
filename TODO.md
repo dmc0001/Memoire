@@ -34,19 +34,19 @@
 - [x] 3.5. Deep Learning Applications in IDS
 - [x] 3.6. Conclusion
 
-- [ ] 4. Chapter 3: Designing DQN Architectures for DoS/DDoS Attack Detection
-- [ ] 4.1. Introduction
-- [ ] 4.2. Problem Modeling for DoS/DDoS Detection using DQN
-- [ ] 4.2.1. Environment Definition
-- [ ] 4.2.2. Reward Function
-- [ ] 4.2.3. Agent's Objective
-- [ ] 4.2.4. Definition of Classification Tasks
-- [ ] 4.3. Data Preprocessing Pipeline …
-- [ ] 4.4. Proposed DQN Architectures for Attack Detection
-- [ ] 4.4.1. Deep Q-Learning Architecture (DQN)
-- [ ] 4.4.2. Double DQN Architecture (DDQN)
-- [ ] 4.4.3. CNN-DQN Architecture
-- [ ] 4.5. Conclusion
+- [x] 4. Chapter 3: Designing DQN Architectures for DoS/DDoS Attack Detection
+- [x] 4.1. Introduction
+- [x] 4.2. Problem Modeling for DoS/DDoS Detection using DQN
+- [x] 4.2.1. Environment Definition
+- [x] 4.2.2. Reward Function
+- [x] 4.2.3. Agent's Objective
+- [x] 4.2.4. Definition of Classification Tasks
+- [x] 4.3. Data Preprocessing Pipeline …
+- [x] 4.4. Proposed DQN Architectures for Attack Detection
+- [x] 4.4.1. Deep Q-Learning Architecture (DQN)
+- [x] 4.4.2. Double DQN Architecture (DDQN)
+- [x] 4.4.3. CNN-DQN Architecture
+- [x] 4.5. Conclusion
 
 - [ ] 5. Chapter 4: Experiments and Results
 - [ ] 5.1. Introduction

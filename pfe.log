@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.6.20)  20 JUN 2025 01:39
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.6.20)  20 JUN 2025 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1089,6 +1089,10 @@ File: images/rl-diagram.png Graphic file (type bmp)
 
 [31]
 Chapter 3.
+Missing character: There is no ​ (U+200B) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ​ (U+200B) in font [lmroman10-regular]:mapping=t
+ex-text;!
 
 
 [32
@@ -1098,11 +1102,11 @@ Chapter 3.
 [33]
 
 [34]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 798.
+
 
 [35]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 801.
-
 
 [36]
 
@@ -1111,17 +1115,9 @@ put line 801.
 [38]
 
 [39]
-Overfull \hbox (14.013pt too wide) in paragraph at lines 1023--1023
-|[]\TU/lmr/bx/n/12 Architectural Implementation II: The Convolutional Neural Ne
-twork (CNN)| 
- []
-
-
 
 [40]
-
-[41]
-Overfull \hbox (62.27998pt too wide) in paragraph at lines 1099--1101
+Overfull \hbox (62.27998pt too wide) in paragraph at lines 1044--1046
 \TU/lmr/m/n/10 Available at: []$[][][][][] [] [] [] [][][] [] [][][][][][][][] 
 [] [][][] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$[] 
@@ -1129,7 +1125,7 @@ Overfull \hbox (62.27998pt too wide) in paragraph at lines 1099--1101
 
 
 
-[42
+[41
 
 ] (./pfe.aux)
  ***********
@@ -1141,15 +1137,15 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `pfe.out' has not changed.
-(rerunfilecheck)             Checksum: D37EFCD1516634F7C614E34BDC0F4556;13472.
+(rerunfilecheck)             Checksum: 83AC35467F09028CB9F24F03DDF2B568;9672.
  ) 
 Here is how much of TeX's memory you used:
- 18773 strings out of 475413
- 351768 string characters out of 5765576
- 829108 words of memory out of 5000000
- 41445 multiletter control sequences out of 15000+600000
- 565861 words of font info for 103 fonts, out of 8000000 for 9000
+ 18750 strings out of 475413
+ 351700 string characters out of 5765576
+ 825317 words of memory out of 5000000
+ 41432 multiletter control sequences out of 15000+600000
+ 561216 words of font info for 85 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 79i,9n,93p,769b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,9n,93p,880b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on pfe.xdv (43 pages, 965972 bytes).
+Output written on pfe.xdv (42 pages, 882948 bytes).
