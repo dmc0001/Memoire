@@ -1,0 +1,71 @@
+- [x] Master Thesis Template: 
+- [x] “Deep Q-Learning Based Approach for DoS Attacks Detection”
+
+- [x] Cover Page
+- [-] Dedication
+- [x] Acknowledgements
+- [x] Abstract (in English)
+- [x] ملخص (بالعربية) 
+- [x] Résumé (en français)
+- [x] Table of Contents
+- [x] List of Figures
+- [ ] List of Tables
+- [x] List of Acronyms
+- [x] 1. General Introduction
+    - [x] Context and Motivation
+    - [x] Problem Statement
+    - [x] Objectives
+    - [x] Overall Methodology
+    - [x] Thesis Structure
+
+- [x] 2. Chapter 1: Intrusion Detection Systems (IDS)
+- [x] 2.1. Introduction
+- [x] 2.2. Fundamentals of Cybersecurity
+- [x] 2.3. Intrusion Detection Systems (IDS)
+- [x] 2.4. Denial of Service (DoS/DDoS) Attacks
+- [x] 2.5. Classification Techniques in Security Contexts
+- [x] 2.6. Conclusion
+
+- [x] 3. Chapter 2: Deep Q-Learning for Intrusion Detection
+- [x] 3.1. Introduction
+- [x] 3.2. Deep Learning: Key Concepts
+- [x] 3.3. Reinforcement Learning
+- [x] 3.4. Deep Q-Learning (DQN)
+- [x] 3.5. Deep Learning Applications in IDS
+- [x] 3.6. Conclusion
+
+- [x] 4. Chapter 3: Designing DQN Architectures for DoS/DDoS Attack Detection
+- [x] 4.1. Introduction
+- [x] 4.2. Problem Modeling for DoS/DDoS Detection using DQN
+- [x] 4.2.1. Environment Definition
+- [x] 4.2.2. Reward Function
+- [x] 4.2.3. Agent's Objective
+- [x] 4.2.4. Definition of Classification Tasks
+- [x] 4.3. Data Preprocessing Pipeline …
+- [x] 4.4. Proposed DQN Architectures for Attack Detection
+- [x] 4.4.1. Deep Q-Learning Architecture (DQN)
+- [x] 4.4.2. Double DQN Architecture (DDQN)
+- [x] 4.4.3. CNN-DQN Architecture
+- [x] 4.5. Conclusion
+
+- [ ] 5. Chapter 4: Experiments and Results
+- [ ] 5.1. Introduction
+- [ ] 5.2. Development Tools and Experimental Setup
+- [ ] 5.2.1. development environment (programming languages, tools and libraries used)
+- [ ] 5.2.2. Evaluation Metrics
+- [ ] 5.3. Description of Datasets (…)
+- [ ] 5.4. Binary Classification Results
+- [ ] 5.4.1. Results of DQN
+- [ ] 5.4.2. Results of DDQN
+- [ ] 5.4.3. Results of CNN-DQN
+- [ ] 5.5. Multiclass Classification Results
+- [ ] 5.5.1. Results of DQN
+- [ ] 5.5.2. Results of DDQN
+- [ ] 5.5.3. Results of CNN-DQN
+- [ ] 5.6. Comparison and Discussion
+- [ ] 5.7. Conclusion
+- [ ] 6. General Conclusion
+    - [ ] Summary of Contributions
+    - [ ] Study Limitations
+    - [ ] Future Research Directions
+- [ ] References
