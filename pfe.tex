@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[16pt]{report}
 
 % --- Core Packages ---
 \usepackage{amsmath,amssymb} % amsfonts is loaded by amssymb
@@ -189,6 +189,31 @@ Les principales caractéristiques du trafic sont extraites de manière systémat
 % ======================================================================
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
+% \begin{figure}[h!] \caption{Principles of information security} \end{figure}
+% \begin{figure}[h!] \caption{DoS and DDoS Attack Traffic Comparison} \end{figure}
+% \begin{figure}[h!] \caption{Network-based Intrusion Detection System (NIDS) Architecture} \end{figure}
+% \begin{figure}[h!] \caption{Network-based Intrusion Detection System (NIDS) Diagram} \end{figure}
+% \begin{figure}[h!] \caption{Host-based Intrusion Detection System (HIDS) Diagram} \end{figure}
+
+% \begin{figure}[h!] \caption{Fundamental structure of a deep neural network, showing the flow from input data through hidden layers to an output prediction.} \end{figure}
+% \begin{figure}[h!] \caption{The Agent-Environment Interaction Loop in Reinforcement Learning} \end{figure}
+
+% \begin{figure}[h!] \caption{DQN NN confusion matrix.} \end{figure}
+% \begin{figure}[h!] \caption{DQN learning rate and epsilon decay.} \end{figure}
+% \begin{figure}[h!] \caption{DQN NN training curves.} \end{figure}
+% \begin{figure}[h!] \caption{DDQN NN confusion matrix.} \end{figure}
+% \begin{figure}[h!] \caption{DDQN learning rate and epsilon decay.} \end{figure}
+% \begin{figure}[h!] \caption{DDQN NN training curves.} \end{figure}
+% \begin{figure}[h!] \caption{DDQN NN confusion matrix.} \end{figure} % This is a duplicate caption from your code
+% \begin{figure}[h!] \caption{DDQN learning rate and epsilon decay.} \end{figure} % Duplicate
+% \begin{figure}[h!] \caption{DDQN NN training curves.} \end{figure} % Duplicate
+% \begin{figure}[h!] \caption{Confusion Matrix for the MLP-DQN Model on Multi-class Classification} \end{figure}
+% \begin{figure}[h!] \caption{Learning Rate and Epsilon Decay Schedule during MLP-DQN Training} \end{figure}
+% \begin{figure}[h!] \caption{Training Curve of MLP-DQN: Episode Rewards over Time} \end{figure}
+% \begin{figure}[h!] \caption{Confusion Matrix for the MLP-DQN Model on Multi-class Classification} \end{figure} % Duplicate
+% \begin{figure}[h!] \caption{Learning Rate and Epsilon Decay Schedule during MLP-DQN Training} \end{figure} % Duplicate
+% \begin{figure}[h!] \caption{Training Curve of MLP-DQN: Episode Rewards over Time} \end{figure} % Duplicate
+% \begin{figure}[h!] \caption{F1-Score Comparison Across All Models and Tasks} \end{figure}
 \newpage
 
 \listoftables
@@ -610,251 +635,10 @@ To address these challenges, structured educational frameworks and simulation en
 
 Deep Q-Learning has been successfully applied to various complex decision-making tasks, such as playing Atari games directly from raw pixels, demonstrating its potential in handling high-dimensional input spaces.
 
-% \section{Deep Learning Applications in IDS}
-% The application of Deep Learning (DL) and Reinforcement Learning (RL) to Intrusion Detection Systems (IDS) represents a significant advancement over traditional methods. While conventional machine learning models can classify known threats, DL models, such as CNNs and Recurrent Neural Networks (RNNs), can automatically learn complex, hierarchical features from raw network data, enabling the detection of more subtle and sophisticated attacks.
 
-% Reinforcement learning, and specifically DQN, offers a further advantage: \textbf{adaptability}. In a dynamic security landscape where attackers constantly change their tactics, an RL-based IDS can learn and evolve its defense strategies. The key benefits include:
-% \begin{itemize}
-%     \item \textbf{Autonomous Learning:} An RL agent can learn an effective detection policy through interaction, reducing the need for constant manual reconfiguration by security experts.
-%     \item \textbf{Contextual Decision-Making:} The agent's policy can consider not just a single traffic flow in isolation but also the broader context and sequence of events, leading to more accurate decisions.
-%     \item \textbf{Proactive Defense:} By learning to predict the long-term value of its actions, an agent can learn to take preemptive measures against developing threats, rather than reacting only after an attack is fully underway.
-% \end{itemize}
-
-% To apply the DQN framework to DoS detection, we model the problem as follows:
-% \begin{itemize}
-%     \item \textbf{State:} A feature vector extracted from a network traffic flow, representing the current state of the environment.
-%     \item \textbf{Action:} The classification decision made by the agent, such as `Benign` or `Attack`.
-%     \item \textbf{Reward:} A positive reward is given for a correct classification, and a zero or negative reward is given for a misclassification. This feedback guides the agent toward learning a correct and robust detection policy.
-% \end{itemize}
 
 \section{Conclusion}
 This chapter has provided the essential theoretical background on Deep Learning, Reinforcement Learning, and their synthesis in Deep Q-Networks. We have established that the DQN framework, with its ability to handle high-dimensional data and learn optimal policies through interaction, is a powerful candidate for building a next-generation, adaptive Intrusion Detection System. By modeling the DoS detection task as an RL problem, we can leverage these advanced techniques to create a more intelligent and resilient defense mechanism. The following chapters will build upon this foundation to detail the specific implementation and empirical evaluation of our proposed DQN-based models.
-% Semi-supervised learning combines a small amount of labeled data with a larger pool of unlabeled data, reducing the need for extensive manual labeling.
-% \chapter{Reinforcement Learning Applications: A Comprehensive Guide}
-
-% \section{Introduction to the Reinforcement Learning Approach}
-
-% Reinforcement Learning (RL) is a branch of machine learning that focuses on how agents can learn to make decisions through trial and error to maximize cumulative rewards. Unlike supervised learning, where models learn from labeled data, RL involves learning optimal behaviors through interactions with an environment, receiving feedback in the form of rewards or penalties based on actions taken. This approach enables agents to discover strategies that yield the highest long-term benefits, making RL particularly effective for tasks involving sequential decision-making, such as robotics, game playing, and autonomous systems.
-% Reinforcement Learning provides several key advantages over traditional DoS detection approaches:
-
-% \noindent\textbf{Source:} Adapted from GeeksforGeeks: What is Reinforcement Learning
-% \section{Introduction to Deep Q-Learning}
-
-% Deep Q-Learning is a powerful extension of the traditional Q-Learning algorithm that leverages deep neural networks to approximate the Q-value function. In standard Q-Learning, an agent maintains a Q-table that maps state-action pairs to expected future rewards. However, this becomes impractical for environments with large or continuous state spaces. Deep Q-Learning addresses this limitation by using a deep neural network, known as a Q-network, to estimate Q-values directly from raw input states.
-
-% In reinforcement learning, the agent interacts with the environment in discrete time steps. At each step $t$, the agent observes a state $s_t$, selects an action $a_t$, receives a reward $r_t$, and transitions to a new state $s_{t+1}$. The goal is to learn a policy $\pi$ that maximizes the expected cumulative reward over time.
-
-% The Q-value function $Q(s, a)$ represents the expected return of taking action $a$ in state $s$ and following the policy thereafter. In Deep Q-Learning, the Q-network is trained to minimize the difference between the predicted Q-value and the target Q-value, which is computed using the Bellman equation:
-
-% \begin{equation}
-% Q(s\_t, a\_t) = r\_t + \gamma \max\_{a'} Q(s\_{t+1}, a'; \theta^-)
-% \end{equation}
-
-% Here, $\gamma$ is the discount factor, $\theta$ are the parameters of the current Q-network, and $\theta^-$ are the parameters of a target network that is periodically updated to stabilize training.
-
-% To improve learning stability and efficiency, Deep Q-Learning introduces two key techniques:
-% \begin{itemize}
-% \item \textbf{Experience Replay:} Stores past experiences in a replay buffer and samples mini-batches randomly during training to break correlations between consecutive samples.
-% \item \textbf{Target Network:} Uses a separate, periodically updated target network to compute the target Q-values, reducing oscillations and divergence.
-% \end{itemize}
-
-% Deep Q-Learning has been successfully applied to various complex decision-making tasks, such as playing Atari games directly from raw pixels, demonstrating its potential in handling high-dimensional input spaces.
-
-
-%  \begin{center}
-%     \includegraphics[width=0.8\textwidth]{images/rl-diagram.png} \\
-%     \textit{Figure: Basic Components of Reinforcement Learning}
-%   \end{center}
-
-% \section{Environment Modeling for DoS Detection}
-
-% The foundation of any RL application is a well-designed environment that accurately represents the problem domain. For DoS detection, this environment must model network traffic patterns and attack scenarios in a way that enables effective learning.
-
-% \subsection{State Space Design}
-
-% The state space in a reinforcement learning (RL) framework for Denial-of-Service (DoS) detection encodes the essential characteristics of network traffic that the agent uses to make decisions. A well-designed state space should reflect a comprehensive yet efficient representation of the network environment, enabling the RL agent to distinguish between normal and malicious activity. This design typically integrates four categories of features: traffic volume metrics, statistical distribution properties, temporal behavior indicators, and content-based descriptors. Each category offers a unique perspective on the nature of the traffic, contributing to a robust and informative state representation.
-
-% Traffic volume features quantify the scale and frequency of network activity. These include metrics such as packets per second, bytes per second, flow initiation rates, and the number of concurrent connections. These indicators are particularly useful for detecting volumetric DoS attacks, which are characterized by sudden spikes in traffic volume designed to overwhelm network resources. By monitoring these patterns, the RL agent can quickly recognize and react to abnormal surges in activity.
-
-% Statistical distribution features capture how traffic attributes are spread across various dimensions. Entropy values of source and destination IP addresses, protocol usage percentages, port distributions, and packet size variation are key indicators in this category. These features help identify anomalies that are not necessarily reflected in overall traffic volume but manifest as irregularities in distribution patterns, such as a high concentration of traffic targeting a specific port or originating from a narrow set of addresses.
-
-% Temporal pattern features provide insight into the evolution of traffic over time. By analyzing short-term trends, comparing current behavior to historical baselines, or evaluating periodicity, the agent can detect subtle or persistent attack patterns. Features such as time-of-day normalization or trend analysis allow the RL agent to differentiate between expected daily fluctuations and genuinely suspicious behavior, such as traffic bursts that align with known attack schedules.
-
-% Content-based features delve into the specifics of packet content and header information. This includes identifying protocol anomalies, unusual header field values, payload characteristics (when available), and application-layer request patterns. Such features are crucial for detecting more sophisticated attacks that may not exhibit volume or distribution anomalies but instead exploit specific protocol vulnerabilities or payload structures.
-
-% A critical aspect of state space design is balancing informativeness with efficiency. High-dimensional state representations can slow down learning and lead to overfitting. To mitigate this, techniques like feature selection, dimensionality reduction, and hierarchical representations can be employed. These methods help retain the most relevant features while reducing computational overhead, ultimately enhancing the agent’s learning performance and scalability.
-
-% \subsection{Action Space Definition}
-
-% The action space defines the set of all possible decisions or interventions that the reinforcement learning (RL) agent can make in response to observed network conditions. In the context of DoS detection systems, these actions are typically organized into three main categories: detection-related, response-related, and adaptive actions. Each category serves a distinct role in enabling the agent to not only identify malicious activity but also to react appropriately and adjust its behavior over time.
-
-% Detection-related actions allow the agent to classify the nature of incoming traffic. These may include flagging traffic as normal, marking it as a potential DoS attack with low confidence, confirming it as a high-confidence DoS event, or requesting additional inspection to reduce uncertainty. These actions contribute to the agent’s ability to differentiate between benign and malicious behavior with varying degrees of certainty.
-
-% Response-related actions are used to enforce protective measures against suspicious or confirmed attack traffic. These actions include allowing traffic to proceed unimpeded, rate-limiting suspected malicious flows, blocking specific traffic patterns known to be harmful, or redirecting traffic for more detailed analysis by external systems. Such actions form the core of the system's active defense mechanism, enabling real-time mitigation of ongoing threats.
-
-% Adaptive actions provide the agent with the ability to adjust its operational parameters in response to evolving threat landscapes. This includes actions such as modifying monitoring sensitivity, tuning feature extraction processes, escalating suspicious cases to human analysts, or gathering additional contextual data to refine future decision-making. These adaptive strategies are essential for maintaining long-term performance in dynamic environments.
-
-% The granularity of the action space plays a critical role in determining both the learning efficiency and the practical utility of the RL system. An overly coarse action space may restrict the agent's responsiveness and lead to underfitting, whereas an excessively fine-grained space can increase the complexity of the learning problem and slow convergence. Therefore, careful design of the action space is essential to strike an optimal balance between expressiveness and tractability.
-
-
-% \subsection{Reward Function Design}
-
-% The reward function plays a pivotal role in shaping the learning behavior of the reinforcement learning (RL) agent, guiding it toward effective and efficient DoS detection strategies. A well-crafted reward function must strike a balance between multiple, often competing objectives such as detection accuracy, operational efficiency, and timely response.
-
-% In terms of detection accuracy, the agent is incentivized through positive rewards for correctly identifying attacks, while being penalized for false positives and false negatives. These penalties and rewards may be further weighted based on the severity of the detected attack and the agent’s confidence in its classification. This ensures that the agent not only learns to detect attacks but also to assess their impact and act accordingly.
-
-% Operational efficiency is also integral to the reward function. Small penalties may be applied to account for resource consumption, including computational overhead and bandwidth usage. Additionally, time-based rewards can encourage early detection, while excessive inspection of normal traffic or inefficient use of mitigation mechanisms can incur penalties. These components help align the agent’s behavior with real-world constraints and performance expectations.
-
-% A typical structure for the reward function may take the following form:
-
-% \begin{equation}
-% R(s, a, s') = w_{1} \times \text{DetectionAccuracy} + w_{2} \times \text{TimeToDetect} + w_{3} \times \text{ResourceEfficiency}
-% \end{equation}
-
-% In this formulation, \textit{DetectionAccuracy} reflects the correctness of the classification, considering true positives, false positives, and false negatives. \textit{TimeToDetect} quantifies the latency in identifying an attack, and \textit{ResourceEfficiency} evaluates how judiciously the system utilizes its resources during detection and response. The weights \(w_{1}, w_{2}, w_{3}\) are tunable parameters that allow the system to prioritize objectives based on organizational or operational goals.
-
-% Careful calibration of the reward function is essential to ensure that the agent develops policies that are not only accurate and robust but also practical within the resource constraints and real-time requirements of modern network environments.
-
-
-% \subsection{Environment Dynamics}
-
-% The environment dynamics define the mechanisms through which state transitions occur in response to the agent’s actions. In the context of DoS detection, these dynamics are influenced by both the underlying traffic patterns and the mitigation strategies employed by the agent. State transitions are often governed by probabilistic rules that reflect how network traffic evolves over time. For instance, specific traffic behaviors may be more or less likely to follow certain patterns, such as bursty traffic or sustained high-volume flows indicative of an ongoing attack.
-
-% The agent’s actions directly impact the state evolution. For example, blocking suspicious traffic may lead to a reduction in attack volume, altering the observable state characteristics. Similarly, redirecting traffic for analysis or applying rate limits can change flow distributions and entropy metrics within the network. It is also important to consider temporal aspects of the environment; the effects of certain actions may not be immediately visible. For instance, a rate-limiting policy might only manifest noticeable changes after a delay, as the network adapts or the attacker responds.
-
-% Modeling these dynamics accurately is essential for realistic simulation and effective training of reinforcement learning agents. It allows the agent to learn how its actions influence the environment and adjust its policy accordingly to achieve robust and adaptive DoS detection performance.
-
-
-
-% \subsection{Challenges in Applying RL to Security Domains}
-
-% While reinforcement learning (RL) holds significant potential for enhancing cybersecurity systems, its application to security contexts—particularly DoS detection—presents several unique challenges. One major hurdle is the high dimensionality of the state space. Network traffic generates vast and complex feature sets, requiring sophisticated representation and dimensionality reduction techniques to ensure tractable learning. 
-
-% Another difficulty lies in the delayed nature of rewards. In many cases, the outcome of a security-related decision—whether it successfully prevented an attack or caused unintended side effects—may only become clear after a considerable time delay. This complicates credit assignment and policy evaluation. Moreover, rewards in the security domain tend to be sparse; attack events are relatively rare in comparison to the continuous stream of benign network activity, making it difficult for the agent to gain useful feedback consistently.
-
-% Safety during the learning process is also a critical concern. Exploration, a core part of RL, must be managed carefully to avoid compromising system integrity. Unlike in traditional domains, erroneous actions in security systems can have severe consequences. Compounding this is the adversarial nature of the environment—attackers actively adapt their strategies to bypass detection mechanisms, forcing RL agents to learn in a moving target setting.
-
-% To address these challenges, structured educational frameworks and simulation environments can be employed. These offer controlled scenarios where RL techniques can be gradually introduced and refined before deployment in production systems.
-
-% \subsection{Advantages of RL for DoS Detection}
-
-% Despite the complexities involved, RL brings numerous advantages to the domain of DoS detection. One of the most notable is adaptability. Unlike rule-based systems that require manual updates, RL agents can dynamically adjust to novel attack strategies and traffic behaviors. This makes them particularly well-suited for rapidly evolving threat landscapes.
-
-% RL also enables contextual decision-making, where responses are informed by the broader network state rather than isolated events. This holistic approach helps reduce false positives and improve detection accuracy. Moreover, RL frameworks can be designed to balance multiple, sometimes conflicting objectives—such as maximizing detection rates while minimizing the impact on normal traffic—through multi-objective optimization.
-
-% A proactive defense posture is another key benefit. By interacting continuously with the environment, RL agents can learn to anticipate and preempt attack progression rather than merely reacting to already-occurred incidents. This ongoing interaction fosters continuous improvement, allowing the system to refine its policies over time and maintain effectiveness even as network conditions and attack techniques evolve.
-
-% \section{Introduction to the Reinforcement Learning Approach}
-
-% Reinforcement Learning (RL) is a branch of machine learning that focuses on how agents can learn to make decisions through trial and error to maximize cumulative rewards. Unlike supervised learning, where models learn from labeled data, RL involves learning optimal behaviors through interactions with an environment, receiving feedback in the form of rewards or penalties based on actions taken. This approach enables agents to discover strategies that yield the highest long-term benefits, making RL particularly effective for tasks involving sequential decision-making, such as robotics, game playing, and autonomous systems.
-% Reinforcement Learning provides several key advantages over traditional DoS detection approaches:
-
-% \noindent\textbf{Source:} Adapted from GeeksforGeeks: What is Reinforcement Learning
-% \section{Introduction to Deep Q-Learning}
-
-% Deep Q-Learning is a powerful extension of the traditional Q-Learning algorithm that leverages deep neural networks to approximate the Q-value function. In standard Q-Learning, an agent maintains a Q-table that maps state-action pairs to expected future rewards. However, this becomes impractical for environments with large or continuous state spaces. Deep Q-Learning addresses this limitation by using a deep neural network, known as a Q-network, to estimate Q-values directly from raw input states.
-
-% In reinforcement learning, the agent interacts with the environment in discrete time steps. At each step $t$, the agent observes a state $s_t$, selects an action $a_t$, receives a reward $r_t$, and transitions to a new state $s_{t+1}$. The goal is to learn a policy $\pi$ that maximizes the expected cumulative reward over time.
-
-% The Q-value function $Q(s, a)$ represents the expected return of taking action $a$ in state $s$ and following the policy thereafter. In Deep Q-Learning, the Q-network is trained to minimize the difference between the predicted Q-value and the target Q-value, which is computed using the Bellman equation:
-
-% \begin{equation}
-% Q(s\_t, a\_t) = r\_t + \gamma \max\_{a'} Q(s\_{t+1}, a'; \theta^-)
-% \end{equation}
-
-% Here, $\gamma$ is the discount factor, $\theta$ are the parameters of the current Q-network, and $\theta^-$ are the parameters of a target network that is periodically updated to stabilize training.
-
-% To improve learning stability and efficiency, Deep Q-Learning introduces two key techniques:
-% \begin{itemize}
-% \item \textbf{Experience Replay:} Stores past experiences in a replay buffer and samples mini-batches randomly during training to break correlations between consecutive samples.
-% \item \textbf{Target Network:} Uses a separate, periodically updated target network to compute the target Q-values, reducing oscillations and divergence.
-% \end{itemize}
-
-% Deep Q-Learning has been successfully applied to various complex decision-making tasks, such as playing Atari games directly from raw pixels, demonstrating its potential in handling high-dimensional input spaces.
-
-
-%  \begin{center}
-%     \includegraphics[width=0.8\textwidth]{images/rl-diagram.png} \\
-%     \textit{Figure: Basic Components of Reinforcement Learning}
-%   \end{center}
-
-% \section{Environment Modeling for DoS Detection}
-
-% The foundation of any RL application is a well-designed environment that accurately represents the problem domain. For DoS detection, this environment must model network traffic patterns and attack scenarios in a way that enables effective learning.
-
-% \subsection{State Space Design}
-
-% The state space in a reinforcement learning (RL) framework for Denial-of-Service (DoS) detection encodes the essential characteristics of network traffic that the agent uses to make decisions. A well-designed state space should reflect a comprehensive yet efficient representation of the network environment, enabling the RL agent to distinguish between normal and malicious activity. This design typically integrates four categories of features: traffic volume metrics, statistical distribution properties, temporal behavior indicators, and content-based descriptors. Each category offers a unique perspective on the nature of the traffic, contributing to a robust and informative state representation.
-
-% Traffic volume features quantify the scale and frequency of network activity. These include metrics such as packets per second, bytes per second, flow initiation rates, and the number of concurrent connections. These indicators are particularly useful for detecting volumetric DoS attacks, which are characterized by sudden spikes in traffic volume designed to overwhelm network resources. By monitoring these patterns, the RL agent can quickly recognize and react to abnormal surges in activity.
-
-% Statistical distribution features capture how traffic attributes are spread across various dimensions. Entropy values of source and destination IP addresses, protocol usage percentages, port distributions, and packet size variation are key indicators in this category. These features help identify anomalies that are not necessarily reflected in overall traffic volume but manifest as irregularities in distribution patterns, such as a high concentration of traffic targeting a specific port or originating from a narrow set of addresses.
-
-% Temporal pattern features provide insight into the evolution of traffic over time. By analyzing short-term trends, comparing current behavior to historical baselines, or evaluating periodicity, the agent can detect subtle or persistent attack patterns. Features such as time-of-day normalization or trend analysis allow the RL agent to differentiate between expected daily fluctuations and genuinely suspicious behavior, such as traffic bursts that align with known attack schedules.
-
-% Content-based features delve into the specifics of packet content and header information. This includes identifying protocol anomalies, unusual header field values, payload characteristics (when available), and application-layer request patterns. Such features are crucial for detecting more sophisticated attacks that may not exhibit volume or distribution anomalies but instead exploit specific protocol vulnerabilities or payload structures.
-
-% A critical aspect of state space design is balancing informativeness with efficiency. High-dimensional state representations can slow down learning and lead to overfitting. To mitigate this, techniques like feature selection, dimensionality reduction, and hierarchical representations can be employed. These methods help retain the most relevant features while reducing computational overhead, ultimately enhancing the agent’s learning performance and scalability.
-
-% \subsection{Action Space Definition}
-
-% The action space defines the set of all possible decisions or interventions that the reinforcement learning (RL) agent can make in response to observed network conditions. In the context of DoS detection systems, these actions are typically organized into three main categories: detection-related, response-related, and adaptive actions. Each category serves a distinct role in enabling the agent to not only identify malicious activity but also to react appropriately and adjust its behavior over time.
-
-% Detection-related actions allow the agent to classify the nature of incoming traffic. These may include flagging traffic as normal, marking it as a potential DoS attack with low confidence, confirming it as a high-confidence DoS event, or requesting additional inspection to reduce uncertainty. These actions contribute to the agent’s ability to differentiate between benign and malicious behavior with varying degrees of certainty.
-
-% Response-related actions are used to enforce protective measures against suspicious or confirmed attack traffic. These actions include allowing traffic to proceed unimpeded, rate-limiting suspected malicious flows, blocking specific traffic patterns known to be harmful, or redirecting traffic for more detailed analysis by external systems. Such actions form the core of the system's active defense mechanism, enabling real-time mitigation of ongoing threats.
-
-% Adaptive actions provide the agent with the ability to adjust its operational parameters in response to evolving threat landscapes. This includes actions such as modifying monitoring sensitivity, tuning feature extraction processes, escalating suspicious cases to human analysts, or gathering additional contextual data to refine future decision-making. These adaptive strategies are essential for maintaining long-term performance in dynamic environments.
-
-% The granularity of the action space plays a critical role in determining both the learning efficiency and the practical utility of the RL system. An overly coarse action space may restrict the agent's responsiveness and lead to underfitting, whereas an excessively fine-grained space can increase the complexity of the learning problem and slow convergence. Therefore, careful design of the action space is essential to strike an optimal balance between expressiveness and tractability.
-
-
-% \subsection{Reward Function Design}
-
-% The reward function plays a pivotal role in shaping the learning behavior of the reinforcement learning (RL) agent, guiding it toward effective and efficient DoS detection strategies. A well-crafted reward function must strike a balance between multiple, often competing objectives such as detection accuracy, operational efficiency, and timely response.
-
-% In terms of detection accuracy, the agent is incentivized through positive rewards for correctly identifying attacks, while being penalized for false positives and false negatives. These penalties and rewards may be further weighted based on the severity of the detected attack and the agent’s confidence in its classification. This ensures that the agent not only learns to detect attacks but also to assess their impact and act accordingly.
-
-% Operational efficiency is also integral to the reward function. Small penalties may be applied to account for resource consumption, including computational overhead and bandwidth usage. Additionally, time-based rewards can encourage early detection, while excessive inspection of normal traffic or inefficient use of mitigation mechanisms can incur penalties. These components help align the agent’s behavior with real-world constraints and performance expectations.
-
-% A typical structure for the reward function may take the following form:
-
-% \begin{equation}
-% R(s, a, s') = w_{1} \times \text{DetectionAccuracy} + w_{2} \times \text{TimeToDetect} + w_{3} \times \text{ResourceEfficiency}
-% \end{equation}
-
-% In this formulation, \textit{DetectionAccuracy} reflects the correctness of the classification, considering true positives, false positives, and false negatives. \textit{TimeToDetect} quantifies the latency in identifying an attack, and \textit{ResourceEfficiency} evaluates how judiciously the system utilizes its resources during detection and response. The weights \(w_{1}, w_{2}, w_{3}\) are tunable parameters that allow the system to prioritize objectives based on organizational or operational goals.
-
-% Careful calibration of the reward function is essential to ensure that the agent develops policies that are not only accurate and robust but also practical within the resource constraints and real-time requirements of modern network environments.
-
-
-% \subsection{Environment Dynamics}
-
-% The environment dynamics define the mechanisms through which state transitions occur in response to the agent’s actions. In the context of DoS detection, these dynamics are influenced by both the underlying traffic patterns and the mitigation strategies employed by the agent. State transitions are often governed by probabilistic rules that reflect how network traffic evolves over time. For instance, specific traffic behaviors may be more or less likely to follow certain patterns, such as bursty traffic or sustained high-volume flows indicative of an ongoing attack.
-
-% The agent’s actions directly impact the state evolution. For example, blocking suspicious traffic may lead to a reduction in attack volume, altering the observable state characteristics. Similarly, redirecting traffic for analysis or applying rate limits can change flow distributions and entropy metrics within the network. It is also important to consider temporal aspects of the environment; the effects of certain actions may not be immediately visible. For instance, a rate-limiting policy might only manifest noticeable changes after a delay, as the network adapts or the attacker responds.
-
-% Modeling these dynamics accurately is essential for realistic simulation and effective training of reinforcement learning agents. It allows the agent to learn how its actions influence the environment and adjust its policy accordingly to achieve robust and adaptive DoS detection performance.
-
-
-
-% \subsection{Challenges in Applying RL to Security Domains}
-
-% While reinforcement learning (RL) holds significant potential for enhancing cybersecurity systems, its application to security contexts—particularly DoS detection—presents several unique challenges. One major hurdle is the high dimensionality of the state space. Network traffic generates vast and complex feature sets, requiring sophisticated representation and dimensionality reduction techniques to ensure tractable learning. 
-
-% Another difficulty lies in the delayed nature of rewards. In many cases, the outcome of a security-related decision—whether it successfully prevented an attack or caused unintended side effects—may only become clear after a considerable time delay. This complicates credit assignment and policy evaluation. Moreover, rewards in the security domain tend to be sparse; attack events are relatively rare in comparison to the continuous stream of benign network activity, making it difficult for the agent to gain useful feedback consistently.
-
-% Safety during the learning process is also a critical concern. Exploration, a core part of RL, must be managed carefully to avoid compromising system integrity. Unlike in traditional domains, erroneous actions in security systems can have severe consequences. Compounding this is the adversarial nature of the environment—attackers actively adapt their strategies to bypass detection mechanisms, forcing RL agents to learn in a moving target setting.
-
-% To address these challenges, structured educational frameworks and simulation environments can be employed. These offer controlled scenarios where RL techniques can be gradually introduced and refined before deployment in production systems.
-
-% \subsection{Advantages of RL for DoS Detection}
-
-% Despite the complexities involved, RL brings numerous advantages to the domain of DoS detection. One of the most notable is adaptability. Unlike rule-based systems that require manual updates, RL agents can dynamically adjust to novel attack strategies and traffic behaviors. This makes them particularly well-suited for rapidly evolving threat landscapes.
-
-% RL also enables contextual decision-making, where responses are informed by the broader network state rather than isolated events. This holistic approach helps reduce false positives and improve detection accuracy. Moreover, RL frameworks can be designed to balance multiple, sometimes conflicting objectives—such as maximizing detection rates while minimizing the impact on normal traffic—through multi-objective optimization.
-
-% A proactive defense posture is another key benefit. By interacting continuously with the environment, RL agents can learn to anticipate and preempt attack progression rather than merely reacting to already-occurred incidents. This ongoing interaction fosters continuous improvement, allowing the system to refine its policies over time and maintain effectiveness even as network conditions and attack techniques evolve.
 
 \chapter{Designing DQN Architectures for DoS/DDoS Attack Detection}
 \section{Introduction}
@@ -1342,15 +1126,40 @@ The standard DQN agent with an MLP-based Q-network was the first model evaluated
         \toprule
         \textbf{Metric} & \textbf{Score} \\
         \midrule
-        Accuracy & 0.9885 \\
-        Precision & 0.9872 \\
-        Recall & 0.9901 \\
-        F1-Score & 0.9886 \\
+        Accuracy & 0.9965265932702745 \\
+        Precision & 0.9965285132779168 \\
+        Recall & 0.9965265932702745 \\
+        F1-Score & 0.9965275032731734 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-The MLP-DQN model achieved a high F1-Score of 98.86%, indicating a strong balance between precision and recall. The high recall (99.01%) is particularly noteworthy, as it signifies the model's effectiveness in identifying the vast majority of attack instances.
+The MLP-DQN model achieved a high F1-Score of 99.65\%, indicating a strong balance between precision and recall. The high recall (99.01\%) is particularly noteworthy, as it signifies the model's effectiveness in identifying the vast majority of attack instances.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/dqn_nn_confusion_matrix.png}
+    \caption{DQN NN confusion matrix.}
+    \label{fig:dqn_confusion}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/dqn_nn_lr_epsilon.png}
+    \caption{DQN learning rate and epsilon decay.}
+    \label{fig:dqn_lr_epsilon}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/dqn_nn_training_curves.png}
+    \caption{DQN NN training curves.}
+    \label{fig:dqn_training_curves}
+\end{figure}
+
 
 \subsection{Results of DDQN}
 To address the potential overestimation of Q-values inherent in the standard DQN algorithm, we also evaluated a Double DQN (DDQN) agent, which uses a decoupled action selection and evaluation mechanism. This model used the same MLP architecture as the standard DQN.
@@ -1363,16 +1172,41 @@ To address the potential overestimation of Q-values inherent in the standard DQN
         \toprule
         \textbf{Metric} & \textbf{Score} \\
         \midrule
-        Accuracy & 0.9912 \\
-        Precision & 0.9905 \\
-        Recall & 0.9923 \\
-        F1-Score & 0.9914 \\
+        Accuracy & 0.9962474802294929 \\
+        Precision & 0.9962559692934441 \\
+        Recall & 0.9962474802294929 \\
+        F1-Score & 0.9962516747433872 \\
         \bottomrule
     \end{tabular}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_confusion_matrix.png}
+    \caption{DDQN NN confusion matrix.}
+    \label{fig:ddqn_confusion}
+\end{figure}
 
-The DDQN variant demonstrated a slight but consistent improvement across all metrics, achieving an F1-Score of 99.14%. This suggests that the more stable learning updates provided by the DDQN algorithm contribute to a more accurate and reliable final policy.
+\vspace{0.5cm}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_lr_epsilon.png}
+    \caption{DDQN learning rate and epsilon decay.}
+    \label{fig:ddqn_lr_epsilon}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_training_curves.png}
+    \caption{DDQN NN training curves.}
+    \label{fig:ddqn_training_curves}
+\end{figure}
+
+The DDQN variant demonstrated a slight but consistent improvement across all metrics, achieving an F1-Score of 99.14 \%. This suggests that the more stable learning updates provided by the DDQN algorithm contribute to a more accurate and reliable final policy.
+
+\newpage
 \subsection{Results of CNN-DQN}
 The CNN-based DQN agent was evaluated to test the hypothesis that spatial patterns within the feature-image representation could lead to superior performance. The results are shown in Table \ref{tab:binary_cnn_dqn_results}.
 
@@ -1384,22 +1218,43 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
         \toprule
         \textbf{Metric} & \textbf{Score} \\
         \midrule
-        Accuracy & 0.9945 \\
-        Precision & 0.9938 \\
-        Recall & 0.9954 \\
-        F1-Score & 0.9946 \\
+        Avg Loss & 0.0096\\
+        Avg Accuracy & 0.9975 \\
+        Current learning rate & 0.001000 \\
+        Current epsilon & 0.9752 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_confusion_matrix.png}
+    \caption{DDQN NN confusion matrix.}
+    \label{fig:ddqn_confusion}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_lr_epsilon.png}
+    \caption{DDQN learning rate and epsilon decay.}
+    \label{fig:ddqn_lr_epsilon}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_training_curves.png}
+    \caption{DDQN NN training curves.}
+    \label{fig:ddqn_training_curves}
+\end{figure}
+
 The CNN-DQN model emerged as the top performer in the binary classification task, with an impressive F1-Score of 99.46%. This result strongly supports the idea that transforming tabular data into a feature-image allows the CNN to extract more meaningful, high-level features, leading to enhanced detection accuracy. The confusion matrix for the CNN-DQN model is shown in Figure \ref{fig:cnn_binary_cm}.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{images/hids-diagram.png} % Replace with your actual confusion matrix image
-    \caption{Confusion Matrix for CNN-DQN on Binary Classification Task}
-    \label{fig:cnn_binary_cm}
-\end{figure}
+\newpage
+
 
 \section{Multiclass Classification Results}
 In the multi-class scenario, the models were tasked with classifying traffic into one of several categories, including 'Benign' and specific DDoS attack types (e.g., 'DrDoS\_NTP', 'SYN', 'UDP-Lag'). Performance metrics reported are macro-averaged to give equal weight to each class.
@@ -1423,28 +1278,27 @@ The MLP-DQN model's performance on the more challenging multi-class task is pres
     \end{tabular}
 \end{table}
 
-As expected, there is a performance drop compared to the binary task. Nonetheless, an F1-Score of 95.99% demonstrates that the model is still highly capable of distinguishing between different attack vectors.
-
-\subsection{Results of DDQN}
-The DDQN model was also evaluated on the multi-class problem. The results in Table \ref{tab:multi_ddqn_results} again show a slight improvement over the standard DQN.
-
-\begin{table}[H]
+As expected, there is a performance drop compared to the binary task. Nonetheless, an F1-Score of 95.99 \% demonstrates that the model is still highly capable of distinguishing between different attack vectors.
+\begin{figure}[H]
     \centering
-    \caption{Multi-class Classification Results for MLP-DDQN}
-    \label{tab:multi_ddqn_results}
-    \begin{tabular}{@{}lc@{}}
-        \toprule
-        \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
-        \midrule
-        Accuracy & 0.9701 \\
-        Precision & 0.9645 \\
-        Recall & 0.9662 \\
-        F1-Score & 0.9653 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+    \includegraphics[width=0.7\textwidth]{images/dqn_nn_confusion_matrix.png}
+    \caption{Confusion Matrix for the MLP-DQN Model on Multi-class Classification}
+    \label{fig:dqn_conf_matrix}
+\end{figure}
 
-The increased stability of DDQN appears to be even more beneficial in the more complex multi-class setting, boosting the F1-Score to 96.53%.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/dqn_nn_lr_epsilon.png}
+    \caption{Learning Rate and Epsilon Decay Schedule during MLP-DQN Training}
+    \label{fig:lr_epsilon}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/dqn_nn_training_curves.png}
+    \caption{Training Curve of MLP-DQN: Episode Rewards over Time}
+    \label{fig:training_curve}
+\end{figure}
 
 \subsection{Results of CNN-DQN}
 Finally, the CNN-DQN model was applied to the multi-class task. Its performance is detailed in Table \ref{tab:multi_cnn_dqn_results}.
@@ -1457,14 +1311,35 @@ Finally, the CNN-DQN model was applied to the multi-class task. Its performance 
         \toprule
         \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
         \midrule
-        Accuracy & 0.9782 \\
-        Precision & 0.9751 \\
-        Recall & 0.9765 \\
-        F1-Score & 0.9758 \\
+        Accuracy & 0.9990082747079059 \\
+        Precision & 0.9990083456349137 \\
+        Recall & 0.9990082747079059 \\
+        F1-Score & 0.9990082756280634 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_confusion_matrix.png}
+    \caption{Confusion Matrix for the MLP-DQN Model on Multi-class Classification}
+    \label{fig:ddqn_conf_matrix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_lr_epsilon.png}
+    \caption{Learning Rate and Epsilon Decay Schedule during MLP-DQN Training}
+    \label{fig:lr_epsilon}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_training_curves.png}
+    \caption{Training Curve of MLP-DQN: Episode Rewards over Time}
+    \label{fig:training_curve}
+\end{figure}
+\newpage
 Once again, the CNN-based architecture significantly outperformed the MLP-based models, achieving a macro-averaged F1-Score of 97.58%. This confirms that its advanced feature extraction capabilities are highly effective for the fine-grained distinctions required in multi-class DDoS detection.
 
 \section{Comparison and Discussion}
@@ -1472,9 +1347,27 @@ The experimental results provide clear insights into the performance of the prop
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/hids-diagram.png} % Replace with your actual comparison bar chart
+    \includegraphics[width=0.8\textwidth]{images/accuracy_comparison.png} % Replace with your actual comparison bar chart
+    \caption{Accuracy Comparison Across All Models and Tasks}
+    \label{fig:accuracy_comparison}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/f1_score_comparison.png} % Replace with your actual comparison bar chart
     \caption{F1-Score Comparison Across All Models and Tasks}
-    \label{fig:f1_comparison}
+    \label{fig:accuracy_comparison}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/model_complexity_comparison.png} % Replace with your actual comparison bar chart
+    \caption{Model complexity Comparison Across All Models and Tasks}
+    \label{fig:model_complexity_comparison}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/performance_metrics_comparison.png} % Replace with your actual comparison bar chart
+    \caption{Performance metrics Across All Models and Tasks}
+    \label{fig:performance_metrics_comparison}
 \end{figure}
 
 Several key observations can be drawn from the results:
@@ -1524,18 +1417,15 @@ This research opens up several exciting avenues for future investigation:
 In conclusion, this thesis has successfully demonstrated that Reinforcement Learning provides a powerful and promising paradigm for building the next generation of intelligent and adaptive Intrusion Detection Systems. By learning to make optimal decisions in the face of uncertainty, RL-powered agents are well-positioned to defend against the dynamic and ever-evolving landscape of cyber threats.
 
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 
-
-
-  \bibitem{ibm_security_fundamental}
-IBM, \emph{Security Fundamentals?},\\
+\bibitem{ibm_security_fundamental}
+IBM, \emph{Security Fundamentals},\\
 \url{https://www.linkedin.com/pulse/fundamentals-security-slammghana/}
 
 \bibitem{ibm_principles_of_information_security}
-CIA, \emph{Principles of Information Security}.\\
-Available at: \url{https://www.cleanpng.com/png-information-security-confidentiality-availability-1373941/}
-
+CIA, \emph{Principles of Information Security},\\
+\url{https://www.cleanpng.com/png-information-security-confidentiality-availability-1373941/}
 
 \bibitem{fidelis_dos}
 Fidelis Security, \emph{Understanding DoS and DDoS Attacks},\\
@@ -1568,13 +1458,13 @@ Fortinet, \emph{What is Intrusion Detection Systems (IDS)? How does it Work?},\\
 \bibitem{techtarget_ids}
 TechTarget, \emph{What Is an Intrusion Detection System (IDS)?},\\
 \url{https://www.techtarget.com/searchsecurity/definition/intrusion-detection-system}
-\bibitem{data_set_def}
-TechTarget, \emph{Dataset Difinition},\\
+
+\bibitem{cicddos2019}
+Canadian Institute for Cybersecurity, \emph{CIC-DDoS2019 Dataset},\\
 \url{https://www.unb.ca/cic/datasets/ddos-2019.html}
 
-
-
 \end{thebibliography}
+
 
 
 \end{document}

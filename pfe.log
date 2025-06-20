@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025/Homebrew) (preloaded format=xelatex 2025.3.15)  20 JUN 2025 20:07
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025/Homebrew) (preloaded format=xelatex 2025.3.15)  20 JUN 2025 23:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -814,7 +814,31 @@ t class for XeTeX engine
 t-xetex-bidi.def
 File: float-xetex-bidi.def 2013/04/04 v0.2 bidi adaptations for float package f
 or XeTeX engine
-) (./pfe.aux)
+)
+
+LaTeX Warning: Unused global option(s):
+    [16pt].
+
+(./pfe.aux
+
+LaTeX Warning: Label `fig:ddqn_confusion' multiply defined.
+
+
+LaTeX Warning: Label `fig:ddqn_lr_epsilon' multiply defined.
+
+
+LaTeX Warning: Label `fig:ddqn_training_curves' multiply defined.
+
+
+LaTeX Warning: Label `fig:lr_epsilon' multiply defined.
+
+
+LaTeX Warning: Label `fig:training_curve' multiply defined.
+
+
+LaTeX Warning: Label `fig:accuracy_comparison' multiply defined.
+
+)
 \openout1 = `pfe.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
@@ -1002,236 +1026,236 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ]
 
-LaTeX Warning: Hyper reference `acro:AI' on page 10 undefined on input line 201
+LaTeX Warning: Hyper reference `acro:AI' on page 10 undefined on input line 226
 .
 
 
-LaTeX Warning: Hyper reference `acro:AI' on page 10 undefined on input line 201
+LaTeX Warning: Hyper reference `acro:AI' on page 10 undefined on input line 226
 .
 
 
-LaTeX Warning: Hyper reference `acro:CIA' on page 10 undefined on input line 20
-2.
+LaTeX Warning: Hyper reference `acro:CIA' on page 10 undefined on input line 22
+7.
 
 
-LaTeX Warning: Hyper reference `acro:CIA' on page 10 undefined on input line 20
-2.
+LaTeX Warning: Hyper reference `acro:CIA' on page 10 undefined on input line 22
+7.
 
 
-LaTeX Warning: Hyper reference `acro:CIC' on page 10 undefined on input line 20
-3.
-
-
-LaTeX Warning: Hyper reference `acro:CIC' on page 10 undefined on input line 20
-3.
-
-
-LaTeX Warning: Hyper reference `acro:CNN' on page 10 undefined on input line 20
-4.
-
-
-LaTeX Warning: Hyper reference `acro:CNN' on page 10 undefined on input line 20
-4.
-
-
-LaTeX Warning: Hyper reference `acro:CPU' on page 10 undefined on input line 20
-5.
-
-
-LaTeX Warning: Hyper reference `acro:CPU' on page 10 undefined on input line 20
-5.
-
-
-LaTeX Warning: Hyper reference `acro:CSV' on page 10 undefined on input line 20
-6.
-
-
-LaTeX Warning: Hyper reference `acro:CSV' on page 10 undefined on input line 20
-6.
-
-
-LaTeX Warning: Hyper reference `acro:DDoS' on page 10 undefined on input line 2
-07.
-
-
-LaTeX Warning: Hyper reference `acro:DDoS' on page 10 undefined on input line 2
-07.
-
-
-LaTeX Warning: Hyper reference `acro:DNS' on page 10 undefined on input line 20
+LaTeX Warning: Hyper reference `acro:CIC' on page 10 undefined on input line 22
 8.
 
 
-LaTeX Warning: Hyper reference `acro:DNS' on page 10 undefined on input line 20
+LaTeX Warning: Hyper reference `acro:CIC' on page 10 undefined on input line 22
 8.
 
 
-LaTeX Warning: Hyper reference `acro:DoS' on page 10 undefined on input line 20
+LaTeX Warning: Hyper reference `acro:CNN' on page 10 undefined on input line 22
 9.
 
 
-LaTeX Warning: Hyper reference `acro:DoS' on page 10 undefined on input line 20
+LaTeX Warning: Hyper reference `acro:CNN' on page 10 undefined on input line 22
 9.
 
 
-LaTeX Warning: Hyper reference `acro:DQN' on page 10 undefined on input line 21
+LaTeX Warning: Hyper reference `acro:CPU' on page 10 undefined on input line 23
 0.
 
 
-LaTeX Warning: Hyper reference `acro:DQN' on page 10 undefined on input line 21
+LaTeX Warning: Hyper reference `acro:CPU' on page 10 undefined on input line 23
 0.
 
 
-LaTeX Warning: Hyper reference `acro:FTP' on page 10 undefined on input line 21
+LaTeX Warning: Hyper reference `acro:CSV' on page 10 undefined on input line 23
 1.
 
 
-LaTeX Warning: Hyper reference `acro:FTP' on page 10 undefined on input line 21
+LaTeX Warning: Hyper reference `acro:CSV' on page 10 undefined on input line 23
 1.
 
 
-LaTeX Warning: Hyper reference `acro:HIDS' on page 10 undefined on input line 2
-12.
+LaTeX Warning: Hyper reference `acro:DDoS' on page 10 undefined on input line 2
+32.
 
 
-LaTeX Warning: Hyper reference `acro:HIDS' on page 10 undefined on input line 2
-12.
+LaTeX Warning: Hyper reference `acro:DDoS' on page 10 undefined on input line 2
+32.
 
 
-LaTeX Warning: Hyper reference `acro:HTTP' on page 10 undefined on input line 2
-13.
+LaTeX Warning: Hyper reference `acro:DNS' on page 10 undefined on input line 23
+3.
 
 
-LaTeX Warning: Hyper reference `acro:HTTP' on page 10 undefined on input line 2
-13.
+LaTeX Warning: Hyper reference `acro:DNS' on page 10 undefined on input line 23
+3.
 
 
-LaTeX Warning: Hyper reference `acro:HTTPS' on page 10 undefined on input line 
-214.
+LaTeX Warning: Hyper reference `acro:DoS' on page 10 undefined on input line 23
+4.
 
 
-LaTeX Warning: Hyper reference `acro:HTTPS' on page 10 undefined on input line 
-214.
+LaTeX Warning: Hyper reference `acro:DoS' on page 10 undefined on input line 23
+4.
 
 
-LaTeX Warning: Hyper reference `acro:ICMP' on page 10 undefined on input line 2
-15.
+LaTeX Warning: Hyper reference `acro:DQN' on page 10 undefined on input line 23
+5.
 
 
-LaTeX Warning: Hyper reference `acro:ICMP' on page 10 undefined on input line 2
-15.
+LaTeX Warning: Hyper reference `acro:DQN' on page 10 undefined on input line 23
+5.
 
 
-LaTeX Warning: Hyper reference `acro:IDS' on page 10 undefined on input line 21
+LaTeX Warning: Hyper reference `acro:FTP' on page 10 undefined on input line 23
 6.
 
 
-LaTeX Warning: Hyper reference `acro:IDS' on page 10 undefined on input line 21
+LaTeX Warning: Hyper reference `acro:FTP' on page 10 undefined on input line 23
 6.
 
 
-LaTeX Warning: Hyper reference `acro:IP' on page 10 undefined on input line 217
+LaTeX Warning: Hyper reference `acro:HIDS' on page 10 undefined on input line 2
+37.
+
+
+LaTeX Warning: Hyper reference `acro:HIDS' on page 10 undefined on input line 2
+37.
+
+
+LaTeX Warning: Hyper reference `acro:HTTP' on page 10 undefined on input line 2
+38.
+
+
+LaTeX Warning: Hyper reference `acro:HTTP' on page 10 undefined on input line 2
+38.
+
+
+LaTeX Warning: Hyper reference `acro:HTTPS' on page 10 undefined on input line 
+239.
+
+
+LaTeX Warning: Hyper reference `acro:HTTPS' on page 10 undefined on input line 
+239.
+
+
+LaTeX Warning: Hyper reference `acro:ICMP' on page 10 undefined on input line 2
+40.
+
+
+LaTeX Warning: Hyper reference `acro:ICMP' on page 10 undefined on input line 2
+40.
+
+
+LaTeX Warning: Hyper reference `acro:IDS' on page 10 undefined on input line 24
+1.
+
+
+LaTeX Warning: Hyper reference `acro:IDS' on page 10 undefined on input line 24
+1.
+
+
+LaTeX Warning: Hyper reference `acro:IP' on page 10 undefined on input line 242
 .
 
 
-LaTeX Warning: Hyper reference `acro:IP' on page 10 undefined on input line 217
+LaTeX Warning: Hyper reference `acro:IP' on page 10 undefined on input line 242
 .
 
 
-LaTeX Warning: Hyper reference `acro:IoT' on page 10 undefined on input line 21
-8.
+LaTeX Warning: Hyper reference `acro:IoT' on page 10 undefined on input line 24
+3.
 
 
-LaTeX Warning: Hyper reference `acro:IoT' on page 10 undefined on input line 21
-8.
+LaTeX Warning: Hyper reference `acro:IoT' on page 10 undefined on input line 24
+3.
 
 
-LaTeX Warning: Hyper reference `acro:ML' on page 10 undefined on input line 219
+LaTeX Warning: Hyper reference `acro:ML' on page 10 undefined on input line 244
 .
 
 
-LaTeX Warning: Hyper reference `acro:ML' on page 10 undefined on input line 219
+LaTeX Warning: Hyper reference `acro:ML' on page 10 undefined on input line 244
 .
 
 
-LaTeX Warning: Hyper reference `acro:MLP' on page 10 undefined on input line 22
-0.
+LaTeX Warning: Hyper reference `acro:MLP' on page 10 undefined on input line 24
+5.
 
 
-LaTeX Warning: Hyper reference `acro:MLP' on page 10 undefined on input line 22
-0.
+LaTeX Warning: Hyper reference `acro:MLP' on page 10 undefined on input line 24
+5.
 
 
 LaTeX Warning: Hyper reference `acro:NIDS' on page 10 undefined on input line 2
-21.
+46.
 
 
 LaTeX Warning: Hyper reference `acro:NIDS' on page 10 undefined on input line 2
-21.
+46.
 
 
-LaTeX Warning: Hyper reference `acro:NTP' on page 10 undefined on input line 22
-2.
+LaTeX Warning: Hyper reference `acro:NTP' on page 10 undefined on input line 24
+7.
 
 
-LaTeX Warning: Hyper reference `acro:NTP' on page 10 undefined on input line 22
-2.
-
-
-LaTeX Warning: Hyper reference `acro:PCAP' on page 10 undefined on input line 2
-23.
+LaTeX Warning: Hyper reference `acro:NTP' on page 10 undefined on input line 24
+7.
 
 
 LaTeX Warning: Hyper reference `acro:PCAP' on page 10 undefined on input line 2
-23.
+48.
 
 
-LaTeX Warning: Hyper reference `acro:RL' on page 10 undefined on input line 224
+LaTeX Warning: Hyper reference `acro:PCAP' on page 10 undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:RL' on page 10 undefined on input line 249
 .
 
 
-LaTeX Warning: Hyper reference `acro:RL' on page 10 undefined on input line 224
+LaTeX Warning: Hyper reference `acro:RL' on page 10 undefined on input line 249
 .
 
 
 LaTeX Warning: Hyper reference `acro:SIEM' on page 10 undefined on input line 2
-25.
+50.
 
 
 LaTeX Warning: Hyper reference `acro:SIEM' on page 10 undefined on input line 2
-25.
+50.
 
 
 LaTeX Warning: Hyper reference `acro:SSDP' on page 10 undefined on input line 2
-26.
+51.
 
 
 LaTeX Warning: Hyper reference `acro:SSDP' on page 10 undefined on input line 2
-26.
+51.
 
 
-LaTeX Warning: Hyper reference `acro:SVM' on page 10 undefined on input line 22
-7.
+LaTeX Warning: Hyper reference `acro:SVM' on page 10 undefined on input line 25
+2.
 
 
-LaTeX Warning: Hyper reference `acro:SVM' on page 10 undefined on input line 22
-7.
+LaTeX Warning: Hyper reference `acro:SVM' on page 10 undefined on input line 25
+2.
 
 
-LaTeX Warning: Hyper reference `acro:TCP' on page 10 undefined on input line 22
-8.
+LaTeX Warning: Hyper reference `acro:TCP' on page 10 undefined on input line 25
+3.
 
 
-LaTeX Warning: Hyper reference `acro:TCP' on page 10 undefined on input line 22
-8.
+LaTeX Warning: Hyper reference `acro:TCP' on page 10 undefined on input line 25
+3.
 
 
-LaTeX Warning: Hyper reference `acro:UDP' on page 10 undefined on input line 22
-9.
+LaTeX Warning: Hyper reference `acro:UDP' on page 10 undefined on input line 25
+4.
 
 
-LaTeX Warning: Hyper reference `acro:UDP' on page 10 undefined on input line 22
-9.
+LaTeX Warning: Hyper reference `acro:UDP' on page 10 undefined on input line 25
+4.
 
 
 
@@ -1321,7 +1345,7 @@ ex-text;!
 
 [33]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 998.
+put line 782.
 
 
 [34]
@@ -1342,45 +1366,95 @@ Chapter 4.
 
 ]
 
-LaTeX Warning: Citation `cicddos2019' on page 41 undefined on input line 1312.
-
-
-
 [41]
+File: images/dqn_nn_confusion_matrix.png Graphic file (type bmp)
+<images/dqn_nn_confusion_matrix.png>
+File: images/dqn_nn_lr_epsilon.png Graphic file (type bmp)
+<images/dqn_nn_lr_epsilon.png>
+File: images/dqn_nn_training_curves.png Graphic file (type bmp)
+<images/dqn_nn_training_curves.png>
+
 
 [42]
-File: images/hids-diagram.png Graphic file (type bmp)
-<images/hids-diagram.png>
-
 
 [43]
+File: images/double_dqn_nn_confusion_matrix.png Graphic file (type bmp)
+<images/double_dqn_nn_confusion_matrix.png>
+File: images/double_dqn_nn_lr_epsilon.png Graphic file (type bmp)
+<images/double_dqn_nn_lr_epsilon.png>
+File: images/double_dqn_nn_training_curves.png Graphic file (type bmp)
+<images/double_dqn_nn_training_curves.png>
+
 
 [44]
-File: images/hids-diagram.png Graphic file (type bmp)
-<images/hids-diagram.png>
-
 
 [45]
+File: images/dqn_cnn_confusion_matrix.png Graphic file (type bmp)
+<images/dqn_cnn_confusion_matrix.png>
+File: images/dqn_cnn_lr_epsilon.png Graphic file (type bmp)
+<images/dqn_cnn_lr_epsilon.png>
+File: images/dqn_cnn_training_curves.png Graphic file (type bmp)
+<images/dqn_cnn_training_curves.png>
+
 
 [46]
 
 [47]
+File: images/dqn_nn_confusion_matrix.png Graphic file (type bmp)
+<images/dqn_nn_confusion_matrix.png>
+File: images/dqn_nn_lr_epsilon.png Graphic file (type bmp)
+<images/dqn_nn_lr_epsilon.png>
 
-[48
 
-]
+[48]
+File: images/dqn_nn_training_curves.png Graphic file (type bmp)
+<images/dqn_nn_training_curves.png>
+File: images/double_dqn_cnn_confusion_matrix.png Graphic file (type bmp)
+<images/double_dqn_cnn_confusion_matrix.png>
+
 
 [49]
-Overfull \hbox (62.27998pt too wide) in paragraph at lines 1536--1538
-[]\TU/lmr/m/n/10 Available at: [][]$[][][][][] [] [] [] [][][] [] [][][][][][][
-][] [] [][][] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$[][] [
+File: images/double_dqn_cnn_lr_epsilon.png Graphic file (type bmp)
+<images/double_dqn_cnn_lr_epsilon.png>
+File: images/double_dqn_cnn_training_curves.png Graphic file (type bmp)
+<images/double_dqn_cnn_training_curves.png>
+
+
+[50]
+
+LaTeX Warning: Reference `fig:f1_comparison' on page 51 undefined on input line
+ 1346.
+
+File: images/accuracy_comparison.png Graphic file (type bmp)
+<images/accuracy_comparison.png>
+File: images/f1_score_comparison.png Graphic file (type bmp)
+<images/f1_score_comparison.png>
+File: images/model_complexity_comparison.png Graphic file (type bmp)
+<images/model_complexity_comparison.png>
+File: images/performance_metrics_comparison.png Graphic file (type bmp)
+<images/performance_metrics_comparison.png>
+
+
+[51]
+
+[52]
+
+[53]
+
+[54
+
 ]
+
+[55]
+Overfull \hbox (10.05498pt too wide) in paragraph at lines 1427--1429
+[][][]$[][][][][] [] [] [] [][][] [] [][][][][][][][] [] [][][] [] [][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][]$[][] []
  []
 
 
 
-[50
+[56
 
 ] (./pfe.aux)
  ***********
@@ -1391,16 +1465,19 @@ L3 programming layer <2025-01-18>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `pfe.out' has not changed.
-(rerunfilecheck)             Checksum: 901AD9D398B02A589D50E0208A587CA9;10850.
+(rerunfilecheck)             Checksum: C8E3F4B76410ABF4D6B1966A722B0877;10707.
  ) 
 Here is how much of TeX's memory you used:
- 20792 strings out of 473832
- 418849 string characters out of 5719382
- 873626 words of memory out of 5000000
- 43505 multiletter control sequences out of 15000+600000
+ 20948 strings out of 473832
+ 424875 string characters out of 5719382
+ 874365 words of memory out of 5000000
+ 43645 multiletter control sequences out of 15000+600000
  561216 words of font info for 85 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  84i,9n,93p,1194b,705s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on pfe.xdv (51 pages, 1043008 bytes).
+Output written on pfe.xdv (57 pages, 1080160 bytes).
