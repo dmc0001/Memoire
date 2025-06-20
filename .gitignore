@@ -1,0 +1,61 @@
+# LaTeX intermediate and output files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.bbl
+*.blg
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.dvi
+*.xdv
+*.ilg
+*.ind
+*.idx
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.maf
+*.mtc
+*.mtc0
+*.run.xml
+
+# Temporary files
+*~
+*.bak
+*.backup
+*.tmp
+
+# Editors
+.vscode/
+*.swp
+*.swo
+
+# Output directories (if you build PDFs or other formats to a subdirectory)
+_build/
+build/
+output/
+bin/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Generated PDF (optional)
+*.pdf
