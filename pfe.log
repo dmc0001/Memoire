@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.6.20)  21 JUN 2025 21:00
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.6.20)  21 JUN 2025 23:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1123,7 +1123,7 @@ ex-text;!
 
 [34]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 786.
+put line 812.
 
 
 [35]
@@ -1201,7 +1201,7 @@ File: images/double_dqn_cnn_training_curves.png Graphic file (type bmp)
 [51]
 
 LaTeX Warning: Reference `fig:f1_comparison' on page 52 undefined on input line
- 1350.
+ 1376.
 
 File: images/accuracy_comparison.png Graphic file (type bmp)
 <images/accuracy_comparison.png>
@@ -1224,7 +1224,7 @@ File: images/performance_metrics_comparison.png Graphic file (type bmp)
 ]
 
 [56]
-Overfull \hbox (10.05498pt too wide) in paragraph at lines 1431--1433
+Overfull \hbox (10.05498pt too wide) in paragraph at lines 1457--1459
 []$[][][][][] [] [] [] [][][] [] [][][][][][][][] [] [][][] [] [][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][]$[] 
@@ -1250,12 +1250,12 @@ Package rerunfilecheck Info: File `pfe.out' has not changed.
 (rerunfilecheck)             Checksum: 8402299E437567A1534A6556EFE39D63;10831.
  ) 
 Here is how much of TeX's memory you used:
- 18935 strings out of 475413
- 358398 string characters out of 5765576
+ 18932 strings out of 475413
+ 358315 string characters out of 5765576
  828644 words of memory out of 5000000
- 41601 multiletter control sequences out of 15000+600000
- 561208 words of font info for 84 fonts, out of 8000000 for 9000
+ 41600 multiletter control sequences out of 15000+600000
+ 561200 words of font info for 83 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  79i,9n,93p,880b,678s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on pfe.xdv (57 pages, 1079644 bytes).
+Output written on pfe.xdv (57 pages, 1098136 bytes).

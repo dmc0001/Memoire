@@ -263,6 +263,33 @@ Les principales caractéristiques du trafic sont extraites de manière systémat
 % ======================================================================
 \chapter*{General Introduction}
 
+\section*{Intrusion Detection Systems and Network Attacks}
+
+In the evolving landscape of cybersecurity, networks are increasingly vulnerable to a wide range of malicious activities that threaten their integrity, confidentiality, and availability. Among the most disruptive are \textbf{Denial-of-Service (DoS)} and its more severe counterpart, \textbf{Distributed Denial-of-Service (DDoS)} attacks. These assaults aim to overwhelm servers or network infrastructure by flooding them with traffic or exploiting protocol weaknesses, effectively rendering services inaccessible to legitimate users.
+
+To detect and respond to such threats, organizations rely heavily on \textbf{Intrusion Detection Systems (IDS)}. IDS are security tools designed to monitor, analyze, and report on malicious activity within network traffic or system behavior. Broadly, IDS can be categorized into:
+
+\begin{itemize}
+    \item \textbf{Signature-based IDS:} These systems rely on predefined patterns of known attacks (signatures). They are fast and accurate for known threats but completely blind to new, unknown, or obfuscated attacks.
+
+    \item \textbf{Anomaly-based IDS:} These systems attempt to detect abnormal behaviors by building a profile of ``normal'' activity and flagging deviations. While they can identify novel threats, they frequently generate false positives, especially in dynamic or complex environments.
+
+    \item \textbf{Hybrid IDS:} These systems aim to combine the strengths of both signature-based and anomaly-based methods to enhance overall detection performance.
+\end{itemize}
+
+Despite their widespread use, traditional IDS face several limitations:
+
+\begin{itemize}
+    \item \textbf{Lack of adaptability:} Most systems require manual updates or retraining to detect evolving threats.
+
+    \item \textbf{Poor real-time responsiveness:} Many solutions operate with a delay, reacting only after an attack is underway.
+
+    \item \textbf{Scalability issues:} High-volume traffic or large-scale deployments can overwhelm static or rule-based detection mechanisms.
+\end{itemize}
+
+As cyber threats continue to evolve in complexity and scale, the limitations of existing IDS approaches highlight the urgent need for more intelligent, autonomous, and adaptive detection methods.
+
+
 \section*{Context and Motivation}
 In the contemporary digital era, the reliability and continuous availability of network services form the backbone of global commerce, communication, and critical infrastructure. A primary threat to this stability is the Denial-of-Service (DoS) attack, and its more potent variant, the Distributed Denial-of-Service (DDoS) attack. These malicious activities aim to render online services and network resources unavailable to legitimate users by overwhelming them with an insurmountable volume of traffic or by exploiting protocol vulnerabilities. As attackers devise increasingly sophisticated and large-scale attacks, the need for intelligent, adaptive, and robust defense mechanisms has become more critical than ever.
 
@@ -326,7 +353,6 @@ Network security encompasses strategies and technologies to protect systems from
     \centering
     \includegraphics[width=0.5\textwidth]{images/CIA-graph.png}
     \caption{Principles of information security}
-    \caption*{\footnotesize\textit{Source: \cite{ibm_principles_of_information_security}}}
     \label{fig:cia-graph}
 \end{figure}
 

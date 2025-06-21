@@ -1,71 +1,56 @@
-- [x] Master Thesis Template: 
-- [x] “Deep Q-Learning Based Approach for DoS Attacks Detection”
+- [ ] **Page de Garde**
+    - [x] Ajouter la spécialité: "Specialty Systems Engineering and Web Technologies"
+    - [x] Ajouter l'en-tête: "République Algérienne Démocratique et Populaire"
+    - [] Ajouter l'en-tête: "Ministère de l'Enseignement Supérieur et de la Recherche Scientifique"
+    - [x] Changer "في هذه الأطروحة" à "في هذه المذكرة"
+    - [x] Changer "من خلال تصوير" à "من خلال نمذجة"
 
-- [x] Cover Page
-- [-] Dedication
-- [x] Acknowledgements
-- [x] Abstract (in English)
-- [x] ملخص (بالعربية) 
-- [x] Résumé (en français)
-- [x] Table of Contents
-- [x] List of Figures
-- [ ] List of Tables
-- [x] List of Acronyms
-- [x] 1. General Introduction
-    - [x] Context and Motivation
-    - [x] Problem Statement
-    - [x] Objectives
-    - [x] Overall Methodology
-    - [x] Thesis Structure
+- [ ] **الملخص (Abstract - Arabic)**
+    - [ ] Changer "بيانات التدفق الشبكي السليمة والخبيثة" à "حركة المرور السليمة والمنية"
+    - [ ] Changer "نظام تغذية راجعة" à "نظام مراجعين"
+    - [ ] Changer "ميزات حركة المرور الأساسية" à "ميزات التدفق الشبكي الأساسية"
 
-- [x] 2. Chapter 1: Intrusion Detection Systems (IDS)
-- [x] 2.1. Introduction
-- [x] 2.2. Fundamentals of Cybersecurity
-- [x] 2.3. Intrusion Detection Systems (IDS)
-- [x] 2.4. Denial of Service (DoS/DDoS) Attacks
-- [x] 2.5. Classification Techniques in Security Contexts
-- [x] 2.6. Conclusion
+- [x] **Résumé (Abstract - French)**
+    - [x] Changer "Cette thèse" à "Ce mémoire"
 
-- [x] 3. Chapter 2: Deep Q-Learning for Intrusion Detection
-- [x] 3.1. Introduction
-- [x] 3.2. Deep Learning: Key Concepts
-- [x] 3.3. Reinforcement Learning
-- [x] 3.4. Deep Q-Learning (DQN)
-- [x] 3.5. Deep Learning Applications in IDS
-- [x] 3.6. Conclusion
+- [ ] **Contents**
+    - [x] Ajouter "Abstract in Arabic, Abstract in French"
+    - [ ] Ajouter "General Introduction: IDS"
 
-- [x] 4. Chapter 3: Designing DQN Architectures for DoS/DDoS Attack Detection
-- [x] 4.1. Introduction
-- [x] 4.2. Problem Modeling for DoS/DDoS Detection using DQN
-- [x] 4.2.1. Environment Definition
-- [x] 4.2.2. Reward Function
-- [x] 4.2.3. Agent's Objective
-- [x] 4.2.4. Definition of Classification Tasks
-- [x] 4.3. Data Preprocessing Pipeline …
-- [x] 4.4. Proposed DQN Architectures for Attack Detection
-- [x] 4.4.1. Deep Q-Learning Architecture (DQN)
-- [x] 4.4.2. Double DQN Architecture (DDQN)
-- [x] 4.4.3. CNN-DQN Architecture
-- [x] 4.5. Conclusion
+- [ ] **Liste des figures**
+    - [ ] Vérifier si "Liste des figures" est listé deux fois et corriger
 
-- [ ] 5. Chapter 4: Experiments and Results
-- [ ] 5.1. Introduction
-- [ ] 5.2. Development Tools and Experimental Setup
-- [ ] 5.2.1. development environment (programming languages, tools and libraries used)
-- [ ] 5.2.2. Evaluation Metrics
-- [ ] 5.3. Description of Datasets (…)
-- [ ] 5.4. Binary Classification Results
-- [ ] 5.4.1. Results of DQN
-- [ ] 5.4.2. Results of DDQN
-- [ ] 5.4.3. Results of CNN-DQN
-- [ ] 5.5. Multiclass Classification Results
-- [ ] 5.5.1. Results of DQN
-- [ ] 5.5.2. Results of DDQN
-- [ ] 5.5.3. Results of CNN-DQN
-- [ ] 5.6. Comparison and Discussion
-- [ ] 5.7. Conclusion
-- [ ] 6. General Conclusion
-    - [ ] Summary of Contributions
-    - [ ] Study Limitations
-    - [ ] Future Research Directions
-- [ ] References
+- [ ] **General Introduction**
+    - [ ] Détailler le "content and motivation"
+
+- [ ] **Chapitre 1**
+    - [ ] Ajouter une introduction de chapitre
+    - [ ] Uniformiser la taille des figures
+    - [ ] Enlever "Source" et juste garder le nom avec le titre pour les références
+    - [ ] Refaire la partie "classification in security contents"
+    - [ ] Ajouter une conclusion de chapitre
+
+- [ ] **Chapitre 2**
+    - [ ] Agrandir la Figure 2.1
+    - [ ] Enlever l'icône (crousen) de la Figure 2.1
+
+- [ ] **Chapitre 3**
+    - [ ] Au Point 2.5, ajouter plus de détails sur le Machine Learning
+    - [ ] Détailler les types de Machine Learning: Supervisé, Non supervisé, et Apprentissage par renforcement (Reinforcement Learning)
+    - [ ] Pour le Reinforcement Learning, détailler: Model-based RL, Model-Free RL, Markov Decision Process (MDP), Value-Based RL, Policy-Based RL, Actor-Critic, On-policy vs Off-Policy
+    - [ ] Inclure un état de l'art sur l'application du Machine Learning dans la détection d'intrusions
+    - [ ] Ajouter une figure décrivant les étapes de l'approche proposée (Dataset -> Prétraitement -> Training, Test et Validation -> Résultats)
+    - [ ] Ajouter des schémas pour le design du training
+    - [ ] Ajouter des schémas pour les structures ANN, DNN, CNN, RNN
+    - [ ] Vérifier et revoir la numérotation des sous-titres et des chapitres
+
+- [ ] **Chapitre 4**
+    - [ ] Détailler la description du Dataset CIC-DDOS 2019 en utilisant l'article envoyé précédemment
+    - [ ] Ajouter l'architecture du réseau utilisé pour la création de l'IDS
+    - [ ] Ajouter une figure indiquant la liste des attaques (les différents types d'attaques)
+
+- [ ] **Bibliographie**
+    - [ ] Changer la présentation
+    - [ ] Ajouter des références fiables (livres, articles, mémoires, thèses, sites officiels)
+    - [ ] Enlever les références des blogs et réseaux sociaux
+    - [ ] Assurer qu'il y ait au moins 15 références fiables
