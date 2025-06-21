@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.6.20)  21 JUN 2025 20:10
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.6.20)  21 JUN 2025 21:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -755,9 +755,9 @@ té des réseaux informatiques.
  []
 
 
-Overfull \hbox (27.673pt too wide) in paragraph at lines 179--180
-[]\TU/lmr/m/n/12 Cette thèse propose un système de détection d’intrusion innova
-nt basé sur l’apprentissage
+Overfull \hbox (30.877pt too wide) in paragraph at lines 179--180
+[]\TU/lmr/m/n/12 Ce mémoire propose un système de détection d’intrusion innovan
+t basé sur l’apprentissage
  []
 
 
@@ -1247,15 +1247,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `pfe.out' has not changed.
-(rerunfilecheck)             Checksum: C8E3F4B76410ABF4D6B1966A722B0877;10707.
+(rerunfilecheck)             Checksum: 8402299E437567A1534A6556EFE39D63;10831.
  ) 
 Here is how much of TeX's memory you used:
  18935 strings out of 475413
  358398 string characters out of 5765576
- 828520 words of memory out of 5000000
+ 828644 words of memory out of 5000000
  41601 multiletter control sequences out of 15000+600000
  561208 words of font info for 84 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  79i,9n,93p,880b,678s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on pfe.xdv (57 pages, 1079284 bytes).
+Output written on pfe.xdv (57 pages, 1079644 bytes).
