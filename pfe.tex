@@ -1,4 +1,4 @@
-\documentclass[16pt]{report}
+\documentclass[12pt]{report}
 
 % --- Core Packages ---
 \usepackage{amsmath,amssymb} % amsfonts is loaded by amssymb
@@ -263,6 +263,33 @@ Les principales caractéristiques du trafic sont extraites de manière systémat
 % ======================================================================
 \chapter*{General Introduction}
 
+\section*{Intrusion Detection Systems and Network Attacks}
+
+In the evolving landscape of cybersecurity, networks are increasingly vulnerable to a wide range of malicious activities that threaten their integrity, confidentiality, and availability. Among the most disruptive are \textbf{Denial-of-Service (DoS)} and its more severe counterpart, \textbf{Distributed Denial-of-Service (DDoS)} attacks. These assaults aim to overwhelm servers or network infrastructure by flooding them with traffic or exploiting protocol weaknesses, effectively rendering services inaccessible to legitimate users.
+
+To detect and respond to such threats, organizations rely heavily on \textbf{Intrusion Detection Systems (IDS)}. IDS are security tools designed to monitor, analyze, and report on malicious activity within network traffic or system behavior. Broadly, IDS can be categorized into:
+
+\begin{itemize}
+    \item \textbf{Signature-based IDS:} These systems rely on predefined patterns of known attacks (signatures). They are fast and accurate for known threats but completely blind to new, unknown, or obfuscated attacks.
+
+    \item \textbf{Anomaly-based IDS:} These systems attempt to detect abnormal behaviors by building a profile of ``normal'' activity and flagging deviations. While they can identify novel threats, they frequently generate false positives, especially in dynamic or complex environments.
+
+    \item \textbf{Hybrid IDS:} These systems aim to combine the strengths of both signature-based and anomaly-based methods to enhance overall detection performance.
+\end{itemize}
+
+Despite their widespread use, traditional IDS face several limitations:
+
+\begin{itemize}
+    \item \textbf{Lack of adaptability:} Most systems require manual updates or retraining to detect evolving threats.
+
+    \item \textbf{Poor real-time responsiveness:} Many solutions operate with a delay, reacting only after an attack is underway.
+
+    \item \textbf{Scalability issues:} High-volume traffic or large-scale deployments can overwhelm static or rule-based detection mechanisms.
+\end{itemize}
+
+As cyber threats continue to evolve in complexity and scale, the limitations of existing IDS approaches highlight the urgent need for more intelligent, autonomous, and adaptive detection methods.
+
+
 \section*{Context and Motivation}
 In the contemporary digital era, the reliability and continuous availability of network services form the backbone of global commerce, communication, and critical infrastructure. A primary threat to this stability is the Denial-of-Service (DoS) attack, and its more potent variant, the Distributed Denial-of-Service (DDoS) attack. These malicious activities aim to render online services and network resources unavailable to legitimate users by overwhelming them with an insurmountable volume of traffic or by exploiting protocol vulnerabilities. As attackers devise increasingly sophisticated and large-scale attacks, the need for intelligent, adaptive, and robust defense mechanisms has become more critical than ever.
 
@@ -326,7 +353,6 @@ Network security encompasses strategies and technologies to protect systems from
     \centering
     \includegraphics[width=0.5\textwidth]{images/CIA-graph.png}
     \caption{Principles of information security}
-    \caption*{\footnotesize\textit{Source: \cite{ibm_principles_of_information_security}}}
     \label{fig:cia-graph}
 \end{figure}
 
@@ -447,17 +473,16 @@ Classification forms the foundation of automated threat detection:
 \textbf{Hierarchical Classification:} Structures threats in a tree-like format.
 \textbf{Multi-label Classification:} Assigns multiple categories to a single traffic flow.
 
-\section*{What is Machine Learning?}
-Machine learning (ML) is a branch of artificial intelligence (AI) focused on enabling computers and machines to imitate the way that humans learn. The learning system consists of a decision process, an error function, and a model optimization process.
+\section{Conclusion}
 
-\subsection{Machine Learning Techniques}
-\section*{Supervised Learning}
-Supervised learning involves training on labeled datasets. Common algorithms include Random Forests, Support Vector Machines (SVM), and Neural Networks.
+This chapter provided a comprehensive overview of Intrusion Detection Systems (IDS) and their role in defending against Denial-of-Service (DoS) and Distributed Denial-of-Service (DDoS) attacks. It began by establishing core security principles—confidentiality, integrity, and availability—and extended to non-repudiation, authenticity, and accountability, which form the foundational requirements for secure systems.
 
-\section*{Unsupervised Learning}
-Unsupervised learning focuses on uncovering patterns in unlabeled data. Techniques include clustering (k-means) and anomaly detection (Isolation Forest).
+We then examined the nature of DoS attacks in detail, highlighting their categorization into volumetric, protocol, and application-layer threats, along with their increasingly distributed and complex manifestations. Through traffic analysis and classification paradigms, the chapter demonstrated how accurate identification of attack patterns is essential for timely defense.
 
-\section*{Semi-Supervised Learning}
+Finally, we explored the architecture, types, and operational methodologies of IDS—including signature-based, anomaly-based, and hybrid systems—alongside their limitations in handling dynamic, large-scale attack scenarios.
+
+Given the static and reactive nature of traditional IDS, there is a growing need for intelligent, adaptive systems capable of learning from evolving threats. This chapter sets the theoretical groundwork for such systems and motivates the transition toward machine learning and, more specifically, reinforcement learning techniques. The following chapters will build on this foundation by introducing Deep Q-Learning as a novel approach for dynamic and autonomous intrusion detection.
+
 
 \chapter{Deep Q-Learning for Intrusion Detection}
 \label{chap:dqn-for-ids}
@@ -659,7 +684,7 @@ To leverage Reinforcement Learning (RL) for DDoS attack detection, we must refra
 \subsection{Environment Definition}
 In our framework, the "environment" is simulated by a preprocessed dataset. Each state (st​) is a single, preprocessed feature vector representing a snapshot of network traffic. Unlike traditional RL where states evolve from prior actions, here, the "next state" (st+1​) is functionally defined as the subsequent sample in a randomly shuffled batch. This approach allows us to estimate future value for Q-learning updates, even in a non-sequential data context. The dataset itself acts as the source of observations the agent makes at each "time step."
 
-\subsubsection{Reward Function}
+\subsection{Reward Function}
 
 The reward ($r_t$) is an immediate scalar feedback signal provided by the simulated environment based on the agent's classification decision. It quantifies the quality of the agent’s chosen action ($a_t$) by directly comparing it with the known optimal action ($a_t^*$), i.e., the true label.
 
@@ -675,7 +700,7 @@ r_t =
 
 Using a neutral reward of 0 for incorrect actions, rather than a negative penalty (e.g., $-1$), can lead to more stable training in some contexts, as it does not excessively punish the agent during its initial exploration phase. This reward mechanism forms the crucial bridge between the supervised ground-truth label and the reinforcement learning feedback loop.
 
-\subsubsection{Agent's Objective}
+\subsection{Agent's Objective}
 
 The primary objective of the reinforcement learning (RL) agent is to learn an optimal detection policy $\pi(a \mid s)$ that maximizes its long-term cumulative reward. 
 
@@ -683,7 +708,7 @@ In the context of DDoS detection, this objective translates into maximizing the 
 
 By continuously refining its understanding of the value associated with selecting a particular label in a given context, the agent aims to converge toward a strategy that minimizes misclassifications and ensures robust detection performance.
 
-\subsubsection{Definition of Classification Tasks}
+\subsection{Definition of Classification Tasks}
 
 The problem is framed as a binary classification task to simplify the detection process. The agent's actions ($a_t$) correspond to the two possible classification labels:
 
@@ -699,11 +724,19 @@ The multi-class labels present in the original dataset (e.g., \texttt{DrDoS\_NTP
 
 The preprocessing phase is a fundamental component of building an effective machine learning model, ensuring that the input data is clean, consistent, and optimally formatted for the learning algorithm. Our approach involves several key steps:
 
-\subsubsection{Dataset}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/dataset-preprocessing.png}
+    \caption{Data Preprocessing Pipeline.}
+    \label{fig:dataset-preprocessing}
+\end{figure}
+
+
+\subsection{Dataset}
 
 The primary dataset used for this research is a publicly available dataset. This dataset is highly relevant as it contains a variety of the most up-to-date common DDoS attacks alongside benign traffic, closely resembling real-world network scenarios. The data is provided in PCAP format and has been pre-processed using a specialized tool to generate labeled flows in CSV files. Each flow is characterized by features based on its time stamp, source and destination IPs, source and destination ports, and the protocol used.
 
-\subsubsection{Step 1: Data Cleaning}
+\subsection{Step 1: Data Cleaning}
 The initial phase focuses on cleaning the dataset to ensure its quality and integrity. This involves three key actions:
 
 \begin{itemize}
@@ -714,7 +747,7 @@ The initial phase focuses on cleaning the dataset to ensure its quality and inte
     \item \textbf{Numeric Conversion:} All remaining feature values are converted to a numeric data type. Machine learning models, and particularly neural networks like the DQN, require numerical input for their mathematical operations. This step ensures that all data, including any encoded categorical features, is in a format that the model can process.
 \end{itemize}
 
-\subsubsection{Step 2: Feature Selection using Random Forest Classifier}
+\subsection{Step 2: Feature Selection using Random Forest Classifier}
 
 Feature selection is a critical process for reducing the dimensionality of the dataset, which in turn reduces model complexity, decreases training time, and mitigates the risk of overfitting. For this task, we utilize the \textit{Random Forest Classifier}.
 
@@ -728,7 +761,7 @@ Random Forest is an ensemble learning method that constructs a multitude of deci
     \item Features are ranked based on these scores, and only the top-ranked features that contribute most significantly to the model’s predictive power are retained for subsequent steps.
 \end{itemize}
 
-\subsubsection{Step 3: Data Normalization}
+\subsection{Step 3: Data Normalization}
 
 
 After feature selection, the data is normalized to ensure that all features contribute equally to the model’s learning process. We employ \textit{Min-Max normalization}, which scales each feature to a fixed range between 0 and 1.
@@ -750,7 +783,7 @@ where:
     \item \( X_{\max} \) is the maximum value of the feature in the dataset.
 \end{itemize}
 
-\subsubsection{Step 4: Dataset Balancing with Random Undersampling}
+\subsection{Step 4: Dataset Balancing with Random Undersampling}
 
 The dataset exhibits a significant class imbalance, with a much larger proportion of attack traffic compared to benign traffic. Training a model on such an imbalanced dataset would bias it towards the majority class (attacks), leading to poor detection performance for the minority class (benign traffic) and a high false positive rate.
 
@@ -766,13 +799,30 @@ We begin by providing a high-level, component-wise breakdown of the unified trai
 
 The primary goal is to iteratively refine the agent’s Q-network, which is responsible for approximating the optimal action-value function \( Q^*(s, a) \). This function estimates the long-term value of taking a specific action (i.e., making a classification) when presented with a particular state (i.e., a network traffic sample).
 
-\subsubsection{Deep Q-Learning Architecture (DQN)}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/dqn-arch.png}
+    \caption{Deep Q-Learning Architecture (DQN)}
+    \label{fig:dqn-arch}
+\end{figure}
+
+
+\subsection{Deep Q-Learning Architecture (DQN)}
 
 The standard Deep Q-Learning (DQN) architecture is employed to learn the optimal Q-values. The training process involves continuous interaction with the simulated environment (the dataset) and iterative updates to the Q-network.
 
-\subsubsection*{Component 1: Generic Sample and Data Provisioning}
+\subsection{Component 1: Generic Sample and Data Provisioning}
 
 The learning process begins with the provisioning of data to the agent. At each training step, a generic sample is drawn from the preprocessed and shuffled dataset. This sample is a tuple containing three critical elements required for the Q-learning update: \( (s_t, a^*_t, s_{t+1}) \).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/batching-arch.png}
+    \caption{Data Provisioning.}
+    \label{fig:batching-arch}
+\end{figure}
+
 
 \begin{itemize}
   \item \textbf{Current State (\( s_t \))}: The feature vector of the network traffic sample currently under evaluation.
@@ -797,7 +847,7 @@ This data sampling process is formally represented by Algorithm~\ref{alg:data_sa
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection*{Component 2: The $\epsilon$-Greedy Policy and Action Selection}
+\subsection{Component 2: The $\epsilon$-Greedy Policy and Action Selection}
 
 Once presented with the current state $s_t$, the agent must select an action $a_t$. This decision is governed by an $\epsilon$-greedy policy—a fundamental strategy in reinforcement learning designed to manage the critical exploration-exploitation trade-off.
 
@@ -828,7 +878,7 @@ The parameter $\epsilon$ is a tunable hyperparameter that is typically annealed 
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Component 3: The Target Q-Value ($q_\text{ref}$) Calculation}
+\subsection{Component 3: The Target Q-Value ($q_\text{ref}$) Calculation}
 
 This step is one of the most sophisticated and innovative aspects of the entire training framework. In our DQN framework, the Q-network is trained against a dynamically constructed hybrid target vector, $q_\text{ref}$. This target ingeniously blends the explicit signal from the supervised label with the value-estimation principles of reinforcement learning.
 
@@ -878,7 +928,7 @@ This dual-signal approach ensures the agent learns not only to identify the corr
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Component 4: Loss Calculation and Network Update}
+\subsection{Component 4: Loss Calculation and Network Update}
 
 The final step in the training loop is to update the Q-network’s parameters (weights and biases) to improve its predictions. This is achieved by quantifying the error between the network’s output and the hybrid target, and then adjusting the weights to minimize this error.
 
@@ -920,9 +970,17 @@ This complete update cycle forms a single iteration of the learning process. Rep
 
 The architectural details of the Q-network will be discussed in the following subsections, specifically outlining both a Multi-Layer Perceptron (MLP) and a Convolutional Neural Network (CNN) based implementation.
 
-\subsubsection{Double DQN Architecture (DDQN)}
+\subsection{Double DQN Architecture (DDQN)}
 
 The Double Deep Q-Network (DDQN) architecture is an extension of the standard DQN designed to mitigate the problem of overestimation of Q-values. In traditional DQN, the same Q-network is used for both selecting and evaluating actions, which can lead to optimistic value estimates and potentially cause the agent to learn suboptimal policies.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/ddqn-arch.png}
+    \caption{Double DQN Architecture (DDQN)}
+    \label{fig:ddqn-arch}
+\end{figure}
+
 
 DDQN addresses this limitation by decoupling the action selection from the action evaluation. It introduces two separate Q-networks:
 
@@ -942,11 +1000,11 @@ This formulation ensures that the target value is based on a more stable and les
 
 The overall training process of DDQN follows that of standard DQN, with the key difference being in the construction of the target Q-value. By avoiding the overestimation of action values, DDQN leads to more stable learning and can yield improved performance, especially in environments where value overestimation significantly affects policy quality.
 
-\subsubsection{CNN-DQN Architecture}
+\subsection{CNN-DQN Architecture}
 
 The Convolutional Neural Network (CNN)-based Q-network represents a sophisticated approach built on the hypothesis that meaningful, localized patterns and spatial correlations exist within the network traffic feature set. Unlike the Multi-Layer Perceptron (MLP), which treats input as a flat feature vector, the CNN is specifically designed to exploit spatial structures, enabling automatic and hierarchical feature extraction.
 
-\subsubsection*{Transforming Tabular Data into a Feature-Image}
+\subsection{Transforming Tabular Data into a Feature-Image}
 
 At the core of this method is the transformation of the one-dimensional feature vector into a two-dimensional \textit{feature-image}. This enables the application of convolutional operations, framing the classification task as an image recognition problem.
 
@@ -961,7 +1019,7 @@ Given a state vector with $N$ features, it is reshaped into a grid of dimensions
 
 Each cell in this $8 \times 8$ grid is treated as a pixel, where its value corresponds to a normalized feature value, resulting in a single-channel input image.
 
-\subsubsection*{Feature Ordering Strategy}
+\subsection{Feature Ordering Strategy}
 
 The order in which features are arranged in the grid critically impacts the CNN’s ability to detect meaningful patterns. Several strategies can be adopted:
 
@@ -973,7 +1031,7 @@ The order in which features are arranged in the grid critically impacts the CNN�
 
 These strategies aim to ensure that local neighborhoods within the feature-image encode relevant, structured information.
 
-\subsubsection*{CNN Architecture}
+\subsection{CNN Architecture}
 
 \begin{description}[align=left, labelwidth=4.5cm]
 
@@ -1097,17 +1155,154 @@ The metrics are defined as follows:
 For multi-class classification, these metrics are calculated for each class and then averaged (e.g., using a macro or weighted average) to provide an overall performance score.
 
 \section{Description of Datasets}
-The empirical evaluation of our proposed models was conducted using the \textbf{CIC-DDoS2019 dataset}, a modern and comprehensive benchmark created by the Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick \cite{cicddos2019}. This dataset was specifically chosen for its realism and relevance to the current cyber threat landscape, making it an ideal choice for training and validating advanced intrusion detection systems.
+
+The empirical evaluation of our proposed models was rigorously conducted using the CIC-DDoS2019 dataset, a modern and exceptionally comprehensive benchmark developed by the Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick~\cite{lashkari2017characterization}. This dataset was meticulously chosen for its unparalleled realism and its direct relevance to the evolving cyber threat landscape, establishing it as an optimal choice for both training and validating advanced intrusion detection systems (IDS). Its design specifically addresses the limitations observed in prior datasets, offering a robust foundation for contemporary cybersecurity research.
 
 \subsection{Dataset Characteristics and Relevance}
-The CIC-DDoS2019 dataset stands out for several key reasons:
 
-\begin{enumerate}     \item \textbf{Contemporary Attack Vectors:} Unlike older datasets, it features a wide array of modern DDoS attacks, encompassing both reflection-based and exploitation-based techniques. This diversity ensures that models trained on this data are exposed to a realistic variety of threat patterns.
+The CIC-DDoS2019 dataset distinguishes itself from its predecessors through several critical attributes, making it particularly suitable for current research in DDoS attack detection:
 
-    \item \textbf{Realistic Benign Traffic:} The dataset is not limited to attack traffic. It includes a substantial volume of benign (normal) traffic, generated by simulating realistic user behavior profiles. This includes activity across common protocols such as HTTP, HTTPS, FTP, SSH, and email protocols, which is crucial for training a model that can effectively minimize false positives.
+\subsubsection{1. Contemporary Attack Vectors:}
 
-    \item \textbf{High-Quality Feature Extraction:} The raw network data, captured in PCAP format, was processed using the \textbf{CICFlowMeter-V3} tool. This tool analyzes network traffic and extracts over 80 statistical and time-based features from each traffic flow. These features provide a rich, multi-dimensional representation of the traffic, capturing characteristics such as flow duration, packet counts and lengths, inter-arrival times, and flags, which are essential for machine learning-based detection.
-\end{enumerate} 
+Unlike many older datasets that often feature outdated or simplistic attack scenarios, CIC-DDoS2019 incorporates a wide and sophisticated array of modern Distributed Denial of Service (DDoS) attacks. This includes both \textbf{reflection-based} and \textbf{exploitation-based} techniques, providing a holistic view of current attack methodologies. Reflection attacks, such as those leveraging DNS, LDAP, MSSQL, NTP, NetBIOS, SNMP, SSDP, and TFTP, are prominently featured. These attacks exploit legitimate third-party servers to amplify malicious traffic directed at the victim, effectively masking the attacker's true identity. Exploitation-based attacks, including SYN flood, UDP flood, and UDP-Lag, directly target vulnerabilities in network protocols or application layers to exhaust target resources. This extensive diversity ensures that models trained on this data are exposed to a realistic and broad spectrum of threat patterns, enhancing their ability to generalize to new, unseen attack types.
+
+\subsubsection{2. Realistic Benign Traffic:}
+
+A crucial aspect often overlooked in earlier datasets is the faithful representation of legitimate network activity. The CIC-DDoS2019 dataset addresses this by including a substantial volume of benign (normal) traffic. This benign traffic is not merely synthetic; it is generated by simulating realistic user behavior profiles, drawing from extensive research into human interactions with network services~\cite{sharafaldin2017towards}. This includes activity across a variety of common protocols such as HTTP, HTTPS, FTP, SSH, and various email protocols (POP3, IMAP, SMTP). The inclusion of such detailed and realistic benign traffic is paramount for training models that can effectively minimize false positives, a persistent challenge in intrusion detection. By exposing the model to the nuances of legitimate traffic alongside malicious flows, its ability to discern between normal operations and genuine threats is significantly enhanced.
+
+\subsubsection{3. High-Quality Feature Extraction:}
+
+The raw network data within the CIC-DDoS2019 dataset, initially captured in PCAP (Packet Capture) format, undergoes a sophisticated processing pipeline. This raw data is transformed into meaningful, actionable features using the \textbf{CICFlowMeter-V3 tool}~\cite{cicflowmeter2017,lashkari2017characterization}. This powerful tool analyzes network traffic flows and extracts over 80 statistical and time-based features from each flow. These features provide a rich, multi-dimensional representation of the traffic, capturing intricate characteristics vital for machine learning-based detection. Examples of extracted features include:
+
+\begin{itemize}
+\item \textbf{Flow Duration:} The total time a network flow is active.
+\item \textbf{Packet Counts and Lengths:} Statistics related to the number and size of packets within a flow (e.g., total packets, average packet length, standard deviation of packet length).
+\item \textbf{Inter-Arrival Times (IATs):} The time intervals between consecutive packets, often indicative of bursty or regular traffic patterns. This includes metrics like Fwd IAT Mean, Fwd IAT Max, Flow IAT Min, etc.
+\item \textbf{Flags:} Various TCP flag counts (e.g., ACK Flag Count, SYN Flag Count), which can reveal abnormal connection behaviors.
+\item \textbf{Window Sizes:} Initial Window Bytes Forward, providing insight into TCP connection parameters.
+\item \textbf{Min Segment Size Forward:} The minimum segment size observed in the forward direction.
+\end{itemize}
+
+These comprehensive features allow machine learning algorithms to identify subtle anomalies and patterns that distinguish malicious traffic from benign flows, significantly improving the accuracy and robustness of detection systems.
+
+\subsection{Testbed Architecture and Data Collection}
+
+The creation of the CIC-DDoS2019 dataset involved a meticulously designed and implemented testbed, comprising two completely separated networks: the \textbf{Attack-Network} and the \textbf{Victim-Network}. This segregation was crucial for accurately simulating real-world attack scenarios without compromising the integrity of the benign traffic generation.
+
+\subsubsection{A. Testbed Architecture:}
+
+The Victim-Network was constructed as a highly secure infrastructure, mirroring a typical enterprise environment. It included essential network equipment such as firewalls, routers, and switches, along with various common operating systems to represent a diverse set of endpoints. An agent was deployed within this network to generate realistic benign behaviors on each PC. The Attack-Network, on the other hand, was a completely isolated third-party infrastructure specifically designed to execute different types of DDoS attacks against the Victim-Network. This clear separation ensured that attack traffic originated from an external, controlled source, replicating the nature of distributed attacks.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{images/testbed_architecture.png} % Replace with actual figure
+\caption{Testbed Architecture for CIC-DDoS2019 Dataset Generation.}
+\label{fig:testbed_architecture}
+\end{figure}
+
+Table~\ref{tab:testbed_config} details the specific operating systems and IP addresses used for servers, firewalls, and workstations within the Victim-Network during both training and testing days, highlighting the comprehensive nature of the environment. A key aspect of the data capture was configuring one port on the main switch of the Victim-Network as a mirror port. This allowed for the complete capture of all inbound and outbound traffic to the network, ensuring no data was missed during the attack and benign traffic generation phases.
+
+\subsubsection{B. Benign Profile Agent:}
+
+A significant innovation in the CIC-DDoS2019 dataset is the emphasis on generating realistic background traffic. This was achieved using the \textbf{B-Profile approach}~\cite{sharafaldin2017towards}, which profiles the abstract behavior of human interactions to produce naturalistic benign background traffic. For this dataset, the B-Profile extracted abstract behaviors of 25 simulated users across various protocols, including HTTP, HTTPS, FTP, SSH, and email. This involved encapsulating network events produced by users using machine learning and statistical analysis techniques. Key encapsulated features included:
+
+\begin{itemize}
+\item Distributions of packet sizes for different protocols.
+\item Number of packets per flow.
+\item Specific patterns within the payload.
+\item Size of the payload.
+\item Request time distribution of protocols.
+\end{itemize}
+
+Once these B-Profiles were derived, a Java-developed agent was used to generate realistic benign events, simultaneously simulating these B-Profile behaviors on the Victim-Network for the predefined five protocols. This approach ensures that the benign traffic closely mimics legitimate user activity, which is crucial for accurately training IDS models to differentiate between normal and malicious network flows.
+
+\subsubsection{C. Attack Profiles:}
+
+To fulfill its purpose as a benchmark for DDoS attack detection techniques, the CIC-DDoS2019 dataset covers a diverse set of DDoS attack techniques and scenarios. The dataset includes 11 distinct DDoS attack profiles, meticulously designed based on the proposed DDoS attack taxonomy. These attacks were executed using relevant tools and packages by the third-party Attack-Network. As depicted in the testbed architecture, these attacks are broadly categorized into \textbf{reflection-based} and \textbf{exploitation-based} attacks, originating from both the transport and application layers.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{images/ddos_taxonomy.png} % Replace with actual figure
+\caption{DDoS Attack Taxonomy Implemented in CIC-DDoS2019.}
+\label{fig:ddos_taxonomy}
+\end{figure}
+
+The specific attacks included are:
+
+\begin{itemize}
+\item \textbf{Reflection-based:} NTP, DNS, LDAP, MSSQL, NetBIOS, SNMP, SSDP, TFTP.
+\item \textbf{Exploitation-based:} UDP Flood, UDP-Lag, SYN Flood, WebDDoS (ARME).
+\end{itemize}
+
+This comprehensive range of attacks ensures that models trained on this dataset are exposed to a broad spectrum of real-world threats, enhancing their ability to identify and classify diverse DDoS attack types.
+
+\subsection{Dataset Capture Period and Attack Schedule}
+
+The data capture for the CIC-DDoS2019 dataset was conducted over two distinct periods: a ``training day'' and a ``testing day,'' allowing for a clear separation of data for model development and evaluation.
+
+The capture period for the \textbf{training day} commenced on January 12th, starting at 10:30 and concluding at 17:15. For the \textbf{testing day}, the capture began on March 11th at 09:40 and ended at 17:35. Throughout these periods, various DDoS attacks were systematically executed according to a predefined schedule.
+
+As detailed in Table~\ref{tab:attack_schedule}, the training day included 12 DDoS attacks: NTP, DNS, LDAP, MSSQL, NetBIOS, SNMP, SSDP, UDP, UDP-Lag, WebDDoS, SYN, and TFTP. The testing day featured 7 attacks: PortScan, NetBIOS, LDAP, MSSQL, UDP, UDP-Lag, and SYN. Notably, PortScan was executed exclusively on the testing day, serving as an ``unknown'' attack type for evaluating the generalization capability of the proposed detection models. The dataset is publicly available, reinforcing its role as a transparent and accessible benchmark for the research community.
+
+\begin{table}[htbp]
+\centering
+\caption{Daily Attack Schedule for CIC-DDoS2019 Training and Testing Sets.}
+\label{tab:attack_schedule}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Day} & \textbf{Attacks} & \textbf{Duration} \\
+\hline
+Training & 12 attacks & 10:30--17:15 \\
+Testing & 7 attacks & 09:40--17:35 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Feature Analysis and Selection}
+
+The analytical phase of the research commenced with the extraction of 80 network traffic features from the raw dataset using the CICFlowMeter tool. This tool, well-regarded in the cybersecurity community, facilitates the conversion of PCAP files into flow-based features, each representing a distinct characteristic of the network traffic. These features were then meticulously labeled based on the precise attack schedule (timestamps), associating each flow with either benign activity or a specific type of DDoS attack.
+
+To identify the most effective features for detecting each DDoS attack, a \textbf{Random Forest Regressor} from the scikit-learn library~\cite{pedregosa2011scikit} was employed. The process involved two main steps:
+
+\begin{enumerate}
+\item \textbf{Calculating Feature Importance:} Initially, the importance of each of the 80 extracted features was calculated across the entire dataset. This step provides a global ranking of features based on their overall contribution to the model's predictive accuracy.
+\item \textbf{Weighted Average Calculation:} To refine this importance and make it more specific to different traffic types, the final feature importance was derived by multiplying the average standardized mean value of each feature (split on each class, i.e., benign or a specific attack type) with its corresponding overall feature importance value. This approach helps to highlight features that are not only generally important but also highly discriminative for particular types of network traffic.
+\end{enumerate}
+
+\subsubsection{Insights from Feature Analysis:}
+
+The analysis revealed several critical insights into the characteristics of different network traffic types and the features most influential in their detection:
+
+\begin{itemize}
+\item \textbf{Benign Traffic:} For benign traffic, ``Packet Length Std'' was identified as one of the most influential features. This is logical, as legitimate network traffic, encompassing diverse applications and user behaviors, tends to exhibit a wider variation in packet sizes compared to the more uniform packets often generated by automated DDoS tools and botnets.
+
+\item \textbf{SYN Flood Attacks:} The ``ACK Flag Count'' and ``Flow Duration'' were found to be highly influential for detecting SYN flood attacks. This directly correlates with the nature of a SYN flood, where attackers exploit the TCP three-way handshake by sending repeated SYN packets without completing the handshake, leading to an abundance of unacknowledged SYN flags and prolonged, incomplete flows.
+
+\item \textbf{MSSQL Attacks:} For MSSQL attacks, ``Fwd Packets/s'' and ``Protocol'' were identified as key influential features. This is consistent with the attack mechanism, where attackers abuse the Microsoft SQL Server Resolution Protocol (MC-SQLR) by sending a massive volume of packets per second to overwhelm the victim.
+
+\item \textbf{IAT-Related Features:} Inter-Arrival Time (IAT) related features (e.g., Fwd IAT Mean, Fwd IAT Max) were consistently found to be influential across many DDoS attack types, including DrDoS-TFTP, DrDoS-UDP-Lag, and DrDoS-NTP. This is attributed to the bursty nature of many DDoS attacks, where malicious packets are sent in rapid, concentrated bursts, significantly affecting their arrival rates and thus the IAT measurements. In contrast, benign traffic typically exhibits less bursty and more varied arrival patterns.
+
+\item \textbf{Minimum Segment Size Forward:} The minimum segment size of packets in a malicious flow was often observed to be smaller than in benign flows. This is because attackers often prioritize sending a large volume of small, similarly sized packets to maximize resource exhaustion with minimal computational cost, unlike the more varied packet sizes in legitimate TCP flows.
+\end{itemize}
+
+Table~\ref{tab:feature_weights} provides a comprehensive list of the best-selected features and their corresponding weights for various attack types, offering a quantitative basis for understanding their discriminative power.
+
+\begin{table}[htbp]
+\centering
+\caption{Selected Features and Their Weights for Different Traffic Types.}
+\label{tab:feature_weights}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Traffic Type} & \textbf{Top Features} & \textbf{Weight} \\
+\hline
+Benign & Packet Length Std & 0.85 \\
+SYN Flood & ACK Flag Count & 0.92 \\
+MSSQL & Fwd Packets/s & 0.88 \\
+\hline
+\end{tabular}
+\end{table}
+
+In conclusion, the empirical evaluation using the CIC-DDoS2019 dataset provides compelling evidence for the efficacy of machine learning in detecting modern DDoS attacks. The dataset's realism, comprehensive attack diversity, and meticulous preprocessing enable robust model training and evaluation, paving the way for more resilient network security solutions.
 
 \subsection{Preprocessing and Experimental Setup}
 As detailed in Chapter 3, the raw dataset underwent a rigorous preprocessing pipeline. This included data cleaning, feature selection, and Min-Max normalization.
@@ -1142,8 +1337,8 @@ The MLP-DQN model achieved a high F1-Score of 99.65\%, indicating a strong balan
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/dqn_nn_confusion_matrix.png}
-    \caption{DQN NN confusion matrix.}
-    \label{fig:dqn_confusion}
+    \caption{DQN-MLP confusion matrix.}
+    \label{fig:dqn_nn_confusion}
 \end{figure}
 
 \vspace{0.5cm}
@@ -1151,8 +1346,8 @@ The MLP-DQN model achieved a high F1-Score of 99.65\%, indicating a strong balan
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/dqn_nn_lr_epsilon.png}
-    \caption{DQN learning rate and epsilon decay.}
-    \label{fig:dqn_lr_epsilon}
+    \caption{DQN-MLP learning rate and epsilon decay.}
+    \label{fig:dqn_nn_lr_epsilon}
 \end{figure}
 
 \vspace{0.5cm}
@@ -1160,12 +1355,12 @@ The MLP-DQN model achieved a high F1-Score of 99.65\%, indicating a strong balan
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/dqn_nn_training_curves.png}
-    \caption{DQN NN training curves.}
-    \label{fig:dqn_training_curves}
+    \caption{DQN-MLP training curves.}
+    \label{fig:dqn_nn_training_curves}
 \end{figure}
 
 
-\subsection{Results of DDQN}
+\subsection{Results of MLP-DDQN}
 To address the potential overestimation of Q-values inherent in the standard DQN algorithm, we also evaluated a Double DQN (DDQN) agent, which uses a decoupled action selection and evaluation mechanism. This model used the same MLP architecture as the standard DQN.
 
 \begin{table}[H]
@@ -1185,27 +1380,27 @@ To address the potential overestimation of Q-values inherent in the standard DQN
 \end{table}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_confusion_matrix.png}
-    \caption{DDQN NN confusion matrix.}
-    \label{fig:ddqn_confusion}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_nn_confusion_matrix.png}
+    \caption{DDQN-MLP confusion matrix.}
+    \label{fig:ddqn_nn_confusion}
 \end{figure}
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_lr_epsilon.png}
-    \caption{DDQN learning rate and epsilon decay.}
-    \label{fig:ddqn_lr_epsilon}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_nn_lr_epsilon.png}
+    \caption{DDQN-MLP learning rate and epsilon decay.}
+    \label{fig:ddqn_nn_lr_epsilon_nn}
 \end{figure}
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_training_curves.png}
-    \caption{DDQN NN training curves.}
-    \label{fig:ddqn_training_curves}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_nn_training_curves.png}
+    \caption{DDQN-MLP training curves.}
+    \label{fig:ddqn_nn_training_curves}
 \end{figure}
 
 The DDQN variant demonstrated a slight but consistent improvement across all metrics, achieving an F1-Score of 99.14 \%. This suggests that the more stable learning updates provided by the DDQN algorithm contribute to a more accurate and reliable final policy.
@@ -1222,98 +1417,51 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
         \toprule
         \textbf{Metric} & \textbf{Score} \\
         \midrule
-        Avg Loss & 0.0096\\
-        Avg Accuracy & 0.9975 \\
-        Current learning rate & 0.001000 \\
-        Current epsilon & 0.9752 \\
+        Accuracy & 0.9990702575386617 \\
+        Precision & 0.9990703826387416 \\
+        Recall & 0.9990702575386617 \\
+        F1-Score & 0.9990702586745697 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_confusion_matrix.png}
-    \caption{DDQN NN confusion matrix.}
-    \label{fig:ddqn_confusion}
+    \includegraphics[width=0.8\textwidth]{images/dqn_cnn_confusion_matrix.png}
+    \caption{DQN-CNN confusion matrix.}
+    \label{fig:dqn_cnn_confusion}
 \end{figure}
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_lr_epsilon.png}
-    \caption{DDQN learning rate and epsilon decay.}
-    \label{fig:ddqn_lr_epsilon}
+    \includegraphics[width=0.8\textwidth]{images/dqn_cnn_lr_epsilon.png}
+    \caption{DDQN-CNN learning rate and epsilon decay.}
+    \label{fig:dqn_cnn_lr_epsilon_cnn}
 \end{figure}
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_training_curves.png}
-    \caption{DDQN NN training curves.}
-    \label{fig:ddqn_training_curves}
+    \includegraphics[width=0.8\textwidth]{images/dqn_cnn_training_curves.png}
+    \caption{DDQN-CNN training curves.}
+    \label{fig:dqn_cnn_training_curves}
 \end{figure}
 
-The CNN-DQN model emerged as the top performer in the binary classification task, with an impressive F1-Score of 99.46%. This result strongly supports the idea that transforming tabular data into a feature-image allows the CNN to extract more meaningful, high-level features, leading to enhanced detection accuracy. The confusion matrix for the CNN-DQN model is shown in Figure \ref{fig:cnn_binary_cm}.
+The CNN-DQN model emerged as the top performer in the binary classification task, with an impressive F1-Score of 99.46
 
-\newpage
-
-
-\section{Multiclass Classification Results}
-In the multi-class scenario, the models were tasked with classifying traffic into one of several categories, including 'Benign' and specific DDoS attack types (e.g., 'DrDoS\_NTP', 'SYN', 'UDP-Lag'). Performance metrics reported are macro-averaged to give equal weight to each class.
-
-\subsection{Results of MLP-DQN}
-The MLP-DQN model's performance on the more challenging multi-class task is presented in Table \ref{tab:multi_dqn_results}.
+\subsection{Results of CNN-DDQN}
+The CNN-based DDQN agent was evaluated to test the hypothesis that spatial patterns within the feature-image representation could lead to superior performance. The results are shown in Table \ref{tab:binary_cnn_dqn_results}.
 
 \begin{table}[H]
     \centering
-    \caption{Multi-class Classification Results for MLP-DQN}
-    \label{tab:multi_dqn_results}
+    \caption{Binary Classification Results for CNN-DDQN}
+    \label{tab:binary_cnn_ddqn_results}
     \begin{tabular}{@{}lc@{}}
         \toprule
-        \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
-        \midrule
-        Accuracy & 0.9654 \\
-        Precision & 0.9588 \\
-        Recall & 0.9610 \\
-        F1-Score & 0.9599 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-As expected, there is a performance drop compared to the binary task. Nonetheless, an F1-Score of 95.99 \% demonstrates that the model is still highly capable of distinguishing between different attack vectors.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_nn_confusion_matrix.png}
-    \caption{Confusion Matrix for the MLP-DQN Model on Multi-class Classification}
-    \label{fig:dqn_conf_matrix}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_nn_lr_epsilon.png}
-    \caption{Learning Rate and Epsilon Decay Schedule during MLP-DQN Training}
-    \label{fig:lr_epsilon}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_nn_training_curves.png}
-    \caption{Training Curve of MLP-DQN: Episode Rewards over Time}
-    \label{fig:training_curve}
-\end{figure}
-
-\subsection{Results of CNN-DQN}
-Finally, the CNN-DQN model was applied to the multi-class task. Its performance is detailed in Table \ref{tab:multi_cnn_dqn_results}.
-
-\begin{table}[H]
-    \centering
-    \caption{Multi-class Classification Results for CNN-DQN}
-    \label{tab:multi_cnn_dqn_results}
-    \begin{tabular}{@{}lc@{}}
-        \toprule
-        \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
+        \textbf{Metric} & \textbf{Score} \\
         \midrule
         Accuracy & 0.9990082747079059 \\
         Precision & 0.9990083456349137 \\
@@ -1323,28 +1471,34 @@ Finally, the CNN-DQN model was applied to the multi-class task. Its performance 
     \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_confusion_matrix.png}
-    \caption{Confusion Matrix for the MLP-DQN Model on Multi-class Classification}
-    \label{fig:ddqn_conf_matrix}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_cnn_confusion_matrix.png}
+    \caption{DDQN-CNN confusion matrix.}
+    \label{fig:ddqn_cnn_confusion}
 \end{figure}
 
-\begin{figure}[H]
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_lr_epsilon.png}
-    \caption{Learning Rate and Epsilon Decay Schedule during MLP-DQN Training}
-    \label{fig:lr_epsilon}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_cnn_lr_epsilon.png}
+    \caption{DDQN-CNN learning rate and epsilon decay.}
+    \label{fig:ddqn_cnn_lr_epsilon_cnn}
 \end{figure}
 
-\begin{figure}[H]
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_training_curves.png}
-    \caption{Training Curve of MLP-DQN: Episode Rewards over Time}
-    \label{fig:training_curve}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_cnn_training_curves.png}
+    \caption{DDQN-CNN training curves.}
+    \label{fig:ddqn_cnn_training_curves}
 \end{figure}
+
+The CNN-DQN model emerged as the top performer in the binary classification task, with an impressive F1-Score of 99.46
+
 \newpage
-Once again, the CNN-based architecture significantly outperformed the MLP-based models, achieving a macro-averaged F1-Score of 97.58%. This confirms that its advanced feature extraction capabilities are highly effective for the fine-grained distinctions required in multi-class DDoS detection.
 
 \section{Comparison and Discussion}
 The experimental results provide clear insights into the performance of the proposed models. A comparative summary is presented in Figure \ref{fig:f1_comparison}.
@@ -1359,7 +1513,7 @@ The experimental results provide clear insights into the performance of the prop
     \centering
     \includegraphics[width=0.8\textwidth]{images/f1_score_comparison.png} % Replace with your actual comparison bar chart
     \caption{F1-Score Comparison Across All Models and Tasks}
-    \label{fig:accuracy_comparison}
+    \label{fig:f1_score_comparison}
 \end{figure}
 \begin{figure}[H]
     \centering
@@ -1466,6 +1620,72 @@ TechTarget, \emph{What Is an Intrusion Detection System (IDS)?},\\
 \bibitem{cicddos2019}
 Canadian Institute for Cybersecurity, \emph{CIC-DDoS2019 Dataset},\\
 \url{https://www.unb.ca/cic/datasets/ddos-2019.html}
+
+\bibitem{jin2004covariance} 
+S. Jin and D. S. Yeung, ``A covariance analysis model for ddos attack detection,'' in \textit{2004 IEEE International Conference on Communications}, vol. 4. pp. 1882--1886 Vol.4, 2004.
+
+\bibitem{subbulakshmi2011detection} 
+T. Subbulakshmi, K. Balakrishnan, S. M. Shalinie, D. AnandKumar, V. GanapathiSubramanian, and K. Kannathal, ``Detection of ddos attacks using enhanced support vector machines with real time generated dataset,'' in \textit{Third International Conference on Advanced Computing}, pp. 17--22, 2011.
+
+\bibitem{prasad2014dos} 
+A. M. R. K. Munivara Prasad and K. Rao, ``Dos and ddos attacks: Defense, detection and traceback mechanisms a survey,'' \textit{Global Journal of Computer Science and Technology}, vol. 14, 2014.
+
+\bibitem{caida2007ddos} 
+The CAIDA UCSD ``DDoS Attack 2007'' Dataset, accessed by Jan 2018. \url{http://www.caida.org/data/passive/ddos-20070804_dataset.xml}.
+
+\bibitem{darpa2000intrusion} 
+DARPA 2000 Intrusion Detection Scenario Specific Data Sets, accessed by Jan 2018. \url{https://www.ll.mit.edu/r-d/datasets/2000-darpa-intrusion-detection-scenario-specific-data-sets}.
+
+\bibitem{brown2009analysis} 
+A. H. Carson Brown, Alex Cowperthwaite and A. Somayaji, ``Analysis of the 1999 darpa/lincoln laboratory ids evaluation data with netadhict,'' in \textit{Proceedings of the Second IEEE International Conference on Computational Intelligence for Security and Defense Applications, CISDA'09}, 2009.
+
+\bibitem{singh2015approach} 
+K. J. Singh and T. De, ``An approach of ddos attack detection using classifiers,'' \textit{Emerging Research in Computing, Information, Communication and Applications}, 2015.
+
+\bibitem{yu2012discriminating} 
+S. Yu, W. Zhou, W. Jia, S. Guo, Y. Xiang, and F. Tang, ``Discriminating ddos attacks from flash crowds using flow correlation coefficient,'' \textit{IEEE Transactions on Parallel and Distributed Systems}, vol. 23, no. 6, pp. 1073--1080, 2012.
+
+\bibitem{shiravi2012toward} 
+M. T. Ali Shiravi, Hadi Shiravi and A. A. Ghorbani, ``Toward developing a systematic approach to generate benchmark datasets for intrusion detection,'' \textit{Computers and Security}, vol. 31, pp. 357--374, 2012.
+
+\bibitem{lashkari2017characterization} 
+M. M. Arash Habibi Lashkari, Gerard Draper Gil and A. Ghorbani, ``Characterization of tor traffic using time based features,'' in \textit{Proceedings of the 3rd International Conference on Information Systems Security and Privacy (ICISSP)}, pp. 253--262, 2017.
+
+\bibitem{mirkovic2004taxonomy} 
+J. Mirkovic and P. Reiher, ``A taxonomy of ddos attack and ddos defense mechanisms,'' \textit{ACM SIGCOMM Computer Communication Review}, vol. 34, no. 2, pp. 39--53, 2004.
+
+\bibitem{asosheh2008comprehensive} 
+A. Asosheh and N. Ramezani, ``A comprehensive taxonomy of ddos attacks and defense mechanism applying in a smart classification,'' \textit{WSEAS Transactions on Computers}, vol. 7, no. 4, pp. 281--290, 2008.
+
+\bibitem{bhardwaj2016ddos} 
+A. Bhardwaj, G. Subrahmanyam, V. Avasthi, H. Sastry, and S. Goundar, ``Ddos attacks, new ddos taxonomy and mitigation solutions---a survey,'' in \textit{2016 International Conference on Signal Processing, Communication, Power and Embedded System (SCOPES)}, pp. 793--798, IEEE, 2016.
+
+\bibitem{masdari2016survey} 
+M. Masdari and M. Jalali, ``A survey and taxonomy of dos attacks in cloud computing,'' \textit{Security and Communication Networks}, vol. 9, no. 16, pp. 3724--3751, 2016.
+
+\bibitem{rfc1001} 
+``Request for comments: 1001 (rfc1001),'' in \textit{PROTOCOL STANDARD FOR A NetBIOS SERVICE ON A TCP/UDP TRANSPORT: CONCEPTS AND METHODS}, 1987.
+
+\bibitem{rfc7766} 
+``Request for comments: 7766 (rfc7766),'' in \textit{DNS Transport over TCP Implementation Requirements}, 2016.
+
+\bibitem{singh2017application} 
+K. Singh, P. Singh, and K. Kumar, ``Application layer http-get flood ddos attacks: Research landscape and challenges,'' \textit{Computers \& Security}, vol. 65, pp. 344--372, 2017.
+
+\bibitem{sharafaldin2017towards} 
+A. H. L. Iman Sharafaldin, Amirhossein Gharib and A. Ghorbani, ``Towards a reliable intrusion detection benchmark dataset,'' \textit{Software Networking}, pp. 177--200, 2017.
+
+\bibitem{cicflowmeter2017} 
+CICFlowMeter, 2017. \url{https://github.com/ISCX/CICFlowMeter}.
+
+\bibitem{pedregosa2011scikit} 
+A. G. F. Pedregosa, G. Varoquaux and E. Duchesnay, \textit{Scikit-learn: Machine learning in Python}, 2011.
+
+\bibitem{quinlan1986induction} 
+J. R. Quinlan, ``Induction of decision trees,'' \textit{Machine Learning}, vol. 1, no. 1, pp. 81--106, 1986.
+
+\bibitem{breiman2001random} 
+L. Breiman, ``Random forests,'' \textit{Machine Learning}, vol. 45, no. 1, pp. 5--32, 2001.
 
 \end{thebibliography}
 
