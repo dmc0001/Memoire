@@ -473,17 +473,16 @@ Classification forms the foundation of automated threat detection:
 \textbf{Hierarchical Classification:} Structures threats in a tree-like format.
 \textbf{Multi-label Classification:} Assigns multiple categories to a single traffic flow.
 
-\section*{What is Machine Learning?}
-Machine learning (ML) is a branch of artificial intelligence (AI) focused on enabling computers and machines to imitate the way that humans learn. The learning system consists of a decision process, an error function, and a model optimization process.
+\section{Conclusion}
 
-\subsection{Machine Learning Techniques}
-\section*{Supervised Learning}
-Supervised learning involves training on labeled datasets. Common algorithms include Random Forests, Support Vector Machines (SVM), and Neural Networks.
+This chapter provided a comprehensive overview of Intrusion Detection Systems (IDS) and their role in defending against Denial-of-Service (DoS) and Distributed Denial-of-Service (DDoS) attacks. It began by establishing core security principles—confidentiality, integrity, and availability—and extended to non-repudiation, authenticity, and accountability, which form the foundational requirements for secure systems.
 
-\section*{Unsupervised Learning}
-Unsupervised learning focuses on uncovering patterns in unlabeled data. Techniques include clustering (k-means) and anomaly detection (Isolation Forest).
+We then examined the nature of DoS attacks in detail, highlighting their categorization into volumetric, protocol, and application-layer threats, along with their increasingly distributed and complex manifestations. Through traffic analysis and classification paradigms, the chapter demonstrated how accurate identification of attack patterns is essential for timely defense.
 
-\section*{Semi-Supervised Learning}
+Finally, we explored the architecture, types, and operational methodologies of IDS—including signature-based, anomaly-based, and hybrid systems—alongside their limitations in handling dynamic, large-scale attack scenarios.
+
+Given the static and reactive nature of traditional IDS, there is a growing need for intelligent, adaptive systems capable of learning from evolving threats. This chapter sets the theoretical groundwork for such systems and motivates the transition toward machine learning and, more specifically, reinforcement learning techniques. The following chapters will build on this foundation by introducing Deep Q-Learning as a novel approach for dynamic and autonomous intrusion detection.
+
 
 \chapter{Deep Q-Learning for Intrusion Detection}
 \label{chap:dqn-for-ids}
