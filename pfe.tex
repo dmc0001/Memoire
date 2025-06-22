@@ -1168,8 +1168,8 @@ The MLP-DQN model achieved a high F1-Score of 99.65\%, indicating a strong balan
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/dqn_nn_confusion_matrix.png}
-    \caption{DQN NN confusion matrix.}
-    \label{fig:dqn_confusion}
+    \caption{DQN-MLP confusion matrix.}
+    \label{fig:dqn_nn_confusion}
 \end{figure}
 
 \vspace{0.5cm}
@@ -1177,8 +1177,8 @@ The MLP-DQN model achieved a high F1-Score of 99.65\%, indicating a strong balan
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/dqn_nn_lr_epsilon.png}
-    \caption{DQN learning rate and epsilon decay.}
-    \label{fig:dqn_lr_epsilon}
+    \caption{DQN-MLP learning rate and epsilon decay.}
+    \label{fig:dqn_nn_lr_epsilon}
 \end{figure}
 
 \vspace{0.5cm}
@@ -1186,12 +1186,12 @@ The MLP-DQN model achieved a high F1-Score of 99.65\%, indicating a strong balan
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/dqn_nn_training_curves.png}
-    \caption{DQN NN training curves.}
-    \label{fig:dqn_training_curves}
+    \caption{DQN-MLP training curves.}
+    \label{fig:dqn_nn_training_curves}
 \end{figure}
 
 
-\subsection{Results of DDQN}
+\subsection{Results of MLP-DDQN}
 To address the potential overestimation of Q-values inherent in the standard DQN algorithm, we also evaluated a Double DQN (DDQN) agent, which uses a decoupled action selection and evaluation mechanism. This model used the same MLP architecture as the standard DQN.
 
 \begin{table}[H]
@@ -1212,8 +1212,8 @@ To address the potential overestimation of Q-values inherent in the standard DQN
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_confusion_matrix.png}
-    \caption{DDQN NN confusion matrix.}
-    \label{fig:ddqn_confusion}
+    \caption{DDQN-MLP confusion matrix.}
+    \label{fig:ddqn_nn_confusion}
 \end{figure}
 
 \vspace{0.5cm}
@@ -1221,8 +1221,8 @@ To address the potential overestimation of Q-values inherent in the standard DQN
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_lr_epsilon.png}
-    \caption{DDQN learning rate and epsilon decay.}
-    \label{fig:ddqn_lr_epsilon}
+    \caption{DDQN-MLP learning rate and epsilon decay.}
+    \label{fig:ddqn_nn_lr_epsilon_nn}
 \end{figure}
 
 \vspace{0.5cm}
@@ -1230,8 +1230,8 @@ To address the potential overestimation of Q-values inherent in the standard DQN
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_training_curves.png}
-    \caption{DDQN NN training curves.}
-    \label{fig:ddqn_training_curves}
+    \caption{DDQN-MLP training curves.}
+    \label{fig:ddqn_nn_training_curves}
 \end{figure}
 
 The DDQN variant demonstrated a slight but consistent improvement across all metrics, achieving an F1-Score of 99.14 \%. This suggests that the more stable learning updates provided by the DDQN algorithm contribute to a more accurate and reliable final policy.
@@ -1248,10 +1248,10 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
         \toprule
         \textbf{Metric} & \textbf{Score} \\
         \midrule
-        Avg Loss & 0.0096\\
-        Avg Accuracy & 0.9975 \\
-        Current learning rate & 0.001000 \\
-        Current epsilon & 0.9752 \\
+        Accuracy & 0.9990702575386617 \\
+        Precision & 0.9990703826387416 \\
+        Recall & 0.9990702575386617 \\
+        F1-Score & 0.9990702586745697 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -1259,8 +1259,8 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/dqn_cnn_confusion_matrix.png}
-    \caption{DDQN NN confusion matrix.}
-    \label{fig:ddqn_confusion}
+    \caption{DQN-CNN confusion matrix.}
+    \label{fig:dqn_cnn_confusion}
 \end{figure}
 
 \vspace{0.5cm}
@@ -1268,8 +1268,8 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/dqn_cnn_lr_epsilon.png}
-    \caption{DDQN learning rate and epsilon decay.}
-    \label{fig:ddqn_lr_epsilon}
+    \caption{DDQN-CNN learning rate and epsilon decay.}
+    \label{fig:dqn_cnn_lr_epsilon_cnn}
 \end{figure}
 
 \vspace{0.5cm}
@@ -1277,69 +1277,22 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/dqn_cnn_training_curves.png}
-    \caption{DDQN NN training curves.}
-    \label{fig:ddqn_training_curves}
+    \caption{DDQN-CNN training curves.}
+    \label{fig:dqn_cnn_training_curves}
 \end{figure}
 
-The CNN-DQN model emerged as the top performer in the binary classification task, with an impressive F1-Score of 99.46%. This result strongly supports the idea that transforming tabular data into a feature-image allows the CNN to extract more meaningful, high-level features, leading to enhanced detection accuracy. The confusion matrix for the CNN-DQN model is shown in Figure \ref{fig:cnn_binary_cm}.
+The CNN-DQN model emerged as the top performer in the binary classification task, with an impressive F1-Score of 99.46
 
-\newpage
-
-
-\section{Multiclass Classification Results}
-In the multi-class scenario, the models were tasked with classifying traffic into one of several categories, including 'Benign' and specific DDoS attack types (e.g., 'DrDoS\_NTP', 'SYN', 'UDP-Lag'). Performance metrics reported are macro-averaged to give equal weight to each class.
-
-\subsection{Results of MLP-DQN}
-The MLP-DQN model's performance on the more challenging multi-class task is presented in Table \ref{tab:multi_dqn_results}.
+\subsection{Results of CNN-DDQN}
+The CNN-based DDQN agent was evaluated to test the hypothesis that spatial patterns within the feature-image representation could lead to superior performance. The results are shown in Table \ref{tab:binary_cnn_dqn_results}.
 
 \begin{table}[H]
     \centering
-    \caption{Multi-class Classification Results for MLP-DQN}
-    \label{tab:multi_dqn_results}
+    \caption{Binary Classification Results for CNN-DDQN}
+    \label{tab:binary_cnn_ddqn_results}
     \begin{tabular}{@{}lc@{}}
         \toprule
-        \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
-        \midrule
-        Accuracy & 0.9654 \\
-        Precision & 0.9588 \\
-        Recall & 0.9610 \\
-        F1-Score & 0.9599 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-As expected, there is a performance drop compared to the binary task. Nonetheless, an F1-Score of 95.99 \% demonstrates that the model is still highly capable of distinguishing between different attack vectors.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_nn_confusion_matrix.png}
-    \caption{Confusion Matrix for the MLP-DQN Model on Multi-class Classification}
-    \label{fig:dqn_conf_matrix}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_nn_lr_epsilon.png}
-    \caption{Learning Rate and Epsilon Decay Schedule during MLP-DQN Training}
-    \label{fig:lr_epsilon}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_nn_training_curves.png}
-    \caption{Training Curve of MLP-DQN: Episode Rewards over Time}
-    \label{fig:training_curve}
-\end{figure}
-
-\subsection{Results of CNN-DQN}
-Finally, the CNN-DQN model was applied to the multi-class task. Its performance is detailed in Table \ref{tab:multi_cnn_dqn_results}.
-
-\begin{table}[H]
-    \centering
-    \caption{Multi-class Classification Results for CNN-DQN}
-    \label{tab:multi_cnn_dqn_results}
-    \begin{tabular}{@{}lc@{}}
-        \toprule
-        \textbf{Metric} & \textbf{Score (Macro Avg.)} \\
+        \textbf{Metric} & \textbf{Score} \\
         \midrule
         Accuracy & 0.9990082747079059 \\
         Precision & 0.9990083456349137 \\
@@ -1349,28 +1302,34 @@ Finally, the CNN-DQN model was applied to the multi-class task. Its performance 
     \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_confusion_matrix.png}
-    \caption{Confusion Matrix for the MLP-DQN Model on Multi-class Classification}
-    \label{fig:ddqn_conf_matrix}
+    \caption{DDQN-CNN confusion matrix.}
+    \label{fig:ddqn_cnn_confusion}
 \end{figure}
 
-\begin{figure}[H]
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_lr_epsilon.png}
-    \caption{Learning Rate and Epsilon Decay Schedule during MLP-DQN Training}
-    \label{fig:lr_epsilon}
+    \caption{DDQN-CNN learning rate and epsilon decay.}
+    \label{fig:ddqn_cnn_lr_epsilon_cnn}
 \end{figure}
 
-\begin{figure}[H]
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_training_curves.png}
-    \caption{Training Curve of MLP-DQN: Episode Rewards over Time}
-    \label{fig:training_curve}
+    \caption{DDQN-CNN training curves.}
+    \label{fig:ddqn_cnn_training_curves}
 \end{figure}
+
+The CNN-DQN model emerged as the top performer in the binary classification task, with an impressive F1-Score of 99.46
+
 \newpage
-Once again, the CNN-based architecture significantly outperformed the MLP-based models, achieving a macro-averaged F1-Score of 97.58%. This confirms that its advanced feature extraction capabilities are highly effective for the fine-grained distinctions required in multi-class DDoS detection.
 
 \section{Comparison and Discussion}
 The experimental results provide clear insights into the performance of the proposed models. A comparative summary is presented in Figure \ref{fig:f1_comparison}.
@@ -1385,7 +1344,7 @@ The experimental results provide clear insights into the performance of the prop
     \centering
     \includegraphics[width=0.8\textwidth]{images/f1_score_comparison.png} % Replace with your actual comparison bar chart
     \caption{F1-Score Comparison Across All Models and Tasks}
-    \label{fig:accuracy_comparison}
+    \label{fig:f1_score_comparison}
 \end{figure}
 \begin{figure}[H]
     \centering

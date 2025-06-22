@@ -268,15 +268,6 @@ INPUT ./images/dqn_cnn_lr_epsilon.png
 INPUT ./images/dqn_cnn_training_curves.png
 INPUT ./images/dqn_cnn_training_curves.png
 INPUT ./images/dqn_cnn_training_curves.png
-INPUT ./images/dqn_nn_confusion_matrix.png
-INPUT ./images/dqn_nn_confusion_matrix.png
-INPUT ./images/dqn_nn_confusion_matrix.png
-INPUT ./images/dqn_nn_lr_epsilon.png
-INPUT ./images/dqn_nn_lr_epsilon.png
-INPUT ./images/dqn_nn_lr_epsilon.png
-INPUT ./images/dqn_nn_training_curves.png
-INPUT ./images/dqn_nn_training_curves.png
-INPUT ./images/dqn_nn_training_curves.png
 INPUT ./images/double_dqn_cnn_confusion_matrix.png
 INPUT ./images/double_dqn_cnn_confusion_matrix.png
 INPUT ./images/double_dqn_cnn_confusion_matrix.png
