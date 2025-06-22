@@ -59,3 +59,9 @@ Thumbs.db
 
 # Generated PDF (optional)
 *.pdf
+
+pdflatex47601.fls
+
+*.fdb_latexmk
+*.fts
+*.log
