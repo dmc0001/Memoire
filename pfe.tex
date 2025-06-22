@@ -684,7 +684,7 @@ To leverage Reinforcement Learning (RL) for DDoS attack detection, we must refra
 \subsection{Environment Definition}
 In our framework, the "environment" is simulated by a preprocessed dataset. Each state (st​) is a single, preprocessed feature vector representing a snapshot of network traffic. Unlike traditional RL where states evolve from prior actions, here, the "next state" (st+1​) is functionally defined as the subsequent sample in a randomly shuffled batch. This approach allows us to estimate future value for Q-learning updates, even in a non-sequential data context. The dataset itself acts as the source of observations the agent makes at each "time step."
 
-\subsubsection{Reward Function}
+\subsection{Reward Function}
 
 The reward ($r_t$) is an immediate scalar feedback signal provided by the simulated environment based on the agent's classification decision. It quantifies the quality of the agent’s chosen action ($a_t$) by directly comparing it with the known optimal action ($a_t^*$), i.e., the true label.
 
@@ -700,7 +700,7 @@ r_t =
 
 Using a neutral reward of 0 for incorrect actions, rather than a negative penalty (e.g., $-1$), can lead to more stable training in some contexts, as it does not excessively punish the agent during its initial exploration phase. This reward mechanism forms the crucial bridge between the supervised ground-truth label and the reinforcement learning feedback loop.
 
-\subsubsection{Agent's Objective}
+\subsection{Agent's Objective}
 
 The primary objective of the reinforcement learning (RL) agent is to learn an optimal detection policy $\pi(a \mid s)$ that maximizes its long-term cumulative reward. 
 
@@ -708,7 +708,7 @@ In the context of DDoS detection, this objective translates into maximizing the 
 
 By continuously refining its understanding of the value associated with selecting a particular label in a given context, the agent aims to converge toward a strategy that minimizes misclassifications and ensures robust detection performance.
 
-\subsubsection{Definition of Classification Tasks}
+\subsection{Definition of Classification Tasks}
 
 The problem is framed as a binary classification task to simplify the detection process. The agent's actions ($a_t$) correspond to the two possible classification labels:
 
@@ -724,11 +724,19 @@ The multi-class labels present in the original dataset (e.g., \texttt{DrDoS\_NTP
 
 The preprocessing phase is a fundamental component of building an effective machine learning model, ensuring that the input data is clean, consistent, and optimally formatted for the learning algorithm. Our approach involves several key steps:
 
-\subsubsection{Dataset}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/dataset-preprocessing.png}
+    \caption{Data Preprocessing Pipeline.}
+    \label{fig:dataset-preprocessing}
+\end{figure}
+
+
+\subsection{Dataset}
 
 The primary dataset used for this research is a publicly available dataset. This dataset is highly relevant as it contains a variety of the most up-to-date common DDoS attacks alongside benign traffic, closely resembling real-world network scenarios. The data is provided in PCAP format and has been pre-processed using a specialized tool to generate labeled flows in CSV files. Each flow is characterized by features based on its time stamp, source and destination IPs, source and destination ports, and the protocol used.
 
-\subsubsection{Step 1: Data Cleaning}
+\subsection{Step 1: Data Cleaning}
 The initial phase focuses on cleaning the dataset to ensure its quality and integrity. This involves three key actions:
 
 \begin{itemize}
@@ -739,7 +747,7 @@ The initial phase focuses on cleaning the dataset to ensure its quality and inte
     \item \textbf{Numeric Conversion:} All remaining feature values are converted to a numeric data type. Machine learning models, and particularly neural networks like the DQN, require numerical input for their mathematical operations. This step ensures that all data, including any encoded categorical features, is in a format that the model can process.
 \end{itemize}
 
-\subsubsection{Step 2: Feature Selection using Random Forest Classifier}
+\subsection{Step 2: Feature Selection using Random Forest Classifier}
 
 Feature selection is a critical process for reducing the dimensionality of the dataset, which in turn reduces model complexity, decreases training time, and mitigates the risk of overfitting. For this task, we utilize the \textit{Random Forest Classifier}.
 
@@ -753,7 +761,7 @@ Random Forest is an ensemble learning method that constructs a multitude of deci
     \item Features are ranked based on these scores, and only the top-ranked features that contribute most significantly to the model’s predictive power are retained for subsequent steps.
 \end{itemize}
 
-\subsubsection{Step 3: Data Normalization}
+\subsection{Step 3: Data Normalization}
 
 
 After feature selection, the data is normalized to ensure that all features contribute equally to the model’s learning process. We employ \textit{Min-Max normalization}, which scales each feature to a fixed range between 0 and 1.
@@ -775,7 +783,7 @@ where:
     \item \( X_{\max} \) is the maximum value of the feature in the dataset.
 \end{itemize}
 
-\subsubsection{Step 4: Dataset Balancing with Random Undersampling}
+\subsection{Step 4: Dataset Balancing with Random Undersampling}
 
 The dataset exhibits a significant class imbalance, with a much larger proportion of attack traffic compared to benign traffic. Training a model on such an imbalanced dataset would bias it towards the majority class (attacks), leading to poor detection performance for the minority class (benign traffic) and a high false positive rate.
 
@@ -791,13 +799,30 @@ We begin by providing a high-level, component-wise breakdown of the unified trai
 
 The primary goal is to iteratively refine the agent’s Q-network, which is responsible for approximating the optimal action-value function \( Q^*(s, a) \). This function estimates the long-term value of taking a specific action (i.e., making a classification) when presented with a particular state (i.e., a network traffic sample).
 
-\subsubsection{Deep Q-Learning Architecture (DQN)}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/dqn-arch.png}
+    \caption{Deep Q-Learning Architecture (DQN)}
+    \label{fig:dqn-arch}
+\end{figure}
+
+
+\subsection{Deep Q-Learning Architecture (DQN)}
 
 The standard Deep Q-Learning (DQN) architecture is employed to learn the optimal Q-values. The training process involves continuous interaction with the simulated environment (the dataset) and iterative updates to the Q-network.
 
-\subsubsection*{Component 1: Generic Sample and Data Provisioning}
+\subsection{Component 1: Generic Sample and Data Provisioning}
 
 The learning process begins with the provisioning of data to the agent. At each training step, a generic sample is drawn from the preprocessed and shuffled dataset. This sample is a tuple containing three critical elements required for the Q-learning update: \( (s_t, a^*_t, s_{t+1}) \).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/batching-arch.png}
+    \caption{Data Provisioning.}
+    \label{fig:batching-arch}
+\end{figure}
+
 
 \begin{itemize}
   \item \textbf{Current State (\( s_t \))}: The feature vector of the network traffic sample currently under evaluation.
@@ -822,7 +847,7 @@ This data sampling process is formally represented by Algorithm~\ref{alg:data_sa
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection*{Component 2: The $\epsilon$-Greedy Policy and Action Selection}
+\subsection{Component 2: The $\epsilon$-Greedy Policy and Action Selection}
 
 Once presented with the current state $s_t$, the agent must select an action $a_t$. This decision is governed by an $\epsilon$-greedy policy—a fundamental strategy in reinforcement learning designed to manage the critical exploration-exploitation trade-off.
 
@@ -853,7 +878,7 @@ The parameter $\epsilon$ is a tunable hyperparameter that is typically annealed 
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Component 3: The Target Q-Value ($q_\text{ref}$) Calculation}
+\subsection{Component 3: The Target Q-Value ($q_\text{ref}$) Calculation}
 
 This step is one of the most sophisticated and innovative aspects of the entire training framework. In our DQN framework, the Q-network is trained against a dynamically constructed hybrid target vector, $q_\text{ref}$. This target ingeniously blends the explicit signal from the supervised label with the value-estimation principles of reinforcement learning.
 
@@ -903,7 +928,7 @@ This dual-signal approach ensures the agent learns not only to identify the corr
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Component 4: Loss Calculation and Network Update}
+\subsection{Component 4: Loss Calculation and Network Update}
 
 The final step in the training loop is to update the Q-network’s parameters (weights and biases) to improve its predictions. This is achieved by quantifying the error between the network’s output and the hybrid target, and then adjusting the weights to minimize this error.
 
@@ -945,9 +970,17 @@ This complete update cycle forms a single iteration of the learning process. Rep
 
 The architectural details of the Q-network will be discussed in the following subsections, specifically outlining both a Multi-Layer Perceptron (MLP) and a Convolutional Neural Network (CNN) based implementation.
 
-\subsubsection{Double DQN Architecture (DDQN)}
+\subsection{Double DQN Architecture (DDQN)}
 
 The Double Deep Q-Network (DDQN) architecture is an extension of the standard DQN designed to mitigate the problem of overestimation of Q-values. In traditional DQN, the same Q-network is used for both selecting and evaluating actions, which can lead to optimistic value estimates and potentially cause the agent to learn suboptimal policies.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/ddqn-arch.png}
+    \caption{Double DQN Architecture (DDQN)}
+    \label{fig:ddqn-arch}
+\end{figure}
+
 
 DDQN addresses this limitation by decoupling the action selection from the action evaluation. It introduces two separate Q-networks:
 
@@ -967,11 +1000,11 @@ This formulation ensures that the target value is based on a more stable and les
 
 The overall training process of DDQN follows that of standard DQN, with the key difference being in the construction of the target Q-value. By avoiding the overestimation of action values, DDQN leads to more stable learning and can yield improved performance, especially in environments where value overestimation significantly affects policy quality.
 
-\subsubsection{CNN-DQN Architecture}
+\subsection{CNN-DQN Architecture}
 
 The Convolutional Neural Network (CNN)-based Q-network represents a sophisticated approach built on the hypothesis that meaningful, localized patterns and spatial correlations exist within the network traffic feature set. Unlike the Multi-Layer Perceptron (MLP), which treats input as a flat feature vector, the CNN is specifically designed to exploit spatial structures, enabling automatic and hierarchical feature extraction.
 
-\subsubsection*{Transforming Tabular Data into a Feature-Image}
+\subsection{Transforming Tabular Data into a Feature-Image}
 
 At the core of this method is the transformation of the one-dimensional feature vector into a two-dimensional \textit{feature-image}. This enables the application of convolutional operations, framing the classification task as an image recognition problem.
 
@@ -986,7 +1019,7 @@ Given a state vector with $N$ features, it is reshaped into a grid of dimensions
 
 Each cell in this $8 \times 8$ grid is treated as a pixel, where its value corresponds to a normalized feature value, resulting in a single-channel input image.
 
-\subsubsection*{Feature Ordering Strategy}
+\subsection{Feature Ordering Strategy}
 
 The order in which features are arranged in the grid critically impacts the CNN’s ability to detect meaningful patterns. Several strategies can be adopted:
 
@@ -998,7 +1031,7 @@ The order in which features are arranged in the grid critically impacts the CNN�
 
 These strategies aim to ensure that local neighborhoods within the feature-image encode relevant, structured information.
 
-\subsubsection*{CNN Architecture}
+\subsection{CNN Architecture}
 
 \begin{description}[align=left, labelwidth=4.5cm]
 
@@ -1210,7 +1243,7 @@ To address the potential overestimation of Q-values inherent in the standard DQN
 \end{table}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_confusion_matrix.png}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_nn_confusion_matrix.png}
     \caption{DDQN-MLP confusion matrix.}
     \label{fig:ddqn_nn_confusion}
 \end{figure}
@@ -1219,7 +1252,7 @@ To address the potential overestimation of Q-values inherent in the standard DQN
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_lr_epsilon.png}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_nn_lr_epsilon.png}
     \caption{DDQN-MLP learning rate and epsilon decay.}
     \label{fig:ddqn_nn_lr_epsilon_nn}
 \end{figure}
@@ -1228,7 +1261,7 @@ To address the potential overestimation of Q-values inherent in the standard DQN
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_nn_training_curves.png}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_nn_training_curves.png}
     \caption{DDQN-MLP training curves.}
     \label{fig:ddqn_nn_training_curves}
 \end{figure}
@@ -1257,7 +1290,7 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_confusion_matrix.png}
+    \includegraphics[width=0.8\textwidth]{images/dqn_cnn_confusion_matrix.png}
     \caption{DQN-CNN confusion matrix.}
     \label{fig:dqn_cnn_confusion}
 \end{figure}
@@ -1266,7 +1299,7 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_lr_epsilon.png}
+    \includegraphics[width=0.8\textwidth]{images/dqn_cnn_lr_epsilon.png}
     \caption{DDQN-CNN learning rate and epsilon decay.}
     \label{fig:dqn_cnn_lr_epsilon_cnn}
 \end{figure}
@@ -1275,7 +1308,7 @@ The CNN-based DQN agent was evaluated to test the hypothesis that spatial patter
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/dqn_cnn_training_curves.png}
+    \includegraphics[width=0.8\textwidth]{images/dqn_cnn_training_curves.png}
     \caption{DDQN-CNN training curves.}
     \label{fig:dqn_cnn_training_curves}
 \end{figure}
@@ -1303,7 +1336,7 @@ The CNN-based DDQN agent was evaluated to test the hypothesis that spatial patte
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_confusion_matrix.png}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_cnn_confusion_matrix.png}
     \caption{DDQN-CNN confusion matrix.}
     \label{fig:ddqn_cnn_confusion}
 \end{figure}
@@ -1312,7 +1345,7 @@ The CNN-based DDQN agent was evaluated to test the hypothesis that spatial patte
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_lr_epsilon.png}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_cnn_lr_epsilon.png}
     \caption{DDQN-CNN learning rate and epsilon decay.}
     \label{fig:ddqn_cnn_lr_epsilon_cnn}
 \end{figure}
@@ -1321,7 +1354,7 @@ The CNN-based DDQN agent was evaluated to test the hypothesis that spatial patte
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/double_dqn_cnn_training_curves.png}
+    \includegraphics[width=0.8\textwidth]{images/double_dqn_cnn_training_curves.png}
     \caption{DDQN-CNN training curves.}
     \label{fig:ddqn_cnn_training_curves}
 \end{figure}
